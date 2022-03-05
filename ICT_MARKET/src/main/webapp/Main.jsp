@@ -10,15 +10,16 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
 	.main{
 
 		}
 	footer{
-		height: 193px;
+		height: 157px;
 		position: relative;
 		transform: translateY(-100%);
+		font-size: 8px;
 	}	
 </style>
 <title>ICT Market</title>
