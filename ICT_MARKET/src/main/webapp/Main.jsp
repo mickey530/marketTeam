@@ -5,35 +5,53 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style>
+	html, body{height:100%}
+	#wrapper{
+		height: auto;
+		min-height: 100%;
+		padding-bottom: 193px;
+	}
+	.main{
+
+		}
+	footer{
+		height: 193px;
+		position: relative;
+		transform: translateY(-100%);
+	}	
+</style>
 <title>ICT Market</title>
 </head>
 <body>
-
+<div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<header class="p-3 border-bottom sticky-top">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-            <h2 style="margin:0">ICT MARKET</h2>
-        </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
-
-	      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-	        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-	      </form>
-
-        <div class="text-end">
-          <a href="#" class="text-decoration-none text-black px-2 fw-bold">Login</a>
-          <a href="#" class="text-decoration-none text-black px-2 fw-bold">Sign-up</a>
-        </div>
-        
-      </div>
-    </div>
-</header>
+<!-- <header class="p-3 border-bottom bg-white sticky-top">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0">ICT MARKET</h2>
+			</a>
+			
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
+	
+			<div>
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	           
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+					</form>
+	
+					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header> -->
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
-<header class="p-3 border-bottom sticky-top">
+<header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
@@ -87,13 +105,16 @@
 </header>
 
 
+<!-- main 컨텐츠 내용 -->
+<div class="main">
 
 
+</div>
 
-
+</div>
 <!-- 여기서 부터는 푸터 -->
 
-<footer class="p-3 py-3 border-top sticky-top sticky-bottom">
+<footer class="p-3 py-3 border-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 			<div class="col">
