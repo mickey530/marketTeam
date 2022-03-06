@@ -15,7 +15,7 @@
 <body>
 	    <h1 align="center"> 회원 가입 </h1>
 <fieldset id="fieldset" >	
-	<form action="#" name="" method="post">
+	<form action="http://localhost:5151/ICT_MARKET/ICTJ" name="" method="post">
 		<table border="1" width="500px">
 			<tr>
 				<td id="name"> 이 름 </td>
@@ -46,9 +46,8 @@
 			<tr>
 				<td id="phone"> 폰번호 </td>
 				<td>
-					<input type="text" name="phone1" size="1" required> -
-					<input type="text" name="phone2" size="3" required> -
-					<input type="text" name="phone3" size="3" required>
+					<input type="text" name="phone" maxlength="11" required>
+					
 				</td>
 			</tr>
 			<tr>
