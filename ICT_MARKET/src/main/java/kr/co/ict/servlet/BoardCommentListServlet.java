@@ -1,4 +1,4 @@
-package kr.co.ict.sevlet;
+package kr.co.ict.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ict.BoardDAO;
-import kr.co.ict.BoardVO;
+import kr.co.ict.BoardCommentDAO;
+import kr.co.ict.BoardCommentVO;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class BoardCommentListServlet
  */
-@WebServlet("/boardList")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/boardcommentList")
+public class BoardCommentListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public BoardCommentListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,14 +47,14 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = BoardDAO.getInstance();	
+		BoardCommentDAO dao = BoardCommentDAO.getInstance();	
 		
-		List<BoardVO> boardList = dao.getAllBoardList();
-		request.setAttribute("boardList", boardList);
-	
+		List<BoardCommentVO> boardcommentList = dao.getAllBoardCommentList();
+		request.setAttribute("boardcommentList", boardcommentList);
+		
+		
 		RequestDispatcher dp = request.getRequestDispatcher("#");
 		dp.forward(request, response);
-	
 	}
 
 	/**

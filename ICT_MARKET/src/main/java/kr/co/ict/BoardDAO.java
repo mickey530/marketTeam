@@ -57,11 +57,12 @@ public class BoardDAO {
 				int board_amount = rs.getInt("board_amount");
 				boolean board_sold =  rs.getBoolean("board_sold");
 				int board_reported = rs.getInt("board_reported");
-				Date board_bdate = rs.getDate("board_bdate");
+				Date board_writetime = rs.getDate("board_writetime");
+				Date board_updatetime = rs.getDate("board_updatetime");
 
 				
 				BoardVO boardData = new BoardVO(user_id, board_info, board_num, board_content,
-						board_category, board_amount, board_sold, board_reported, board_bdate);
+						board_category, board_amount, board_sold, board_reported, board_writetime, board_updatetime);
 				boardList.add(boardData);
 				
 				
