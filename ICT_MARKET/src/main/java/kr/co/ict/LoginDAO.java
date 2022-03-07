@@ -56,16 +56,18 @@ public class LoginDAO {
 			   
 			   rs=pstmt.executeQuery();
 			    
-		
-			    if(rs.next()) {
-			    
-			    String uName = rs.getString("uname");
-			    String uId = rs.getString("uid");
-			    String uPw = rs.getString("upw");
-			    String uEmail = rs.getString("uemail");
-			    String uPhone = rs.getString("uphone");
-			    String uAddr = rs.getString("uddr");
-			    user = new LoginVO(uName,uId,uPw,uEmail,uPhone,uAddr );
+			    	 if(rs.next()) {
+				 		    
+				 		   
+				 		    String uId = rs.getString("user_id");
+				 		    String uPw = rs.getString("user_pw");
+				 		    String uName = rs.getString("user_name");
+				 		    String uPnum = rs.getString("user_pnum");
+				 		    String uAddr = rs.getString("user_address");
+				 		    user = new LoginVO(uId, uPw, uName , uPnum,uAddr);
+				  
+			   
+			 
 			  
 			    }
 		   

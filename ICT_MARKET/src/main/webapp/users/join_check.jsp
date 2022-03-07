@@ -24,6 +24,6 @@
 </head>
 <body>
    <h1> <%=id %>님 회원 가입이 완료되었습니다. </h1>
-   <a href="login_form.jsp">로그인창으로 이동하기</a>
+   <a href="http://localhost:5151/ICT_MARKET/users/login_form.jsp">로그인창으로 이동하기</a>
 </body>
 </html>

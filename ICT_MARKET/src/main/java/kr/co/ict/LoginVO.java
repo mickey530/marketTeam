@@ -2,97 +2,82 @@ package kr.co.ict;
 
 public class LoginVO {
 	
-	private String uName;
-	private String uId;
-	private String uPw;
-	private String uEmail;
-	private String phone;
-	private String addr;
-
 	
-	public LoginVO(String uName, String uId, String uPw, String uEmail, String phone, String addr) {
+	private String user_id;
+	private String user_pw;
+	private String user_name;
+	private String user_pnum;
+	private String user_address;
+	
+	
+	public LoginVO(String user_id, String user_pw, String user_name, String user_pnum, String user_address) {
 		super();
-		this.uName = uName;
-		this.uId = uId;
-		this.uPw = uPw;
-		this.uEmail = uEmail;
-		this.phone = phone;
-		this.addr = addr;
+		this.user_id = user_id;
+		this.user_pw = user_pw;
+		this.user_name = user_name;
+		this.user_pnum = user_pnum;
+		this.user_address = user_address;
 	}
 
 
-
-
-
-
-
-	public String getuName() {
-		return uName;
+	public String getUser_id() {
+		return user_id;
 	}
 
 
-	public void setuName(String uName) {
-		this.uName = uName;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 
-	public String getuId() {
-		return uId;
+	public String getUser_pw() {
+		return user_pw;
 	}
 
 
-	public void setuId(String uId) {
-		this.uId = uId;
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 
 
-	public String getuPw() {
-		return uPw;
+	public String getUser_name() {
+		return user_name;
 	}
 
 
-	public void setuPw(String uPw) {
-		this.uPw = uPw;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 
-	public String getuEmail() {
-		return uEmail;
+	public String getUser_pnum() {
+		return user_pnum;
 	}
 
 
-	public void setuEmail(String uEmail) {
-		this.uEmail = uEmail;
+	public void setUser_pnum(String user_pnum) {
+		this.user_pnum = user_pnum;
 	}
 
 
-	public String getPhone() {
-		return phone;
+	public String getUser_address() {
+		return user_address;
 	}
 
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-
-	public String getAddr() {
-		return addr;
-	}
-
-
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
 	}
 
 
 	@Override
 	public String toString() {
-		return "LoginVO [uName=" + uName + ", uId=" + uId + ", uPw=" + uPw + ", uEmail=" + uEmail + ", phone=" + phone
-				+ ", addr=" + addr + "]";
+		return "LoginVO [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_pnum="
+				+ user_pnum + ", user_address=" + user_address + "]";
 	}
-	
+
 
 	
-	
+
+
 }

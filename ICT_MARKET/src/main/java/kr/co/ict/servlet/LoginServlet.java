@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.co.ict.LoginDAO;
+import kr.co.ict.LoginVO;
 
 /**
  * Servlet implementation class LoginServlet
@@ -36,15 +40,36 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		    String fId = request.getParameter("fid");
 			String fPw = request.getParameter("fpw");
 	
 			 request.setAttribute("id",fId);
-			    request.setAttribute("pw",fPw);
+			  request.setAttribute("pw",fPw);
 			    
 			    
-			    RequestDispatcher dp = request.getRequestDispatcher("users/login_check.jsp");
-			    dp.forward(request, response);
+			  LoginDAO dao = LoginDAO.getInstance();
+			   LoginVO user = dao.getUserDate(fId);     
+			
+		
+			 if(user != null){                
+				String sId = user.getUser_id();   
+				String sPw = user.getUser_pw();   
+				
+				if(fId.equals(sId) && fPw.equals(sPw)){
+					 
+					 
+					  session.setAttribute("session_id", sId);
+					  session.setAttribute("session_pw", sPw);
+					
+					  response.sendRedirect("http://localhost:5151/ICT_MARKET/users/login_welcome.jsp");
+				  }else {
+					  response.sendRedirect("http://localhost:5151/ICT_MARKET/users/id_error.jsp");
+				  }
+			
+			} else {
+				 response.sendRedirect("http://localhost:5151/ICT_MARKET/users/pw_error.jsp");
+			}
 	}
 
 }
