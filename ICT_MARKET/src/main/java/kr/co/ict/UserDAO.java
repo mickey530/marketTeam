@@ -84,6 +84,7 @@ public class UserDAO {
 				ResultSet rs = null;
 				
 				String tName =null;
+				String tAddress =null;
 				String tPnum=null;
 				
 			
@@ -96,6 +97,7 @@ public class UserDAO {
 				if(rs.next()){ 
 					 tName = rs.getString("user_name");
 					 tPnum = rs.getString("user_pnum");
+					 tAddress = rs.getString("user_address");
 					 }
 				
 			}catch(Exception e) {
