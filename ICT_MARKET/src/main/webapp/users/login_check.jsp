@@ -5,24 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <% 
+   
     String fId = request.getParameter("fid");
 	String fPw = request.getParameter("fpw");
 	
-	
-	 String dbType = "com.mysql.cj.jdbc.Driver";
-      String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
-      String dbId = "root";
-      String dbPw = "mysql";
-	
-	try{
-	
-		 Class.forName(dbType);
-    	  Connection con = DriverManager.getConnection(dbUrl, dbId, dbPw);
-	
-		   LoginDAO dao = LoginDAO.getInstance();
+	       LoginDAO dao = LoginDAO.getInstance();
 		   LoginVO user = dao.getUserDate(fId);     
-		
-		
 		
 	
 		 if(user != null){                
@@ -45,11 +33,7 @@
 		}
 	
 		
-	} catch(Exception e){
-		e.printStackTrace();
-	} finally {
-		
-	}
+	
 	%>
 <!DOCTYPE html>
 <html>
@@ -60,4 +44,8 @@
 <body>
 
 </body>
-</html>
+</html> 
+		
+		
+	
+		

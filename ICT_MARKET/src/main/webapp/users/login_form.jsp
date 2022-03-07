@@ -26,7 +26,7 @@
 			<tr>
 				<td id="submit" colspan="2">
 					<input type="submit" value="로그인" > 
-					<a href="#">회원가입</a>
+					<a href="http://localhost:5151/ICT_MARKET/users/join_form.jsp">회원가입</a>
 			</tr>
 		</table>
 	</form>
