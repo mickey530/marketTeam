@@ -1,4 +1,4 @@
-package ko.co.ict.sevlet;
+package kr.co.ict.sevlet;
 
 import java.io.IOException;
 import java.util.List;
