@@ -34,7 +34,7 @@ public class UserDAO {
 				
 			return dao;
 		}
-	// ¸ðµçÈ¸¿øÁ¤º¸ ºÒ·¯¿À±â
+	// ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<UserVO> getAllUserList(){
 	
 		Connection con = null;
@@ -43,19 +43,19 @@ public class UserDAO {
 		List<UserVO> userList = new ArrayList<>();
 	
 		try {
-			con = ds.getConnection();
+		con = ds.getConnection();
 		String sql = "SELECT * FROM userinfo";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		
 		
 		while(rs.next()) {
-		String uName = rs.getString("user_name");
 		String uId = rs.getString("user_id");
 		String uPw = rs.getString("user_pw");
+		String uName = rs.getString("user_name");
 		String uPnum = rs.getString("user_pnum");
 		String uAddress = rs.getString("user_address");
-		UserVO userData = new UserVO(uName, uId, uPw, uPnum, uAddress);
+		UserVO userData = new UserVO(uId, uPw, uName, uPnum, uAddress);
 		userList.add(userData);
 		}
 	}catch(Exception e) {
@@ -75,7 +75,7 @@ public class UserDAO {
 	
 	
 	
-	// Æ¯Á¤È¸¿ø Á¤º¸ ¾ò¾î¿À±â
+	// Æ¯ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public UserVO getUserData(String sId) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
@@ -110,7 +110,7 @@ public class UserDAO {
 				}
 			return null;
 	}	 
-	// Á¤º¸ ¾÷µ¥ÀÌÆ®
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	public void updateCheck(String sId ,String user_name, String user_pw, String user_pnum, String
 			user_address) {
 		
@@ -140,7 +140,7 @@ public class UserDAO {
 		
 	}
 
-		// È¸¿øÁ¤º¸ »èÁ¦
+		// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 public void deleteUser(String sId) {
 		
 		Connection con = null;
@@ -170,7 +170,7 @@ public void deleteUser(String sId) {
 			}
 		}	
 	}		
-			// È¸¿ø°¡ÀÔ
+			// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void insertUser(String user_id ,String user_pw, String user_name, String user_pnum,
 			String user_address) {
 		
