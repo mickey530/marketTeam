@@ -1,8 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
@@ -10,16 +14,81 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 157px;
+		padding-bottom: 193px;
 	}
-	.main{
-
-		}
+	
+	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
+	#main {
+	height: auto;
+	}
+	
+	.main_head{
+	padding: 70px;
+	}
+	.main_head h2{
+	font-family: 'Play', sans-serif;
+	font-weight: 700;
+	}
+	.main_head p {
+	font-family: 'Play', sans-serif;
+	}
+	
+	#main_div{
+	position: relative;
+	}
+	#main_div .main_contain{
+	position: absolute;
+	left: 20%;
+	margin-top: -50px;
+	text-align: center;
+	}
+	
+	.main_contain{
+	font-family: font-family: 'Hahmlet', serif;
+	width: 60%;
+	height: auto;
+	}
+	
+	.line{
+	width: 100%;
+	height: 1px;
+	background: #eee;
+	margin-top: 30px;
+	}
+	
+	.recently{
+	overflow: auto;
+	border: 1px solid #ccc;
+	margin-top: 10px;
+	width: 100%;
+	height: 450px;
+	background-color: #dcdcdc;
+	}
+	
+	.wts{
+	width: 49%;
+	text-align: center;
+	position:sattic;
+	margin-top: 5px;
+	}
+	
+	.line2{
+	width: 1px;
+	height: 100%;
+	background: #eee;
+	}
+	
+	.wtb{
+	width: 49%;
+	text-align: center;
+	position:sattic;
+	margin-top: 5px;
+	}
+	
 	footer{
-		height: 157px;
+		height: 120px;
 		position: relative;
-		transform: translateY(-100%);
-		font-size: 8px;
+>>>>>>> youngwoo
 	}	
 </style>
 <title>ICT Market</title>
@@ -56,7 +125,7 @@
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-			<h2 style="margin:0">ICT MARKET</h2>
+			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
 		<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -107,9 +176,38 @@
 
 
 <!-- main 컨텐츠 내용 -->
-<div class="main">
-
-
+<div id="main">
+	<div class="main_head">
+		<c:choose>
+			<c:when test="${not empty user}">
+			<h2 class="text-center">Welcome back<!--, ${param.user}--></h2>
+			</c:when>
+			<c:otherwise>
+				<h2 class="text-center">Welcome to ICT Market!</h2>
+				<p class="text-center">Online Marketplace to Buy & Sell</p>
+			</c:otherwise>
+		</c:choose>
+		</div>
+		<div id="main_div">
+			<div class="main_contain">
+				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
+				Recently thread
+				</h6>
+				<button type="button" class="btn btn-sm" style="float:right;">+</button>
+				<div class="line"></div>
+					<div class="recently">
+						<div class="wtb" style="float:left;">
+						Want to Buy
+						</div>
+					
+					<div class="line2" style="float:left;"></div>
+					
+						<div class="wts" style="float:right;">
+						Want to Sell
+						</div>
+					</div>
+			</div>
+		</div>
 </div>
 
 </div>
