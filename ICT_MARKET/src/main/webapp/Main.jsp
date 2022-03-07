@@ -88,7 +88,6 @@
 	footer{
 		height: 120px;
 		position: relative;
->>>>>>> youngwoo
 	}	
 </style>
 <title>ICT Market</title>
