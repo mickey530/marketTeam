@@ -50,14 +50,7 @@ public class UserDAO {
 		
 		
 		while(rs.next()) {
-<<<<<<< HEAD
-		String uId = rs.getString("user_id");
-		String uPw = rs.getString("user_pw");
-		String uName = rs.getString("user_name");
-		String uPnum = rs.getString("user_pnum");
-		String uAddress = rs.getString("user_address");
-		UserVO userData = new UserVO(uId, uPw, uName, uPnum, uAddress);
-=======
+
 		
 		int user_num = rs.getInt("user_num");
 		String user_name = rs.getString("user_name");
@@ -66,7 +59,7 @@ public class UserDAO {
 		String user_pnum = rs.getString("user_pnum");
 		String user_address = rs.getString("user_address");
 		UserVO userData = new UserVO(user_num,user_id, user_pw,  user_name, user_pnum, user_address);
->>>>>>> jongmin
+
 		userList.add(userData);
 		}
 	}catch(Exception e) {
