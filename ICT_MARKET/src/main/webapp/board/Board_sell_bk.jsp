@@ -65,14 +65,28 @@ transition :0.5s;
 	margin-top: -50px;
 	margin-left: -20px;
 	}
+	
   	.tab_menu .list{float:right;}
+  	
   	.tab_menu .list li{float:left; margin-right:14px;}
+  	
   	.tab_menu .list li.is_on .btn{font-weight:bold; color:blue;}
+  	
   	.tab_menu .list .btn{font-size:13px;}
-  	.tab_menu .cont_area .cont{position:absolute; 
+  	
+  	.tab_menu .cont_area .cont{
+  	position:absolute; 
   	top:25px; left:0; 
-  	background:#555; color:#fff; 
-  	text-align:center; width:250px; height:100px; line-height:100px;}
+  	background:#555; 
+  	color:#fff; 
+  	text-align:center; 
+  	width:250px; 
+  	height:100px; 
+  	line-height:100px;}
+	
+	.tab_menu a:hover{
+	color: #f1f1f1;
+	}
 	
 	.container {
 	font-family: 'Play', sans-serif;
