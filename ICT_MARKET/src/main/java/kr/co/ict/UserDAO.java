@@ -34,7 +34,7 @@ public class UserDAO {
 				
 			return dao;
 		}
-	// ���ȸ������ �ҷ�����
+	
 	public List<UserVO> getAllUserList(){
 	
 		Connection con = null;
@@ -79,28 +79,32 @@ public class UserDAO {
 	
 	
 	
-	// Ư��ȸ�� ���� ������
-	public UserVO getUserData(String sId) {
+	
+	public UserVO getUserData(int user_num) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 				
-				String tName =null;
-				String tAddress =null;
-				String tPnum=null;
+				UserVO user = null;
+				
 				
 			
 				try {
 					con = ds.getConnection();
-				String sql = "SELECT * FROM userinfo WHERE uid=?";
+				String sql = "SELECT * FROM userinfo WHERE user_num=?";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
-				pstmt.setString(1, sId);
+				pstmt.setInt(1, user_num);
 				if(rs.next()){ 
-					 tName = rs.getString("user_name");
-					 tPnum = rs.getString("user_pnum");
-					 tAddress = rs.getString("user_address");
+						user_num = rs.getInt("user_num");
+					String	user_id = rs.getString("user_id");
+					String	user_pw = rs.getString("user_pw");
+					String	user_name = rs.getString("user_name");
+					String	user_pnum = rs.getString("user_pnum");
+					String	user_address = rs.getString("user_address");
+				user = new UserVO(user_num, user_id, user_pw,  user_name,  user_pnum, user_address);
 					 }
+				
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -114,9 +118,9 @@ public class UserDAO {
 						se.printStackTrace();
 					}
 				}
-			return null;
+			return user;
 	}	 
-	// ���� ������Ʈ
+	
 	public void updateCheck(String sId ,String user_name, String user_pw, String user_pnum, String
 			user_address) {
 		
@@ -146,7 +150,7 @@ public class UserDAO {
 		
 	}
 
-		// ȸ������ ����
+	
 public void deleteUser(String sId) {
 		
 		Connection con = null;
@@ -176,7 +180,7 @@ public void deleteUser(String sId) {
 			}
 		}	
 	}		
-			// ȸ������
+			
 	public void insertUser(String user_id ,String user_pw, String user_name, String user_pnum,
 			String user_address) {
 		
