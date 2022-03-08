@@ -16,6 +16,7 @@
 					<th>아이디</th>
 					<th>번호</th>
 					<th>카테고리</th>
+					<th>제목</th>
 					<th>가격</th>
 					<th>판매유무</th>
 					<th>신고</th>
@@ -29,6 +30,7 @@
 	    			<td>${board.user_id }</td>
 					<td>${board.board_num }</td>
 					<td>${board.board_category }</td>
+					<td>${board.board_title }</td>
 					<td>${board.board_amount }</td>
 					<td>${board.board_sold }</td>
 					<td>${board.board_reported }</td>

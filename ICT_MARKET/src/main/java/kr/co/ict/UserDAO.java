@@ -77,7 +77,42 @@ public class UserDAO {
 	return userList;
 	}	
 	
-	
+	public UserVO getUserLoginData(String sId) {
+		// try 블럭 진입 전 Connection, PrepareStatement, ResultSet 선언
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				
+				
+			// Connection, PreparedStatement, ResultSet을 선언합니다.
+				try {
+					con = ds.getConnection();
+				String sql = "SELECT * FROM userinfo WHERE uid=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, sId);
+				rs = pstmt.executeQuery();
+				if(rs.next()){ 
+					 String user_name = rs.getString("user_name");
+					 String user_id = rs.getString("user_id");
+					 String user_pw = rs.getString("user_pw");
+					 }
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+				finally{
+					try {
+					con.close();
+					pstmt.close();
+					rs.close();
+					} catch(SQLException se) {
+						se.printStackTrace();
+					}
+				}
+			return null;
+	}
 	
 	
 	public UserVO getUserData(int user_num) {
