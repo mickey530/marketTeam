@@ -1,3 +1,6 @@
+<%--@ page import="kr.co.ict.BoardVO"--%>
+<%--@ page import="kr.co.ict.BoardDAO"--%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,9 +9,11 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&
+family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 	html, body{height:100%}
 	#wrapper{
@@ -16,8 +21,88 @@
 		min-height: 100%;
 		padding-bottom: 193px;
 	}
+	body{
+transition :0.5s;
+}
+
+
+.sidenav{
+	height: 25%;
+	border-radius: 5px;
+	position: fixed;
+	right:0;
+	top:0;
+	z-index:1; 
+	background: #dcdcdc;
+	padding-top: 10px; 
+	margin-right: 130px;
+	overflow-x: hidden;
 	
+	
+	width: 0;
+	
+	transition :0.5s;
+}
+.sidenav a{
+	
+	color: #212529;
+	text-decoration: none;
+	font-size: px;
+	font-family: 'Play', sans-serif;
+	display: block;
+	padding: 8px 8px 8px 8px;
+	
+	transition :0.3s;
+}
+.sidenav a:hover{
+	color: #f1f1f1;
+}
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
+	
+	
+	.tab_menu{
+	position:relative;
+	margin-top: -50px;
+	margin-left: -20px;
+	}
+  	
+  	.tab_menu .list{float:right;}
+  	
+  	.tab_menu .list li{float:left; margin-right:14px;}
+  	
+  	.tab_menu .list li.is_on .btn{font-weight:bold; color:blue;}
+  	
+  	.tab_menu .list .btn{font-size:13px;}
+  	
+  	.tab_menu .cont_area .cont{
+  	position:absolute; 
+  	top:25px; left:0; 
+  	background:#555; 
+  	color:#fff; 
+  	text-align:center; 
+  	width:250px; 
+  	height:100px; 
+  	line-height:100px;}
+	
+	.tab_menu a:hover{
+	color: #f1f1f1;
+	}
+	
+	.container {
+	font-family: 'Play', sans-serif;
+	}
+	.container .row{
+	margin-top: 50px;
+	margin-bottom: 10px;
+	}
+	.container .row>.col-md-1{
+	margin-right:14px;
+	}
+	.container .row .col-md-11{
+	font-weight: 700;
+	font-size:30px;
+	}
+	
 	#main {
 	height: auto;
 	}
@@ -90,7 +175,7 @@
 		position: relative;
 	}	
 </style>
-<title>ICT Market</title>
+<title>Insert title here</title>
 </head>
 <body>
 <div id="wrapper">
@@ -161,98 +246,106 @@
 					</a>
 				</li>
 				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
-				<li>
-					<a href="#" id="profile" style="padding: 15px;"> 
-						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
+				<div id="defaultNav" class="dNav">
+					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
+					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
-				</li>
+				</div>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
-
-
-<!-- main 컨텐츠 내용 -->
-<div id="main">
-	 <h1 align="center"> 회원 가입 </h1>
-<fieldset id="fieldset" >	
+				<div id="mySidenav" class="sidenav">
+					<a href="#" id="profileclose" style="padding: 15px" onclick="closeNav()"> 
+					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
+					</a>
+					<a href="#" class="text-center">Profile</a>
+					<a href="#" class="text-center">Sell</a>
+					<a href="#" class="text-center">Logout</a>
+            	</div>
+<script>
+	function openNav(){
+		document.getElementById("mySidenav").style.width="100px";
+		//document.getElementById("main").style.marginRight="150px" ;
+		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
+		document.getElementById("main").style.filter="blur(3px)";
+		
+	}
+	function closeNav(){
+		document.getElementById("mySidenav").style.width="0px";
+		document.getElementById("main").style.marginRight="0px";
+		document.body.style.backgroundColor="white";
+	}
 	
-		<form action="http://localhost:8181/ICT_MARKET/ICTJ"  method="post">
-			<table border="1" width="1265px">
-				<tr>
-					<td id="name"> 이 름 </td>
-					<td id="name"><input type="text" name="name"required></td>
-				</tr>
-				<tr>
-					<td id="id"> 아이디  </td>
-					<td>
-						<input type="text" name="id"required>
-						<input type="button" value="중복체크" onclick="CheckSuccess.jsp">
-					</td>				
-				</tr>
-				<tr>
-					<td id="pw"> 비밀번호 </td>
-					<td><input type="password" name="pw"required></td>
-				</tr>
-			
-				<tr>
-					<td id="phone"> 폰번호 </td>
-					<td>
-						<input type="text" name="phone" maxlength="11" required>
-						
-					</td>
-				</tr>
-				<tr>
-					<td id="addr"> 주 소 </td>
-					<td><input type="text" name="addr" size="50"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="회원가입"> 
-						<input type="reset" value="초기화">
-					</td>
-				</tr>
-			</table>
-		</form>
-</fieldset>	
+	 const tabList = document.querySelectorAll('.tab_menu .list li');
+	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
+	  let activeCont = '';
 
+	  for(var i = 0; i < tabList.length; i++){
+	    tabList[i].querySelector('.btn').addEventListener('click', function(e){
+	      e.preventDefault();
+	      for(var j = 0; j < tabList.length; j++){
+	       
+	        tabList[j].classList.remove('is_on');
+
+	       
+	        contents[j].style.display = 'none';
+	      }
+
+	      this.parentNode.classList.add('is_on');
+
+	      activeCont = this.getAttribute('href');
+	      document.querySelector(activeCont).style.display = 'block';
+	    });
+	  }
+	
+</script>
+
+<div class="container">
+<div class="row">
+<h3 class="col-md-11">Want to Buy</h3>
+<h5 class="col-md-1">Trade</h5>
+<table class="tab_menu">
+  <tr class="list">
+    <td class="is_on">
+      <a href="http://localhost:8181/ICT_MARKET/boardSell" class="btn">WTS</a>
+    </td>
+    <td>
+      <a href="http://localhost:8181/ICT_MARKET/boardBuy" class="btn">WTB</a>
+    </td>
+    <td>
+      <a href="http://localhost:8181/ICT_MARKET/boardAll" class="btn">ALL</a>
+    </td>
+  </tr>
+</table>
 </div>
-<!-- 여기서 부터는 푸터 -->
-
-<footer class="p-3 py-3 border-top">
-	<div class="container">
-		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="col">
-				<h5>SC CENTER</h5>
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2 text-muted">1111-6666</li>
-						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
-						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
-						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
-					</ul>
-			</div>
-            
-			<div class="col">
-				<h5>ICT MARKET</h5>
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">대표 : 6666 |</li>
-					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
-					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
-					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
-				</ul>
-			</div>
-            
-			<div class="col">
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
-				</ul>
-			</div>
-		</div>
-	</div>        
-
-</footer>
-
+	<table class="table" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-8">제목</th>
+			<th>가격</th>
+			<th>글쓴이</th>
+			<th>날짜</th>
+			<th>조회</th>
+			<th>찜
+			</th>
+	</tr>
+		<c:forEach items="${boardList}" var="boardbuy">
+		<tr>
+	    	<td class="col-md-1">${boardList.board_num}</td>
+			<td class="col-md-8">
+			<!-- boardPost.jsp -->
+				<a href="http://localhost:8181/ICT_MARKET/boardPost?board_num=${boardList.board_num}">
+				${boardList.title}</a></td>
+			<td>${boardList.board_amount}</td>
+			<td>${boardList.user_id}</td>
+			<td>${boardList.board_writetime}</td>
+			<td>${boardList.viewcount}</td>
+			<td>${boardList.favcount}</td>
+		</tr>
+		</c:forEach>
+	</table>
+</div>
 </body>
 </html>

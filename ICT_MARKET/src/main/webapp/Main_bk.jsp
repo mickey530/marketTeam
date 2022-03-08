@@ -10,14 +10,52 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
+
+	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
+	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
 		min-height: 100%;
 		padding-bottom: 193px;
 	}
+	body{
+transition :0.5s;
+}
+
+
+.sidenav{
+	width:100px;
+	border-radius: 5px;
+	position: fixed;
+	right:0;
+	z-index:1; 
+	background: #dcdcdc;
+	margin-top: -1px; 
+	margin-right: 120px;
+	overflow-y: hidden;
 	
-	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
+	
+	height: 0;
+	
+	transition :0.5s;
+}
+.sidenav a{
+	
+	color: #212529;
+	text-decoration: none;
+	font-size: px;
+	font-family: 'Play', sans-serif;
+	display: block;
+	padding: 8px 8px 8px 5px;
+	margin-top: 7px; 
+	
+	transition :0.3s;
+}
+.sidenav a:hover{
+	color: #f1f1f1;
+}
+	
 	#main {
 	height: auto;
 	}
@@ -86,9 +124,18 @@
 	}
 	
 	footer{
-		height: 120px;
-		position: relative;
-	}	
+	font-size: 40%;
+	height: 150px;
+	position: relative;
+  	bottom: 0px;
+	
+	}
+	footer div{
+	font-family: 'Play', sans-serif;
+	margin-top: 5px;
+	margin-left: 90px;
+	}
+	
 </style>
 <title>ICT Market</title>
 </head>
@@ -161,71 +208,96 @@
 					</a>
 				</li>
 				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
-				<li>
-					<a href="#" id="profile" style="padding: 15px;"> 
-						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
+				<div id="defaultNav" class="dNav">
+					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
+					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
-				</li>
+				</div>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
-
-
-<!-- main 컨텐츠 내용 -->
-<div id="main">
-	 <h1 align="center"> 회원 가입 </h1>
-<fieldset id="fieldset" >	
+<!-- Header Menu(onclick main body->close-->
+				<div id="mySidenav" class="sidenav">
+					<a href="#" class="text-center">Profile</a>
+					<a href="#" class="text-center">Sell</a>
+					<a href="#" class="text-center">Logout</a>
+            	</div>
+<script>
+	function openNav(){
+		document.getElementById("mySidenav").style.height="160px";
+		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
+		document.getElementById("main").style.filter="blur(3px)";
+		
+	}
+	function closeNav(){
+		document.getElementById("mySidenav").style.height="0px";
+		document.body.style.backgroundColor="white";
+		document.getElementById("main").style.filter="blur(0)";
+	}
 	
-		<form action="http://localhost:8181/ICT_MARKET/ICTJ"  method="post">
-			<table border="1" width="1265px">
-				<tr>
-					<td id="name"> 이 름 </td>
-					<td id="name"><input type="text" name="name"required></td>
-				</tr>
-				<tr>
-					<td id="id"> 아이디  </td>
-					<td>
-						<input type="text" name="id"required>
-						<input type="button" value="중복체크" onclick="CheckSuccess.jsp">
-					</td>				
-				</tr>
-				<tr>
-					<td id="pw"> 비밀번호 </td>
-					<td><input type="password" name="pw"required></td>
-				</tr>
-			
-				<tr>
-					<td id="phone"> 폰번호 </td>
-					<td>
-						<input type="text" name="phone" maxlength="11" required>
-						
-					</td>
-				</tr>
-				<tr>
-					<td id="addr"> 주 소 </td>
-					<td><input type="text" name="addr" size="50"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="회원가입"> 
-						<input type="reset" value="초기화">
-					</td>
-				</tr>
-			</table>
-		</form>
-</fieldset>	
+</script>
+
+
+<!-- main-->
+<div id="main" onclick="closeNav()">
+	<div class="main_head">
+		<c:choose>
+			<c:when test="${not empty user}">
+			<h2 class="text-center">Welcome back<!--, ${param.user}--></h2>
+			</c:when>
+			<c:otherwise>
+				<h2 class="text-center">Welcome to ICT Market!</h2>
+				<p class="text-center">Online Marketplace to Buy & Sell</p>
+			</c:otherwise>
+		</c:choose>
+		
+		</div>
+		<div id="main_div">
+			<div class="main_contain">
+				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
+				Recently thread
+				</h6>
+				<button type="button" class="btn btn-sm" style="float:right;">+</button>
+				<div class="line"></div>
+					<div class="recently">
+					
+						<div class="wtb" style="float:left;">
+						Want to Buy
+						<c:forEach items="" var="wtbpreview">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+						</div>
+					
+					<div class="line2" style="float:left;"></div>
+					
+						<div class="wts" style="float:right;">
+						Want to Sell
+						<c:forEach items="" var="wtspreview">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+						</div>
+					</div>
+			</div>
+		</div>
+</div>
 
 </div>
-<!-- 여기서 부터는 푸터 -->
-
+<!--footer-->
 <footer class="p-3 py-3 border-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="col">
-				<h5>SC CENTER</h5>
+			<div>
+				<h6>Customer Service</h6>
 					<ul class="nav flex-column">
 						<li class="nav-item mb-2 text-muted">1111-6666</li>
 						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
@@ -234,19 +306,19 @@
 					</ul>
 			</div>
             
-			<div class="col">
-				<h5>ICT MARKET</h5>
+			<div>
+				<h6>ICT MARKET</h6>
 				<ul class="nav flex-column">
 					<li class="nav-item mb-2">대표 : 6666 |</li>
-					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
-					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
+					<li class="nav-item mb-2"> 사업자등록번호 : 666666666</li>
+					<li class="nav-item mb-2">통신판매업 : 2022-01234</li>
 					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
 				</ul>
 			</div>
             
-			<div class="col">
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
+			<div>
+				<ul class="nav flex-column" style="font-size:10px">
+					<li class="nav-item mb-2">Copyright © ICT MARKET 2022. All Rights Reserved.</li>
 				</ul>
 			</div>
 		</div>
