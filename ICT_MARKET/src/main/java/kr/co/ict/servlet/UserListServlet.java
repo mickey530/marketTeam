@@ -28,8 +28,6 @@ public class UserListServlet extends HttpServlet {
 		List<UserVO> userList = dao.getAllUserList();
 		
 		request.setAttribute("userList", userList);
-		System.out.println(userList);
-		System.out.println("뭔데");
 		
 		RequestDispatcher dp = request.getRequestDispatcher("/manager/UserList.jsp"); // 보내는 주소
 		dp.forward(request, response);
