@@ -52,7 +52,7 @@ public class BoardListServlet extends HttpServlet {
 		List<BoardVO> boardList = dao.getAllBoardList();
 		request.setAttribute("boardList", boardList);
 	
-		RequestDispatcher dp = request.getRequestDispatcher("#");
+		RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
 		dp.forward(request, response);
 	
 	}
