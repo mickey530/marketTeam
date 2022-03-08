@@ -12,9 +12,10 @@
 		min-height: 100%;
 		padding-bottom: 157px;
 	}
-	.main{
+	.main{text-align:center;
 
 		}
+		.info{text-align:right;}
 	footer{
 		height: 157px;
 		position: relative;
@@ -108,45 +109,38 @@
 
 <!-- main 컨텐츠 내용 -->
 <div class="main">
+<h1 class="userinfo">회원정보</h1>
+<form class="info">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">아이디</label> 
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_id }" readonly/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">이름</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_name }" readonly/>
+    </div>
+  </div>
 
-
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">휴대전화</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_pnum }" readonly/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">주소</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_address }" readonly/>
+    </div>
+  </div>
+  </form>
 </div>
+ 
 
-</div>
-<!-- 여기서 부터는 푸터 -->
 
-<footer class="p-3 py-3 border-top">
-	<div class="container">
-		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="col">
-				<h5>SC CENTER</h5>
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2 text-muted">1111-6666</li>
-						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
-						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
-						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
-					</ul>
-			</div>
-            
-			<div class="col">
-				<h5>ICT MARKET</h5>
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">대표 : 6666 |</li>
-					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
-					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
-					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
-				</ul>
-			</div>
-            
-			<div class="col">
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
-				</ul>
-			</div>
-		</div>
-	</div>        
-
-</footer>
 
 </body>
 </html>
