@@ -14,7 +14,7 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
 	
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
@@ -37,7 +37,7 @@
 	position: relative;
 	}
 	#main_div .main_contain{
-	position: absolute;
+	position: relative;
 	left: 20%;
 	margin-top: -50px;
 	text-align: center;
@@ -61,7 +61,7 @@
 	border: 1px solid #ccc;
 	margin-top: 10px;
 	width: 100%;
-	height: 450px;
+	height: auto;
 	background-color: #dcdcdc;
 	}
 	
@@ -84,11 +84,13 @@
 	position:sattic;
 	margin-top: 5px;
 	}
-	
-	footer{
-		height: 120px;
-		position: relative;
+	footer {
+	font-size: 8px;
+	height: 157px;
+	position: relative;
+	transform: translateY(-100%);
 	}	
+
 </style>
 <title>ICT Market</title>
 </head>
@@ -197,8 +199,14 @@
 					<div class="recently">
 						<div class="wtb" style="float:left;">
 						Want to Buy
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						
+						
+						
+						
+						
+						
 						</div>
-					
 					<div class="line2" style="float:left;"></div>
 					
 						<div class="wts" style="float:right;">
