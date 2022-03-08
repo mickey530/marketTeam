@@ -127,6 +127,7 @@ transition :0.5s;
 	font-size: 40%;
 	height: 150px;
 	position: relative;
+  	bottom: 0px;
 	
 	}
 	footer div{
@@ -316,7 +317,7 @@ transition :0.5s;
 			</div>
             
 			<div>
-				<ul class="nav flex-column" style="font-size:10px;">
+				<ul class="nav flex-column" style="font-size:10px">
 					<li class="nav-item mb-2">Copyright © ICT MARKET 2022. All Rights Reserved.</li>
 				</ul>
 			</div>
