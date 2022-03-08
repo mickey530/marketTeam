@@ -32,7 +32,16 @@ public class Userlist extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserDAO dao = UserDAO.getInstance();
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+UserDAO dao = UserDAO.getInstance();
 		
 		List<UserVO> userList = dao.getAllUserList();
 		
@@ -41,13 +50,6 @@ public class Userlist extends HttpServlet {
 		RequestDispatcher dp = request.getRequestDispatcher("/users/userlist.jsp");
 		dp.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);
 	}
 
-}
+

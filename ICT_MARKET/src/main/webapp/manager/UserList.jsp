@@ -27,7 +27,7 @@
 			<tr>
 				<td>${i.user_id}</td>
 				<td>${i.user_pw}</td>
-				<td>${i.user_name}</td>
+				<td><a href="http://localhost:8181/ICT_MARKET/userInfo?user_num=${i.user_num}">${ i.user_name}</a></td>
 				<td>${i.user_pnum}</td>
 				<td>${i.user_address}</td>
 		    </tr>

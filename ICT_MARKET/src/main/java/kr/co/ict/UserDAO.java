@@ -93,8 +93,9 @@ public class UserDAO {
 					con = ds.getConnection();
 				String sql = "SELECT * FROM userinfo WHERE user_num=?";
 				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
+				
 				pstmt.setInt(1, user_num);
+				rs = pstmt.executeQuery();
 				if(rs.next()){ 
 						user_num = rs.getInt("user_num");
 					String	user_id = rs.getString("user_id");
