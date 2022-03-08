@@ -48,12 +48,9 @@ public class LoginServlet extends HttpServlet {
 		    String fId = request.getParameter("fid");
 			String fPw = request.getParameter("fpw");
 	
-			 request.setAttribute("id",fId);
-			  request.setAttribute("pw",fPw);
-			    
-			    
+		
 			  UserDAO dao = UserDAO.getInstance();
-			  UserVO user = dao.getUserData(fId);     
+			  UserVO user = dao.getUserData();     
 			
 		
 			 if(user != null){                

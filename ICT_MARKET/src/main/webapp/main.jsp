@@ -14,7 +14,7 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
 	
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
@@ -37,7 +37,7 @@
 	position: relative;
 	}
 	#main_div .main_contain{
-	position: absolute;
+	position: relative;
 	left: 20%;
 	margin-top: -50px;
 	text-align: center;
@@ -61,7 +61,7 @@
 	border: 1px solid #ccc;
 	margin-top: 10px;
 	width: 100%;
-	height: 450px;
+	height: auto;
 	background-color: #dcdcdc;
 	}
 	
@@ -84,11 +84,13 @@
 	position:sattic;
 	margin-top: 5px;
 	}
-	
-	footer{
-		height: 120px;
-		position: relative;
+	footer {
+	font-size: 8px;
+	height: 157px;
+	position: relative;
+	transform: translateY(-100%);
 	}	
+
 </style>
 <title>ICT Market</title>
 </head>
@@ -176,47 +178,44 @@
 
 <!-- main 컨텐츠 내용 -->
 <div id="main">
-	 <h1 align="center"> 회원 가입 </h1>
-<fieldset id="fieldset" >	
-	
-		<form action="http://localhost:8181/ICT_MARKET/ICTJ"  method="post">
-			<table border="1" width="1265px">
-				<tr>
-					<td id="name"> 이 름 </td>
-					<td id="name"><input type="text" name="name"required></td>
-				</tr>
-				<tr>
-					<td id="id"> 아이디  </td>
-					<td>
-						<input type="text" name="id"required>
-						<input type="button" value="중복체크" onclick="CheckSuccess.jsp">
-					</td>				
-				</tr>
-				<tr>
-					<td id="pw"> 비밀번호 </td>
-					<td><input type="password" name="pw"required></td>
-				</tr>
-			
-				<tr>
-					<td id="phone"> 폰번호 </td>
-					<td>
-						<input type="text" name="phone" maxlength="11" required>
+	<div class="main_head">
+		<c:choose>
+			<c:when test="${not empty user}">
+			<h2 class="text-center">Welcome back<!--, ${param.user}--></h2>
+			</c:when>
+			<c:otherwise>
+				<h2 class="text-center">Welcome to ICT Market!</h2>
+				<p class="text-center">Online Marketplace to Buy & Sell</p>
+			</c:otherwise>
+		</c:choose>
+		</div>
+		<div id="main_div">
+			<div class="main_contain">
+				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
+				Recently thread
+				</h6>
+				<button type="button" class="btn btn-sm" style="float:right;">+</button>
+				<div class="line"></div>
+					<div class="recently">
+						<div class="wtb" style="float:left;">
+						Want to Buy
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 						
-					</td>
-				</tr>
-				<tr>
-					<td id="addr"> 주 소 </td>
-					<td><input type="text" name="addr" size="50"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="회원가입"> 
-						<input type="reset" value="초기화">
-					</td>
-				</tr>
-			</table>
-		</form>
-</fieldset>	
+						
+						
+						
+						
+						
+						</div>
+					<div class="line2" style="float:left;"></div>
+					
+						<div class="wts" style="float:right;">
+						Want to Sell
+						</div>
+					</div>
+			</div>
+		</div>
+</div>
 
 </div>
 <!-- 여기서 부터는 푸터 -->
@@ -256,4 +255,3 @@
 
 </body>
 </html>
-

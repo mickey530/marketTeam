@@ -20,7 +20,7 @@ public class ReportDAO {
 	private ReportDAO() {
 		try {
 			Context ct = new InitialContext();
-			ds = (DataSource)ct.lookup("java:comp/envj/jdbc/mysql");
+			ds = (DataSource)ct.lookup("java:comp/env/jdbc/mysql");
 			
 		} catch(Exception e) {
 			e.printStackTrace();
