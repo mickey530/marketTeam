@@ -50,12 +50,23 @@ public class UserDAO {
 		
 		
 		while(rs.next()) {
+<<<<<<< HEAD
 		String uId = rs.getString("user_id");
 		String uPw = rs.getString("user_pw");
 		String uName = rs.getString("user_name");
 		String uPnum = rs.getString("user_pnum");
 		String uAddress = rs.getString("user_address");
 		UserVO userData = new UserVO(uId, uPw, uName, uPnum, uAddress);
+=======
+		
+		int user_num = rs.getInt("user_num");
+		String user_name = rs.getString("user_name");
+		String user_id = rs.getString("user_id");
+		String user_pw = rs.getString("user_pw");
+		String user_pnum = rs.getString("user_pnum");
+		String user_address = rs.getString("user_address");
+		UserVO userData = new UserVO(user_num,user_id, user_pw,  user_name, user_pnum, user_address);
+>>>>>>> jongmin
 		userList.add(userData);
 		}
 	}catch(Exception e) {
@@ -82,6 +93,7 @@ public class UserDAO {
 				ResultSet rs = null;
 				
 				String tName =null;
+				String tAddress =null;
 				String tPnum=null;
 				
 			
@@ -94,6 +106,7 @@ public class UserDAO {
 				if(rs.next()){ 
 					 tName = rs.getString("user_name");
 					 tPnum = rs.getString("user_pnum");
+					 tAddress = rs.getString("user_address");
 					 }
 				
 			}catch(Exception e) {
@@ -181,7 +194,7 @@ public void deleteUser(String sId) {
 		try {
 			con = ds.getConnection();
 	
-		String sql = "INSERT INTO userinfo VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO userinfo(user_id,user_pw,user_name,user_pnum,user_address) VALUE (?,?,?,?,?)";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, user_id);
 		pstmt.setString(2, user_pw);
