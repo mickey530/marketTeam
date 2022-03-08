@@ -56,13 +56,14 @@ public class BoardDAO {
 				String board_category = rs.getString("board_category");
 				int board_amount = rs.getInt("board_amount");
 				boolean board_sold =  rs.getBoolean("board_sold");
+				String board_title = rs.getString("board_title");
 				int board_reported = rs.getInt("board_reported");
 				Date board_writetime = rs.getDate("board_writetime");
 				Date board_updatetime = rs.getDate("board_updatetime");
 
 				
 				BoardVO boardData = new BoardVO(user_id, board_info, board_num, board_content,
-						board_category, board_amount, board_sold, board_reported, board_writetime, board_updatetime);
+						board_category, board_amount, board_sold, board_title, board_reported, board_writetime, board_updatetime);
 				boardList.add(boardData);
 				
 				
@@ -84,14 +85,14 @@ public class BoardDAO {
 	
 	
 	public void insertBoard(String user_id, int board_info, String board_content,
-			String board_category, String board_amount, int board_sold, String board_reported) 
+			String board_category, String board_amount, int board_sold, String board_title ,String board_reported) 
 		{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
 			
-			String sql = "INSERT INTO board(user_id, board_info, board_content, board_category, board_amount, board_sold, board_reported)VALUES(?,?,?)";
+			String sql = "INSERT INTO board(user_id, board_info, board_content, board_category, board_amount, board_sold, board_title, board_reported)VALUES(?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setInt(2, board_info);
@@ -99,7 +100,8 @@ public class BoardDAO {
 			pstmt.setString(4, board_category);
 			pstmt.setString(5, board_amount);
 			pstmt.setInt(6, board_sold);
-			pstmt.setString(7, board_reported);
+			pstmt.setString(7, board_title);
+			pstmt.setString(8, board_reported);
 		
 			pstmt.executeUpdate();
 		} catch(Exception e) {
