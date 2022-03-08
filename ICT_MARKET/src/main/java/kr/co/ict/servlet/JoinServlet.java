@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.UserDAO;
+
 /**
  * Servlet implementation class JoinServlet
  */
@@ -37,21 +39,30 @@ public class JoinServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 request.setCharacterEncoding("utf-8");
-		    String name = request.getParameter("name");
-		    String id = request.getParameter("id");
-		    String pw = request.getParameter("pw");
-		    String email = request.getParameter("email");
-		    String phone = request.getParameter("phone");
-		    String addr = request.getParameter("addr");
+		   
+		    String user_id = request.getParameter("id");
+		    String user_pw = request.getParameter("pw");
+		    String user_name = request.getParameter("name");
+		    String user_pnum = request.getParameter("phone");
+		    String user_address = request.getParameter("addr");
+		    
+		  
+		    
+		    UserDAO dao = UserDAO.getInstance();
+		    dao.insertUser(user_id,user_pw,user_name,user_pnum,user_address);
 		    
 		    
-		    request.setAttribute("name",name);
-		    request.setAttribute("id",id);
-		    request.setAttribute("pw",pw);
-		    request.setAttribute("email",email);
-		    request.setAttribute("phone",phone);
-		    request.setAttribute("addr",addr);
-		    RequestDispatcher dp = request.getRequestDispatcher("/users/join_check.jsp");
+		    request.setAttribute("id",user_id);
+		    request.setAttribute("pw",user_pw);
+		    request.setAttribute("name",user_name);
+		    request.setAttribute("phone",user_pnum);
+		    request.setAttribute("addr",user_address);
+		    
+		    
+		   
+		    
+		    
+		    RequestDispatcher dp = request.getRequestDispatcher("/users/join_welcome.jsp");
 		    dp.forward(request, response);
 		    System.out.println("post방식으로 접속");
 		

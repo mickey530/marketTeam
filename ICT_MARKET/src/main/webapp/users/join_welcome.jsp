@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <h1>비밀번호가 틀렸습니다. 다시입력해주세요</h1>
-     <a href="http://localhost:8181/ICT_MARKET/users/login_form.jsp">로그인창으로 돌아가기</a>
-     
+   <h1>${param.name}님,회원가입 되었습니다.</h1>
+   <a href="http://localhost:8181/ICT_MARKET/users/login_form.jsp">로그인 창으로 돌아가기</a>
 </body>
 </html>

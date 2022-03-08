@@ -177,7 +177,7 @@
 <!-- main 컨텐츠 내용 -->
 <div id="main">
 	<h3> 로그인 </h3>
-	<form action="http://localhost:5151/ICT_MARKET/ICTL" name="loginForm" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/ICTL" name="loginForm" method="post">
 		<table border="1">
 			<tr>
 				<td id="id"> 아이디 </td>
@@ -190,7 +190,7 @@
 			<tr>
 				<td id="submit" colspan="2">
 					<input type="submit" value="로그인" > 
-					<a href="http://localhost:5151/ICT_MARKET/users/join_form.jsp">회원가입</a>
+					<a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp">회원가입</a>
 			</tr>
 		</table>
 	</form>

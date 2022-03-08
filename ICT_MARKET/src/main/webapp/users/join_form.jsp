@@ -179,7 +179,7 @@
 	 <h1 align="center"> 회원 가입 </h1>
 <fieldset id="fieldset" >	
 	
-		<form action="http://localhost:5151/ICT_MARKET/ICTJ"  method="post">
+		<form action="http://localhost:8181/ICT_MARKET/ICTJ"  method="post">
 			<table border="1" width="1265px">
 				<tr>
 					<td id="name"> 이 름 </td>

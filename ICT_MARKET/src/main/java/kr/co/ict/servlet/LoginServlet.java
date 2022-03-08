@@ -1,5 +1,7 @@
 package kr.co.ict.servlet;
 
+
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ict.LoginDAO;
-import kr.co.ict.LoginVO;
+
+
+import kr.co.ict.UserDAO;
+import kr.co.ict.UserVO;
 
 /**
  * Servlet implementation class LoginServlet
@@ -48,8 +52,8 @@ public class LoginServlet extends HttpServlet {
 			  request.setAttribute("pw",fPw);
 			    
 			    
-			  LoginDAO dao = LoginDAO.getInstance();
-			   LoginVO user = dao.getUserDate(fId);     
+			  UserDAO dao = UserDAO.getInstance();
+			  UserVO user = dao.getUserData(fId);     
 			
 		
 			 if(user != null){                
@@ -62,13 +66,13 @@ public class LoginServlet extends HttpServlet {
 					  session.setAttribute("session_id", sId);
 					  session.setAttribute("session_pw", sPw);
 					
-					  response.sendRedirect("http://localhost:5151/ICT_MARKET/users/login_welcome.jsp");
+					  response.sendRedirect("http://localhost:8181/ICT_MARKET/users/login_welcome.jsp");
 				  }else {
-					  response.sendRedirect("http://localhost:5151/ICT_MARKET/users/id_error.jsp");
+					  response.sendRedirect("http://localhost:8181/ICT_MARKET/users/id_error.jsp");
 				  }
 			
 			} else {
-				 response.sendRedirect("http://localhost:5151/ICT_MARKET/users/pw_error.jsp");
+				 response.sendRedirect("http://localhost:8181/ICT_MARKET/users/pw_error.jsp");
 			}
 	}
 
