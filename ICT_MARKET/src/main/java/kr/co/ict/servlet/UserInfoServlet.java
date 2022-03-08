@@ -32,8 +32,8 @@ public class UserInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-			String user_num = request.getParameter("user_num");
-			
+			String usernum = request.getParameter("user_num");
+			int user_num = Integer.parseInt(usernum);
 			
 	
 			UserDAO dao = UserDAO.getInstance();
