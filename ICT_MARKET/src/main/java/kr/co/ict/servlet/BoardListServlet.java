@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.BoardDAO;
 import kr.co.ict.BoardVO;
+import kr.co.ict.UserDAO;
+import kr.co.ict.UserVO;
 
 /**
  * Servlet implementation class BoardListServlet
@@ -47,9 +49,9 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = BoardDAO.getInstance();	
+		UserDAO dao = UserDAO.getInstance();	
 		
-		List<BoardVO> boardList = dao.getAllBoardList();
+		List<UserVO> boardList = dao.getAllUserList();
 		request.setAttribute("boardList", boardList);
 	
 		RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
