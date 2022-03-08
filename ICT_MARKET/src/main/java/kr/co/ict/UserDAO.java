@@ -77,15 +77,16 @@ public class UserDAO {
 	return userList;
 	}	
 	
+<<<<<<< HEAD
 	public UserVO getUserLoginData(String sId) {
-		// try ºí·° ÁøÀÔ Àü Connection, PrepareStatement, ResultSet ¼±¾ð
+		// try ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Connection, PrepareStatement, ResultSet ï¿½ï¿½ï¿½ï¿½
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 				
 				
 				
-			// Connection, PreparedStatement, ResultSetÀ» ¼±¾ðÇÕ´Ï´Ù.
+			// Connection, PreparedStatement, ResultSetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 				try {
 					con = ds.getConnection();
 				String sql = "SELECT * FROM userinfo WHERE uid=?";
@@ -113,8 +114,7 @@ public class UserDAO {
 				}
 			return null;
 	}
-	
-	
+
 	public UserVO getUserData(int user_num) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
@@ -128,9 +128,11 @@ public class UserDAO {
 					con = ds.getConnection();
 				String sql = "SELECT * FROM userinfo WHERE user_num=?";
 				pstmt = con.prepareStatement(sql);
+<<<<<<< HEAD
 				
 				pstmt.setInt(1, user_num);
 				rs = pstmt.executeQuery();
+
 				if(rs.next()){ 
 						user_num = rs.getInt("user_num");
 					String	user_id = rs.getString("user_id");
@@ -250,6 +252,5 @@ public void deleteUser(String sId) {
 				e.printStackTrace();
 			}
 		}	
-}
 	}
-
+}
