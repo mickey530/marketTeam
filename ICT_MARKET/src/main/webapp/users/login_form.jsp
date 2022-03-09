@@ -13,15 +13,15 @@
 </head>
 <body>
 	<h3> 로그인 </h3>
-	<form action="http://localhost:5151/ICT_MARKET/ICTL" name="loginForm" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/ICTL" name="loginForm" method="post">
 		<table border="1">
 			<tr>
 				<td id="id"> 아이디 </td>
-				<td><input type="text" name="id"></td>
+				<td><input type="text" name="fId"></td>
 			</tr>
 			<tr>
 				<td id="pw"> 비밀번호 </td>
-				<td><input type="password" name="pw"></td>
+				<td><input type="password" name="fPw"></td>
 			</tr>
 			<tr>
 				<td id="submit" colspan="2">
@@ -31,4 +31,6 @@
 		</table>
 	</form>
 </body>
-</html>
+</html>	
+		
+
