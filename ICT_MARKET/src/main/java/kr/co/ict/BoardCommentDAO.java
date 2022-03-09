@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import javax.naming.Context;
@@ -26,8 +26,6 @@ public class BoardCommentDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
 	public static BoardCommentDAO getInstance(){
 		if(dao == null) {
 			dao = new BoardCommentDAO();		
