@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,33 +14,19 @@ import kr.co.ict.BoardDAO;
 import kr.co.ict.BoardVO;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class BoardsellListServlet
  */
-@WebServlet("/boardList")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/boardsellList")
+public class BoardsellListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public BoardsellListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see Servlet#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,12 +34,11 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = BoardDAO.getInstance();	
 		
-		List<BoardVO> boardList = dao.getAllBoardList();
+		List<BoardVO> boardList = dao.getAllBoardsellList();
 		request.setAttribute("boardList", boardList);
 	
-		RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("/board/board_sell.jsp");
 		dp.forward(request, response);
-	
 	}
 
 	/**
