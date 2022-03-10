@@ -87,26 +87,24 @@ public class BoardDAO {
 	
 	
 	
-	public void insertBoard(String user_id, boolean board_info, String board_content,
-			String board_category, int board_amount, boolean board_sold, String board_title , int board_reported) 
+	public void insertBoard(String user_id, boolean board_info, String board_category, String board_title,  String board_content,
+			 int board_amount, boolean board_sold) 
 		{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
 			
-			String sql = "INSERT INTO board(user_id, board_info, board_content, board_category, board_amount, board_sold, board_title,)"
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO board(user_id, board_info, board_category, board_title, board_content, board_amount, board_sold)"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setBoolean(2, board_info);
-			pstmt.setString(3, board_content);
-			pstmt.setString(4, board_category);
-			pstmt.setInt(5, board_amount);
-			pstmt.setBoolean(6, board_sold);
-			pstmt.setString(7, board_title);
-			pstmt.setInt(8, board_reported);
-		
+			pstmt.setString(3, board_category);
+			pstmt.setString(4, board_title);
+			pstmt.setString(5, board_content);
+			pstmt.setInt(6, board_amount);
+			pstmt.setBoolean(7, board_sold);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -120,7 +118,35 @@ public class BoardDAO {
 		}	
 	}
 	
-	
+	public void updateBoard(boolean board_info, String board_category, String board_title,  String board_content,
+			 int board_amount, boolean board_sold) 
+		{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "UPDATE board SET board_info = ?, board_category = ?, board_title = ?, board_content = ?, board_amount = ?, board_sold = ? board_updatetime = now()"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setBoolean(1, board_info);
+			pstmt.setString(2, board_category);
+			pstmt.setString(3, board_title);
+			pstmt.setString(4, board_content);
+			pstmt.setInt(5, board_amount);
+			pstmt.setBoolean(6, board_sold);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+	}
 	
 	
 }
