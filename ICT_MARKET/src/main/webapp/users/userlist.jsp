@@ -114,8 +114,8 @@
 <thead>
   <tr>
   <th>회원번호</th>
-  <th>회원아이디</th>
   <th>회원이름</th>
+  <th>회원아이디</th>
   <th>전화번호</th>
   <th>주소</th>
   </tr>
@@ -124,7 +124,7 @@
  <c:forEach var="user" items="${userList}">
  <tr>
   <td>${ user.user_num}</td>
-  <td>${ user.user_name}</td>
+  <td><a href="http://localhost:8181/ICT_MARKET/userInfo?user_num=${user.user_num}">${ user.user_name}</a></td>
   <td>${ user.user_id}</td>
   <td>${ user.user_pnum }</td>
   <td>${ user.user_address }</td>

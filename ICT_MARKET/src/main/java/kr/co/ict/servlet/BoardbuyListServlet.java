@@ -32,21 +32,13 @@ public class BoardbuyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			BoardDAO dao = BoardDAO.getInstance();	
-			
-			List<BoardVO> boardList = dao.getAllBoardbuyList();
-			request.setAttribute("boardList", boardList);
+		BoardDAO dao = BoardDAO.getInstance();	
 		
-			RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
-			dp.forward(request, response);
+		// false = buy
+		List<BoardVO> boardList = dao.getAllBoardList(false);
+		request.setAttribute("boardList", boardList);
+	
+		RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
+		dp.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
