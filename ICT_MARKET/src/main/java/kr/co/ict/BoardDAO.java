@@ -127,7 +127,7 @@ public class BoardDAO {
 			con = ds.getConnection();
 			
 			String sql = "UPDATE board SET board_info = ?, board_category = ?, board_title = ?, board_content = ?, board_amount = ?, board_sold = ? board_updatetime = now()"
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUES(?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setBoolean(1, board_info);
 			pstmt.setString(2, board_category);
