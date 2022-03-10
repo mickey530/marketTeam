@@ -34,7 +34,7 @@ public class UserDAO {
 				
 			return dao;
 		}
-	
+	// ���ȸ������ �ҷ�����
 	public List<UserVO> getAllUserList(){
 	
 		Connection con = null;
@@ -77,27 +77,29 @@ public class UserDAO {
 	return userList;
 	}	
 	
-<<<<<<< HEAD
-	public UserVO getUserLoginData(String sId) {
-		// try ���� ���� �� Connection, PrepareStatement, ResultSet ����
+	
+	
+	// Ư��ȸ�� ���� ������
+	public UserVO getUserData(String sId) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 				
+				String tName =null;
+				String tAddress =null;
+				String tPnum=null;
 				
-				
-			// Connection, PreparedStatement, ResultSet�� �����մϴ�.
+			
 				try {
 					con = ds.getConnection();
 				String sql = "SELECT * FROM userinfo WHERE uid=?";
 				pstmt = con.prepareStatement(sql);
-				
-				pstmt.setString(1, sId);
 				rs = pstmt.executeQuery();
+				pstmt.setString(1, sId);
 				if(rs.next()){ 
-					 String user_name = rs.getString("user_name");
-					 String user_id = rs.getString("user_id");
-					 String user_pw = rs.getString("user_pw");
+					 tName = rs.getString("user_name");
+					 tPnum = rs.getString("user_pnum");
+					 tAddress = rs.getString("user_address");
 					 }
 				
 			}catch(Exception e) {
@@ -113,52 +115,8 @@ public class UserDAO {
 					}
 				}
 			return null;
-	}
-
-	public UserVO getUserData(int user_num) {
-				Connection con = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				
-				UserVO user = null;
-				
-				
-			
-				try {
-					con = ds.getConnection();
-				String sql = "SELECT * FROM userinfo WHERE user_num=?";
-				pstmt = con.prepareStatement(sql);
-<<<<<<< HEAD
-				
-				pstmt.setInt(1, user_num);
-				rs = pstmt.executeQuery();
-
-				if(rs.next()){ 
-						user_num = rs.getInt("user_num");
-					String	user_id = rs.getString("user_id");
-					String	user_pw = rs.getString("user_pw");
-					String	user_name = rs.getString("user_name");
-					String	user_pnum = rs.getString("user_pnum");
-					String	user_address = rs.getString("user_address");
-				user = new UserVO(user_num, user_id, user_pw,  user_name,  user_pnum, user_address);
-					 }
-				
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-				finally{
-					try {
-					con.close();
-					pstmt.close();
-					rs.close();
-					} catch(SQLException se) {
-						se.printStackTrace();
-					}
-				}
-			return user;
 	}	 
-	
+	// ���� ������Ʈ
 	public void updateCheck(String sId ,String user_name, String user_pw, String user_pnum, String
 			user_address) {
 		
@@ -188,7 +146,7 @@ public class UserDAO {
 		
 	}
 
-	
+		// ȸ������ ����
 public void deleteUser(String sId) {
 		
 		Connection con = null;
@@ -218,7 +176,7 @@ public void deleteUser(String sId) {
 			}
 		}	
 	}		
-			
+			// ȸ������
 	public void insertUser(String user_id ,String user_pw, String user_name, String user_pnum,
 			String user_address) {
 		
@@ -252,5 +210,6 @@ public void deleteUser(String sId) {
 				e.printStackTrace();
 			}
 		}	
-	}
 }
+	}
+

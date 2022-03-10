@@ -29,7 +29,18 @@ public class UserListServlet extends HttpServlet {
 		
 		request.setAttribute("userList", userList);
 		
-		RequestDispatcher dp = request.getRequestDispatcher("/manager/UserList.jsp"); 
+		RequestDispatcher dp = request.getRequestDispatcher("/manager/UserList.jsp"); // 보내는 주소
+		dp.forward(request, response);
+	}
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserDAO dao = UserDAO.getInstance();
+		
+		List<UserVO> userList = dao.getAllUserList();
+		
+		request.setAttribute("userList", userList);
+		
+		RequestDispatcher dp = request.getRequestDispatcher("/manager/UserList.jsp"); // 보내는 주소
 		dp.forward(request, response);
 
 	}

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 	html, body{height:100%}
@@ -12,10 +14,9 @@
 		min-height: 100%;
 		padding-bottom: 157px;
 	}
-	.main{text-align:center;
+	.main{
 
 		}
-		.info{text-align:right;}
 	footer{
 		height: 157px;
 		position: relative;
@@ -109,38 +110,66 @@
 
 <!-- main 컨텐츠 내용 -->
 <div class="main">
-<h1 class="userinfo">회원정보</h1>
-<form class="info" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">아이디</label> 
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_id }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">이름</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_name }" readonly/>
-    </div>
-  </div>
+<table class="table table-sm">
+<thead>
+  <tr>
+  <th>회원번호</th>
+  <th>회원이름</th>
+  <th>회원아이디</th>
+  <th>전화번호</th>
+  <th>주소</th>
+  </tr>
+  </thead>
+  <tbody>
+ <c:forEach var="user" items="${userList}">
+ <tr>
+  <td>${ user.user_num}</td>
+  <td><a href="http://localhost:8181/ICT_MARKET/userInfo?user_num=${user.user_num}">${ user.user_name}</a></td>
+  <td>${ user.user_id}</td>
+  <td>${ user.user_pnum }</td>
+  <td>${ user.user_address }</td>
+  </tr>
+</c:forEach>
+</tbody>
+</table>
 
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">휴대전화</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_pnum }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">주소</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_address }" readonly/>
-    </div>
-  </div>
-  </form>
 </div>
- 
 
+</div>
+<!-- 여기서 부터는 푸터 -->
 
+<footer class="p-3 py-3 border-top">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<div class="col">
+				<h5>SC CENTER</h5>
+					<ul class="nav flex-column">
+						<li class="nav-item mb-2 text-muted">1111-6666</li>
+						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
+						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
+						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
+					</ul>
+			</div>
+            
+			<div class="col">
+				<h5>ICT MARKET</h5>
+				<ul class="nav flex-column">
+					<li class="nav-item mb-2">대표 : 6666 |</li>
+					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
+					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
+					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
+				</ul>
+			</div>
+            
+			<div class="col">
+				<ul class="nav flex-column">
+					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+
+</footer>
 
 </body>
 </html>
