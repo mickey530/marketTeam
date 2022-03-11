@@ -34,18 +34,22 @@ public class BoardInsertServlet extends HttpServlet {
 				String user_id =  request.getParameter("user_id");
 				Boolean board_info = Boolean.parseBoolean("board_info");//pstmt.setBoolean(2, board_info);
 				String board_category = request.getParameter("board_category");
-				String board_title = request.getParameter("board_title");
-				String board_content = request.getParameter("board_content");
-				String board_amount = request.getParameter("board_amount");
-				int boardamount = Integer.parseInt(board_amount);
-				Boolean board_sold = Boolean.parseBoolean("board_sold");
-				//pstmtsetInt(6, board_amount);
-				//pstmt.setBoolean(7, board_sold);
+				String board_title = request.getParameter("title");
+				String board_content = request.getParameter("content");
 				
-				dao.insertBoard(user_id, board_info, board_category, board_title,  board_content,
-						 boardamount, board_sold);
+				// data check
+				System.out.println(board_title);
+				System.out.println(board_content);
 				
-				response.sendRedirect("#");
+				String boardAmount = request.getParameter("board_amount");
+				int board_amount = Integer.parseInt(boardAmount);
+				
+
+				dao.insertBoard(user_id, board_info, board_category, board_title, board_content, board_amount);
+
+//				response.sendRedirect("#");
+		
+		
 	}
 
 }

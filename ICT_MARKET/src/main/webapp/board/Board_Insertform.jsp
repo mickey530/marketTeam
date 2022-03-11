@@ -258,13 +258,14 @@ transition :0.5s;
 	<div>
 	<table class="table" style="font-size:80%">
 	<tr>
-	<form action="" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
 		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
 		<th><textarea class="titlearea" name="title" placeholder="title"/></textarea><br/></th>
 	</tr>
 	<tr>
 	<th><textarea class="contentarea" name="content" placeholder="content"/></textarea><br/></th>
 	</tr>
+	<input type="submit" value="임시 제출 버튼">
 	</form>
 	</table>
 	</div>
