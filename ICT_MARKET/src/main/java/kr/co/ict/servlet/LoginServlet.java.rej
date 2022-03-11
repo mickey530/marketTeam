@@ -1,0 +1,10 @@
+diff a/ICT_MARKET/src/main/java/kr/co/ict/servlet/LoginServlet.java b/ICT_MARKET/src/main/java/kr/co/ict/servlet/LoginServlet.java	(rejected hunks)
+@@ -36,6 +38,8 @@
+ 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+ 	 */
+ 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
++		   
++		
+ 		    String fId = request.getParameter("fid");
+ 			String fPw = request.getParameter("fpw");
+ 	
