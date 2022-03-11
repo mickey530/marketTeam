@@ -110,8 +110,11 @@
 <!-- main 컨텐츠 내용 -->
 <div class="main">
 <h1 class="userinfo">회원정보</h1>
-<form class="info" method="post">
-  <div class="row mb-3">
+
+
+
+<form class="info">
+	<div class="row mb-3">
     <label class="col-sm-2 col-form-label">아이디</label> 
     <div class="col-sm-3">
       <input type="text" class="form-control" value="${user.user_id }" readonly/>
@@ -134,6 +137,26 @@
     <label class="col-sm-2 col-form-label">주소</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" value="${user.user_address }" readonly/>
+    </div>
+  </div>
+  
+
+  </form>
+  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete" method="post">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-3">
+    <input type="hidden" value="${user.user_num }" name="user_num"/>
+      <input type="submit" class="form-control" value="탈퇴" readonly/>
+    </div>
+  </div>
+  </form>
+  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm" method="post">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-3">
+    <input type="hidden" value="${user.user_num }" name="user_num"/>
+      <input type="submit" class="form-control" value="수정" readonly/>
     </div>
   </div>
   </form>
