@@ -18,10 +18,9 @@
 					<th>카테고리</th>
 					<th>제목</th>
 					<th>가격</th>
-					<th>판매유무</th>
-					<th>신고</th>
 					<th>쓴날짜</th>
 					<th>최종수정날짜</th>
+					<th>조회수</th>
 				</tr>
 		</thead>
     	<tbody>
@@ -32,13 +31,10 @@
 					<td>${board.board_category }</td>
 					<td>${board.board_title }</td>
 					<td>${board.board_amount }</td>
-					<td>${board.board_sold }</td>
-					<td>${board.board_reported }</td>
 					<td>${board.board_writetime }</td>
 					<td>${board.board_updatetime }</td>
+					<td>${board.board_hit }</td>
 				</tr>
     		</c:forEach>
-		</tbody>
-	</table>
 </body>
 </html>
