@@ -110,11 +110,20 @@
 <!-- main 컨텐츠 내용 -->
 <div class="main">
 <h1 class="userinfo">회원정보</h1>
+<<<<<<< HEAD
 
 
 
 <form class="info">
 	<div class="row mb-3">
+=======
+<<<<<<< HEAD
+<form class="info">
+=======
+<form class="info" method="post">
+>>>>>>> youngwoo
+  <div class="row mb-3">
+>>>>>>> master
     <label class="col-sm-2 col-form-label">아이디</label> 
     <div class="col-sm-3">
       <input type="text" class="form-control" value="${user.user_id }" readonly/>
@@ -139,6 +148,7 @@
       <input type="text" class="form-control" value="${user.user_address }" readonly/>
     </div>
   </div>
+<<<<<<< HEAD
   
 
   </form>
@@ -159,6 +169,15 @@
       <input type="submit" class="form-control" value="수정" readonly/>
     </div>
   </div>
+=======
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-3">
+      <input type="submit" class="form-control" value="수정" readonly/>
+    </div>
+  </div>
+
+>>>>>>> master
   </form>
 </div>
  

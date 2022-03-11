@@ -35,7 +35,9 @@ public class BoardDAO {
 		return dao;
 	}
 
-	public List<BoardVO> getAllBoardList(){
+	// board_info : true > sell
+	// board_info : false > buy
+	public List<BoardVO> getAllBoardList(boolean boardInfo){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,27 +45,28 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM board";
+			String sql = "SELECT * FROM board WHERE board_info = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setBoolean(1, boardInfo);
 			
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
+				int board_num = rs.getInt("board_num");
 				String user_id = rs.getString("user_id");
 				boolean board_info = rs.getBoolean("board_info");
-				int board_num = rs.getInt("board_num");
-				String board_content = rs.getString("board_content");
 				String board_category = rs.getString("board_category");
+				String board_title = rs.getString("board_title");
+				String board_content = rs.getString("board_content");
 				int board_amount = rs.getInt("board_amount");
 				boolean board_sold =  rs.getBoolean("board_sold");
-				String board_title = rs.getString("board_title");
+				int board_hit = rs.getInt("board_hit");
 				int board_reported = rs.getInt("board_reported");
 				Date board_writetime = rs.getDate("board_writetime");
 				Date board_updatetime = rs.getDate("board_updatetime");
 
 				
-				BoardVO boardData = new BoardVO(user_id, board_info, board_num, board_content,
-						board_category, board_amount, board_sold, board_title, board_reported, board_writetime, board_updatetime);
+				BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title, board_content, board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime);
 				boardList.add(boardData);
 				
 				
@@ -84,25 +87,24 @@ public class BoardDAO {
 	
 	
 	
-	public void insertBoard(String user_id, int board_info, String board_content,
-			String board_category, String board_amount, int board_sold, String board_title ,String board_reported) 
+	public void insertBoard(String user_id, boolean board_info, String board_category, String board_title,  String board_content,
+			 int board_amount, boolean board_sold) 
 		{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
 			
-			String sql = "INSERT INTO board(user_id, board_info, board_content, board_category, board_amount, board_sold, board_title, board_reported)VALUES(?,?,?)";
+			String sql = "INSERT INTO board(user_id, board_info, board_category, board_title, board_content, board_amount, board_sold)"
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
-			pstmt.setInt(2, board_info);
-			pstmt.setString(3, board_content);
-			pstmt.setString(4, board_category);
-			pstmt.setString(5, board_amount);
-			pstmt.setInt(6, board_sold);
-			pstmt.setString(7, board_title);
-			pstmt.setString(8, board_reported);
-		
+			pstmt.setBoolean(2, board_info);
+			pstmt.setString(3, board_category);
+			pstmt.setString(4, board_title);
+			pstmt.setString(5, board_content);
+			pstmt.setInt(6, board_amount);
+			pstmt.setBoolean(7, board_sold);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -116,7 +118,35 @@ public class BoardDAO {
 		}	
 	}
 	
-	
+	public void updateBoard(boolean board_info, String board_category, String board_title,  String board_content,
+			 int board_amount, boolean board_sold) 
+		{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			
+			String sql = "UPDATE board SET board_info = ?, board_category = ?, board_title = ?, board_content = ?, board_amount = ?, board_sold = ? board_updatetime = now()"
+					+ "VALUES(?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setBoolean(1, board_info);
+			pstmt.setString(2, board_category);
+			pstmt.setString(3, board_title);
+			pstmt.setString(4, board_content);
+			pstmt.setInt(5, board_amount);
+			pstmt.setBoolean(6, board_sold);
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+	}
 	
 	
 }
