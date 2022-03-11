@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import kr.co.ict.UserDAO;
-//import kr.co.ict.UserVO;
+import kr.co.ict.BoardDAO;
 
 /**
  * Servlet implementation class SearchServlet
