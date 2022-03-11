@@ -88,92 +88,31 @@ transition :0.5s;
 	color: #f1f1f1;
 	}
 	
-	.container {
+	#mainboard {
 	font-family: 'Play', sans-serif;
 	}
-	.container .row{
+	#mainboard .row{
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
-	.container .row>.col-md-1{
+	#mainboard .row>.col-md-1{
 	margin-right:14px;
 	}
-	.container .row .col-md-11{
+	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
-	}
-	
-	#main {
-	height: auto;
-	}
-	
-	.main_head{
-	padding: 70px;
-	}
-	.main_head h2{
-	font-family: 'Play', sans-serif;
-	font-weight: 700;
-	}
-	.main_head p {
-	font-family: 'Play', sans-serif;
-	}
-	
-	#main_div{
-	position: relative;
-	}
-	#main_div .main_contain{
-	position: absolute;
-	left: 20%;
-	margin-top: -50px;
-	text-align: center;
-	}
-	
-	.main_contain{
-	font-family: font-family: 'Hahmlet', serif;
-	width: 60%;
-	height: auto;
-	}
-	
-	.line{
-	width: 100%;
-	height: 1px;
-	background: #eee;
-	margin-top: 30px;
-	}
-	
-	.recently{
-	overflow: auto;
-	border: 1px solid #ccc;
-	margin-top: 10px;
-	width: 100%;
-	height: 450px;
-	background-color: #dcdcdc;
-	}
-	
-	.wts{
-	width: 49%;
-	text-align: center;
-	position:sattic;
-	margin-top: 5px;
-	}
-	
-	.line2{
-	width: 1px;
-	height: 100%;
-	background: #eee;
-	}
-	
-	.wtb{
-	width: 49%;
-	text-align: center;
-	position:sattic;
-	margin-top: 5px;
 	}
 	
 	footer{
 		height: 120px;
 		position: relative;
 	}	
+	
+	footer div{
+	font-family: 'Play', sans-serif;
+	margin-top: 5px;
+	margin-left: 90px;
+	}
 </style>
 <title>Insert title here</title>
 </head>
