@@ -110,11 +110,8 @@
 <!-- main 컨텐츠 내용 -->
 <div class="main">
 <h1 class="userinfo">회원정보</h1>
-<<<<<<< HEAD
-<form class="info">
-=======
+
 <form class="info" method="post">
->>>>>>> youngwoo
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label">아이디</label> 
     <div class="col-sm-3">
