@@ -15,7 +15,7 @@
 <body>
 	    <h1 align="center"> 회원 가입 </h1>
 <fieldset id="fieldset" >	
-	<form action="http://localhost:5151/ICT_MARKET/ICTJ" name="" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/ICTJ"  method="post">
 		<table border="1" width="500px">
 			<tr>
 				<td id="name"> 이 름 </td>
@@ -32,17 +32,7 @@
 				<td><input type="password" name="pw"required></td>
 			</tr>
 			
-			<tr>
-				<td id="email"> E-mail </td>
-				<td>
-					<input type="text" name="email"> @
-					<select name="domain">
-						<option value="naver"> naver </option>
-						<option value="gmail"> gmail</option>
-						<option value="daum"> daum </option>
-					</select>
-				</td>
-			</tr>
+			
 			<tr>
 				<td id="phone"> 폰번호 </td>
 				<td>
