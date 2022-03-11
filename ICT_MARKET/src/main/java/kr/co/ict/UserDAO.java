@@ -188,8 +188,7 @@ public void deleteUser(String sId) {
 			con = ds.getConnection();
 	
 		String sql = "INSERT INTO userinfo(user_id,user_pw,user_name,user_pnum,user_address) VALUE (?,?,?,?,?)";
-
-		pstmt = con.prepareStatement(sql);
+	    pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, user_id);
 		pstmt.setString(2, user_pw);
 		pstmt.setString(3, user_name);
@@ -214,3 +213,5 @@ public void deleteUser(String sId) {
 }
 	}
 
+
+	

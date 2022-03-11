@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ict.UserDAO;
-
 /**
  * Servlet implementation class LoginServlet
  */
@@ -38,8 +36,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   
-		
 		    String fId = request.getParameter("fid");
 			String fPw = request.getParameter("fpw");
 	
