@@ -27,19 +27,18 @@ transition :0.5s;
 
 
 .sidenav{
-	height: 25%;
+	width:100px;
 	border-radius: 5px;
 	position: fixed;
 	right:0;
-	top:0;
 	z-index:1; 
 	background: #dcdcdc;
-	padding-top: 10px; 
-	margin-right: 130px;
-	overflow-x: hidden;
+	margin-top: -1px; 
+	margin-right: 120px;
+	overflow-y: hidden;
 	
 	
-	width: 0;
+	height: 0;
 	
 	transition :0.5s;
 }
@@ -50,13 +49,15 @@ transition :0.5s;
 	font-size: px;
 	font-family: 'Play', sans-serif;
 	display: block;
-	padding: 8px 8px 8px 8px;
+	padding: 8px 8px 8px 5px;
+	margin-top: 7px; 
 	
 	transition :0.3s;
 }
 .sidenav a:hover{
 	color: #f1f1f1;
 }
+
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
 	
 	
@@ -88,92 +89,35 @@ transition :0.5s;
 	color: #f1f1f1;
 	}
 	
-	.container {
+	#mainboard {
 	font-family: 'Play', sans-serif;
 	}
-	.container .row{
+	#mainboard .row{
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
-	.container .row>.col-md-1{
+	#mainboard .row>.col-md-1{
 	margin-right:14px;
 	}
-	.container .row .col-md-11{
+	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
 	
-	#main {
-	height: auto;
-	}
-	
-	.main_head{
-	padding: 70px;
-	}
-	.main_head h2{
-	font-family: 'Play', sans-serif;
-	font-weight: 700;
-	}
-	.main_head p {
-	font-family: 'Play', sans-serif;
-	}
-	
-	#main_div{
-	position: relative;
-	}
-	#main_div .main_contain{
-	position: absolute;
-	left: 20%;
-	margin-top: -50px;
-	text-align: center;
-	}
-	
-	.main_contain{
-	font-family: font-family: 'Hahmlet', serif;
-	width: 60%;
-	height: auto;
-	}
-	
-	.line{
-	width: 100%;
-	height: 1px;
-	background: #eee;
-	margin-top: 30px;
-	}
-	
-	.recently{
-	overflow: auto;
-	border: 1px solid #ccc;
-	margin-top: 10px;
-	width: 100%;
-	height: 450px;
-	background-color: #dcdcdc;
-	}
-	
-	.wts{
-	width: 49%;
-	text-align: center;
-	position:sattic;
-	margin-top: 5px;
-	}
-	
-	.line2{
-	width: 1px;
-	height: 100%;
-	background: #eee;
-	}
-	
-	.wtb{
-	width: 49%;
-	text-align: center;
-	position:sattic;
-	margin-top: 5px;
-	}
 	
 	footer{
-		height: 120px;
-		position: relative;
+	font-size: 40%;
+	height: 150px;
+	position: relative;
+  	bottom: 0px;
+	
 	}	
+	
+	footer div{
+	font-family: 'Play', sans-serif;
+	margin-top: 5px;
+	margin-left: 90px;
+	}
 </style>
 <title>Insert title here</title>
 </head>
@@ -256,27 +200,23 @@ transition :0.5s;
 	</div>
 </div>
 </header>
+<!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" id="profileclose" style="padding: 15px" onclick="closeNav()"> 
-					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
-					</a>
 					<a href="#" class="text-center">Profile</a>
 					<a href="#" class="text-center">Sell</a>
 					<a href="#" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){
-		document.getElementById("mySidenav").style.width="100px";
-		//document.getElementById("main").style.marginRight="150px" ;
+		document.getElementById("mySidenav").style.height="160px";
 		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
 		document.getElementById("main").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
-		document.getElementById("mySidenav").style.width="0px";
-		document.getElementById("main").style.marginRight="0px";
+		document.getElementById("mySidenav").style.height="0px";
 		document.body.style.backgroundColor="white";
-	}
+		document.getElementById("main").style.filter="blur(0)";
 	
 	 const tabList = document.querySelectorAll('.tab_menu .list li');
 	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
@@ -302,7 +242,7 @@ transition :0.5s;
 	
 </script>
 
-<div class="container">
+<div id= "mainboard" class="container">
 <div class="row">
 <h3 class="col-md-11">Want to Buy</h3>
 <h5 class="col-md-1">Trade</h5>

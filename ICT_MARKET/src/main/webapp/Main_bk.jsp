@@ -179,10 +179,11 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="searchkey" placeholder="Search" aria-label="Search">
 				</form>
-               
+
 				<li>
 					<a href="#" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
@@ -236,7 +237,13 @@ transition :0.5s;
 		document.body.style.backgroundColor="white";
 		document.getElementById("main").style.filter="blur(0)";
 	}
-	
+
+	<!--search script-->
+	function press(f){ 
+		if(f.keyCode == 13){ 
+		searchHeader.submit(); 
+		} 
+	} 
 </script>
 
 

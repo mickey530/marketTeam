@@ -22,7 +22,7 @@ public class Userlist extends HttpServlet {
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
+     */ 
     public Userlist() {
         super();
         // TODO Auto-generated constructor stub
@@ -36,6 +36,7 @@ public class Userlist extends HttpServlet {
 		
 		List<UserVO> userList = dao.getAllUserList();
 		
+		System.out.println(userList);
 		request.setAttribute("userList", userList);
 		
 		RequestDispatcher dp = request.getRequestDispatcher("/users/userlist.jsp");
