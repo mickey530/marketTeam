@@ -1,3 +1,6 @@
+<%--@ page import="kr.co.ict.BoardVO"--%>
+<%--@ page import="kr.co.ict.BoardDAO"--%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,13 +9,12 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&
+family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
-
-	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
-	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
@@ -55,75 +57,52 @@ transition :0.5s;
 .sidenav a:hover{
 	color: #f1f1f1;
 }
+
+	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
 	
-	#main {
-	height: auto;
-	}
 	
-	.main_head{
-	padding: 70px;
-	}
-	.main_head h2{
-	font-family: 'Play', sans-serif;
-	font-weight: 700;
-	}
-	.main_head p {
-	font-family: 'Play', sans-serif;
-	}
-	
-	#main_div{
-	position: relative;
-	}
-	#main_div .main_contain{
-	position: absolute;
-	left: 20%;
+	.tab_menu{
+	position:relative;
 	margin-top: -50px;
-	text-align: center;
+	margin-left: -20px;
+	}
+  	
+  	.tab_menu .list{float:right;}
+  	
+  	.tab_menu .list li{float:left; margin-right:14px;}
+  	
+  	.tab_menu .list li.is_on .btn{font-weight:bold; color:blue;}
+  	
+  	.tab_menu .list .btn{font-size:13px;}
+  	
+  	.tab_menu .cont_area .cont{
+  	position:absolute; 
+  	top:25px; left:0; 
+  	background:#555; 
+  	color:#fff; 
+  	text-align:center; 
+  	width:250px; 
+  	height:100px; 
+  	line-height:100px;}
+	
+	.tab_menu a:hover{
+	color: #f1f1f1;
 	}
 	
-	.main_contain{
-	font-family: font-family: 'Hahmlet', serif;
-	width: 60%;
-	height: auto;
-	}
-	
-	.line{
-	width: 100%;
-	height: 1px;
-	background: #eee;
-	margin-top: 30px;
-	}
-	
-	.container {
+	#mainboard {
 	font-family: 'Play', sans-serif;
 	}
-	.container .row{
+	#mainboard .row{
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
-	.container .row>.col-md-1{
-	font-size:20px;
-	margin-top: 10px;
+	#mainboard .row>.col-md-1{
+	margin-right:14px;
 	}
-	.container .row .col-md-11{
+	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
-	
-	.titlearea {
-    width: 100%;
-    height: 2em;
-    border: none;
-    resize: none;
-  }
-  
-	.contentarea {
-    width: 100%;
-    height: 15em;
-    border: none;
-    resize: none;
-  }
-	
 	
 	
 	footer{
@@ -132,15 +111,15 @@ transition :0.5s;
 	position: relative;
   	bottom: 0px;
 	
-	}
+	}	
+	
 	footer div{
 	font-family: 'Play', sans-serif;
 	margin-top: 5px;
 	margin-left: 90px;
 	}
-	
 </style>
-<title>ICT Market</title>
+<title>Insert title here</title>
 </head>
 <body>
 <div id="wrapper">
@@ -182,11 +161,10 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
-				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="searchkey" placeholder="Search" aria-label="Search">
+				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
 				</form>
-
+               
 				<li>
 					<a href="#" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
@@ -239,36 +217,78 @@ transition :0.5s;
 		document.getElementById("mySidenav").style.height="0px";
 		document.body.style.backgroundColor="white";
 		document.getElementById("main").style.filter="blur(0)";
-	}
+	
+	 const tabList = document.querySelectorAll('.tab_menu .list li');
+	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
+	  let activeCont = '';
 
-	<!--search script-->
-	function press(f){ 
-		if(f.keyCode == 13){ 
-		searchHeader.submit(); 
-		} 
-	} 
+	  for(var i = 0; i < tabList.length; i++){
+	    tabList[i].querySelector('.btn').addEventListener('click', function(e){
+	      e.preventDefault();
+	      for(var j = 0; j < tabList.length; j++){
+	       
+	        tabList[j].classList.remove('is_on');
+
+	       
+	        contents[j].style.display = 'none';
+	      }
+
+	      this.parentNode.classList.add('is_on');
+
+	      activeCont = this.getAttribute('href');
+	      document.querySelector(activeCont).style.display = 'block';
+	    });
+	  }
+	
 </script>
 
-
-<div class="container" onclick="closeNav()">
+<div id= "mainboard" class="container">
 <div class="row">
-<h3 class="col-md-11">Post thread</h3>
+<h3 class="col-md-11">${info }</h3>
 <h5 class="col-md-1">Trade</h5>
+<table class="tab_menu">
+  <tr class="list">
+  	<td>
+      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      	<input type="submit" class="btn" name="board_info" value="WTS">
+      </form>
+    </td>
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      	<input type="submit" class="btn" name="board_info" value="WTB">
+      </form>
+    </td>
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      	<input type="submit" class="btn" name="board_info" value="ALL">
+      </form>      
+    </td>
+  </tr>
+</table>
 </div>
-	<div>
 	<table class="table" style="font-size:80%">
-	<tr>
-	<form action="" method="post">
-		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
-		<th><textarea class="titlearea" name="title" placeholder="title"/></textarea><br/></th>
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-8">제목</th>
+			<th>가격</th>
+			<th>글쓴이</th>
+			<th>날짜</th>
+			<th>조회</th>
 	</tr>
-	<tr>
-	<th><textarea class="contentarea" name="content" placeholder="content"/></textarea><br/></th>
-	</tr>
-	</form>
+		<c:forEach items="${boardList}" var="board">
+		<tr>
+	    	<td class="col-md-1">${board.board_num}</td>
+			<td class="col-md-8">
+			<!-- boardPost.jsp -->
+				<a href="http://localhost:8181/ICT_MARKET/boardPost?board_num=${board.board_num}">
+				${board.board_title}</a></td>
+			<td>${board.board_amount}</td>
+			<td>${board.user_id}</td>
+			<td>${board.board_writetime}</td>
+			<td>${board.board_hit}</td>
+		</tr>
+		</c:forEach>
 	</table>
-	</div>
 </div>
-
 </body>
 </html>

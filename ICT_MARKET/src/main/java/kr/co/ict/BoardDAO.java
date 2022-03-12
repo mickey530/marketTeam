@@ -34,7 +34,56 @@ public class BoardDAO {
 		}
 		return dao;
 	}
+	
+	// all board list
+	public List<BoardVO> getAllBoardList(){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardVO> boardList = new ArrayList<>();
+		try {
+			con = ds.getConnection();
+	
+			String sql = "SELECT * FROM board ORDER BY board_num DESC";
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
 
+			while(rs.next()) {
+				int board_num = rs.getInt("board_num");
+				String user_id = rs.getString("user_id");
+				Boolean board_info = rs.getBoolean("board_info");
+				String board_category = rs.getString("board_category");
+				String board_title = rs.getString("board_title");
+				String board_content = rs.getString("board_content");
+				int board_amount = rs.getInt("board_amount");
+				boolean board_sold =  rs.getBoolean("board_sold");
+				int board_hit = rs.getInt("board_hit");
+				int board_reported = rs.getInt("board_reported");
+				Date board_writetime = rs.getDate("board_writetime");
+				Date board_updatetime = rs.getDate("board_updatetime");
+
+				
+				BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
+						 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime);
+				boardList.add(boardData);
+				
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+		return boardList;
+	}
+	// true : sell / false : buy
 	public List<BoardVO> getAllBoardList(Boolean boardInfo){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -43,7 +92,7 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo;
+			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo + " ORDER BY board_num DESC";
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
