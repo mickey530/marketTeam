@@ -244,7 +244,7 @@ transition :0.5s;
 
 <div id= "mainboard" class="container">
 <div class="row">
-<h3 class="col-md-11">${info }</h3>
+<h3 class="col-md-11">${sentence }</h3>
 <h5 class="col-md-1">Trade</h5>
 <table class="tab_menu">
   <tr class="list">
@@ -266,7 +266,7 @@ transition :0.5s;
   </tr>
 </table>
 </div>
-	<table class="table" style="font-size:80%">
+	<table class="table table-hover" style="font-size:80%">
 		<tr>
 			<th class="col-md-1">No</th>
 			<th class="col-md-8">제목</th>
@@ -279,7 +279,6 @@ transition :0.5s;
 		<tr>
 	    	<td class="col-md-1">${board.board_num}</td>
 			<td class="col-md-8">
-			<!-- boardPost.jsp -->
 				<a href="http://localhost:8181/ICT_MARKET/boardPost?board_num=${board.board_num}">
 				${board.board_title}</a></td>
 			<td>${board.board_amount}</td>

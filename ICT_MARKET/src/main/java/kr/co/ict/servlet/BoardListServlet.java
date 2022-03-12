@@ -48,9 +48,7 @@ public class BoardListServlet extends HttpServlet {
 			boardList = dao.getAllBoardList();
 			info = "All Products";
 		}
-		
-		System.out.println(boardList);
-		
+				
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("info", info);
 		RequestDispatcher dp = request.getRequestDispatcher("/board/Board_list.jsp");

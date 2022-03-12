@@ -1,6 +1,7 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,6 @@ public class BoardInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 				BoardDAO dao = BoardDAO.getInstance();
 				request.setCharacterEncoding("utf-8");
 				String user_id =  request.getParameter("user_id"); // session
@@ -40,16 +40,9 @@ public class BoardInsertServlet extends HttpServlet {
 				String boardAmount = request.getParameter("board_amount");
 				int board_amount = Integer.parseInt(boardAmount); // casting
 				
-				System.out.println(user_id);
-				System.out.println(board_info);
-				System.out.println(board_category);
-				System.out.println(board_title);
-				System.out.println(board_content);
-				System.out.println(board_amount);
 				dao.insertBoard(user_id, board_info, board_category, board_title, board_content, board_amount);
 
-//				response.sendRedirect("#");
-		
+				response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
 		
 	}
 
