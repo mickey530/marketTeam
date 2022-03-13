@@ -362,6 +362,7 @@ public class BoardDAO {
 		}	
 		return count;
 	}
+
 	
 }
 
