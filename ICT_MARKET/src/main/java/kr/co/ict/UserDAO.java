@@ -7,6 +7,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.catalina.connector.Response;
+
 public class UserDAO {
 	
 	    private DataSource ds = null;
@@ -217,5 +219,6 @@ public void deleteUser(int user_num) {
 			}
 		}	
 }
+	
 	}
 
