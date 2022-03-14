@@ -93,6 +93,7 @@
 <title>ICT Market</title>
 </head>
 <body>
+
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <!-- <header class="p-3 border-bottom bg-white sticky-top">
@@ -196,17 +197,7 @@
 					<td><input type="password" name="pw"required></td>
 				</tr>
 				
-				<tr>
-					<td id="email"> E-mail </td>
-					<td>
-						<input type="text" name="email"> @
-						<select name="domain">
-							<option value="naver"> naver </option>
-							<option value="gmail"> gmail</option>
-							<option value="daum"> daum </option>
-						</select>
-					</td>
-				</tr>
+				
 				<tr>
 					<td id="phone"> 폰번호 </td>
 					<td>
@@ -226,6 +217,7 @@
 				</tr>
 			</table>
 		</form>
+>>>>>>> master
 </fieldset>	
 
 </div>
