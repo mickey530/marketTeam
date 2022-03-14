@@ -50,7 +50,7 @@ public class JoinServlet extends HttpServlet {
 		
 		    UserDAO dao = UserDAO.getInstance();
 		
-		   dao.insertUser(id, pw, name, phone, addr);
+		    dao.insertUser(id, pw, name, phone, addr);
 		    
 		    
 		    
@@ -62,7 +62,7 @@ public class JoinServlet extends HttpServlet {
 		    
 		    RequestDispatcher dp = request.getRequestDispatcher("/users/join_welcome.jsp");
 		    dp.forward(request, response);
-		    System.out.println("post방식으로 접속");
+		    
 		
 	}
 
