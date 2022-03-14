@@ -43,7 +43,7 @@ public class BoardCommentDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM boardcomment";
+			String sql = "SELECT * FROM boardcomment ORDER BY comment_num DESC";
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -51,13 +51,16 @@ public class BoardCommentDAO {
 			while(rs.next()) {
 				
 				int comment_num = rs.getInt("comment_num");
-				Date comment_time = rs.getDate("comment_time");
 				String comment_id = rs.getString("comment_id");
-				int comment_board_num= rs.getInt("comment_board_num");
+				int comment_board_num = rs.getInt("comment_board_num");
 				String comment_content = rs.getString("comment_content");
+				Date comment_writetime = rs.getDate("comment_writetime");
+				Date comment_updatetime = rs.getDate("comment_updatetime");
 
-				BoardCommentVO boardData = new BoardCommentVO(comment_num, comment_time, comment_id, 
-						comment_board_num, comment_content);
+
+
+				BoardCommentVO boardData = new BoardCommentVO(comment_num, comment_id, comment_board_num, 
+						comment_content, comment_writetime, comment_updatetime);
 				boardcommentList.add(boardData);
 			
 				
