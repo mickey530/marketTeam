@@ -14,10 +14,10 @@ import kr.co.ict.UserDAO;
 import kr.co.ict.UserVO;
 
 @WebServlet("/UserList")
-public class UserListServlet extends HttpServlet {
+public class UserListManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public UserListServlet() {
+    public UserListManagerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
