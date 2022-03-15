@@ -364,6 +364,7 @@ transition :0.5s;
         <input type="button" class="btn" value="List">
     </a>
 </form>
+
 <!--
 if: SId == null -> hide 'Post Thread'
 -->
