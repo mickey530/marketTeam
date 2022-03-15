@@ -163,7 +163,7 @@
 					</a>
 				</li>
 				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
