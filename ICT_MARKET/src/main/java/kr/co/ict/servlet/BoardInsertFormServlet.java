@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class BoardInsertPostingSevlet
  */
 @WebServlet("/boardInsertPosting")
-public class BoardInsertPostingServlet extends HttpServlet {
+public class BoardInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertPostingServlet() {
+    public BoardInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class BoardInsertPostingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dp = request.getRequestDispatcher("/ICT_MARKET/board/posting.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("/ICT_MARKET/board/Board_Insertform.jsp");
 		dp.forward(request, response);
 	}
 
