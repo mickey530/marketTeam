@@ -45,7 +45,7 @@
 	}
 	
 	.main_contain{
-	font-family: font-family: 'Hahmlet', serif;
+	font-family: 'Hahmlet', serif;
 	width: 60%;
 	height: auto;
 	}

@@ -7,6 +7,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.catalina.connector.Response;
+
 public class UserDAO {
 	
 	    private DataSource ds = null;
@@ -118,7 +120,46 @@ public class UserDAO {
 					}
 				}
 			return user;
-	}	 
+	}
+	public UserVO getUserLoginData(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		UserVO user = null;
+		
+	
+		try {
+			con = ds.getConnection();
+		String sql = "SELECT * FROM userinfo WHERE user_id=?";
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		if(rs.next()){ 
+		int user_num = rs.getInt("user_num");
+		String user_name = rs.getString("user_name");
+		String user_pnum = rs.getString("user_pnum");
+		String user_address = rs.getString("user_address");
+		String user_id = rs.getString("user_id");
+		String user_pw= rs.getString("user_pw");
+		
+		user = new UserVO(user_num,user_id,user_pw, user_name, user_pnum, user_address);
+			 }
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		finally{
+			try {
+			con.close();
+			pstmt.close();
+			rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	return user;
+}	 
 	
 	
 
@@ -217,6 +258,7 @@ public void deleteUser(int user_num) {
 			}
 		}	
 }
+	
 	}
 
 
