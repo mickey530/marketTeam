@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BoardInsertPostingSevlet
  */
-@WebServlet("/boardInsertPosting")
+@WebServlet("/boardInsertForm")
 public class BoardInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,7 +28,7 @@ public class BoardInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dp = request.getRequestDispatcher("/ICT_MARKET/board/Board_Insertform.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("/board/Board_Insertform.jsp");
 		dp.forward(request, response);
 	}
 
