@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.BoardDAO;
+import kr.co.ict.UserVO;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -39,7 +42,12 @@ public class LoginServlet extends HttpServlet {
 		    String fId = request.getParameter("fid");
 			String fPw = request.getParameter("fpw");
 	
-			 request.setAttribute("id",fId);
+			BoardDAO dao = BoardDAO.getInstance();
+			
+			
+			
+			
+			request.setAttribute("id",fId);
 			    request.setAttribute("pw",fPw);
 			    
 			    
