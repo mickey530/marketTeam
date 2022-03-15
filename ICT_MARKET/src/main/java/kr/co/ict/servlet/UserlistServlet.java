@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ict.BoardDAO;
-import kr.co.ict.BoardVO;
+import kr.co.ict.UserDAO;
+import kr.co.ict.UserVO;
 
 /**
- * Servlet implementation class BoardbuyListServlet
+ * Servlet implementation class Userlist
  */
-@WebServlet("/boardbuyList")
-public class BoardbuyListServlet extends HttpServlet {
+@WebServlet("/Userlist")
+public class UserlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
-    public BoardbuyListServlet() {
+     */ 
+    public UserlistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +32,23 @@ public class BoardbuyListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = BoardDAO.getInstance();	
+		UserDAO dao = UserDAO.getInstance();
 		
-		// false = buy
-		List<BoardVO> boardList = dao.getAllBoardList(false);
-		request.setAttribute("boardList", boardList);
-	
-		RequestDispatcher dp = request.getRequestDispatcher("/board/board_buy.jsp");
+		List<UserVO> userList = dao.getAllUserList();
+		
+		System.out.println(userList);
+		request.setAttribute("userList", userList);
+		
+		RequestDispatcher dp = request.getRequestDispatcher("/users/userlist.jsp");
 		dp.forward(request, response);
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doGet(request, response);
+	}
+
 }

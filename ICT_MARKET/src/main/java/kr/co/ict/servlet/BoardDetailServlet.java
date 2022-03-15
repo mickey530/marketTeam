@@ -1,7 +1,6 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import kr.co.ict.BoardDAO;
 import kr.co.ict.BoardVO;
 
 /**
- * Servlet implementation class BoardsellListServlet
+ * Servlet implementation class BoardDetailServlet
  */
-@WebServlet("/boardsellList")
-public class BoardsellListServlet extends HttpServlet {
+@WebServlet("/boardDetail")
+public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardsellListServlet() {
+    public BoardDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +31,16 @@ public class BoardsellListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = BoardDAO.getInstance();	
-		
-		// true = sell
-		List<BoardVO> boardList = dao.getAllBoardList(true);
-		request.setAttribute("boardList", boardList);
-	
-		RequestDispatcher dp = request.getRequestDispatcher("/board/board_sell.jsp");
-		dp.forward(request, response);
+
+				String boardnum = request.getParameter("board_num");
+				int board_num = Integer.parseInt(boardnum);
+				
+				BoardDAO dao = BoardDAO.getInstance();
+				BoardVO board = dao.getBoardDetail(board_num);
+				request.setAttribute("board", board);
+				
+				RequestDispatcher dp = request.getRequestDispatcher("/board/boarddetail.jsp");
+				dp.forward(request, response);
 	}
+
 }

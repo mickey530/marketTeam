@@ -125,7 +125,7 @@
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -139,7 +139,7 @@
 				</form>
                
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -148,7 +148,7 @@
 				</li>
                
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -163,7 +163,7 @@
 					</a>
 				</li>
 				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -176,8 +176,8 @@
 </header>
 
 
-<!-- main 컨텐츠 내용 -->
-<div id="main">
+<!-- main -->
+<div id="main" onclick="closeNav()">
 	<div class="main_head">
 		<c:choose>
 			<c:when test="${not empty user}">
@@ -188,6 +188,7 @@
 				<p class="text-center">Online Marketplace to Buy & Sell</p>
 			</c:otherwise>
 		</c:choose>
+		
 		</div>
 		<div id="main_div">
 			<div class="main_contain">
@@ -197,20 +198,29 @@
 				<button type="button" class="btn btn-sm" style="float:right;">+</button>
 				<div class="line"></div>
 					<div class="recently">
+					
 						<div class="wtb" style="float:left;">
 						Want to Buy
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						
-						
-						
-						
-						
-						
+						<c:forEach items="" var="wtbpreview">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
 						</div>
+					
 					<div class="line2" style="float:left;"></div>
 					
 						<div class="wts" style="float:right;">
 						Want to Sell
+						<c:forEach items="" var="wtspreview">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
 						</div>
 					</div>
 			</div>
@@ -218,7 +228,7 @@
 </div>
 
 </div>
-<!-- 여기서 부터는 푸터 -->
+<!-- footer -->
 
 <footer class="p-3 py-3 border-top">
 	<div class="container">

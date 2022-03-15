@@ -1,7 +1,6 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ict.UserDAO;
-import kr.co.ict.UserVO;
-
 /**
- * Servlet implementation class Userlist
+ * Servlet implementation class BoardInsertPostingSevlet
  */
-@WebServlet("/Userlist")
-public class Userlist extends HttpServlet {
+@WebServlet("/boardInsertForm")
+public class BoardInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
-     */ 
-    public Userlist() {
+     */
+    public BoardInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +28,8 @@ public class Userlist extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserDAO dao = UserDAO.getInstance();
-		
-		List<UserVO> userList = dao.getAllUserList();
-		
-		System.out.println(userList);
-		request.setAttribute("userList", userList);
-		
-		RequestDispatcher dp = request.getRequestDispatcher("/users/userlist.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("/board/Board_Insertform.jsp");
 		dp.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);
 	}
 
 }
