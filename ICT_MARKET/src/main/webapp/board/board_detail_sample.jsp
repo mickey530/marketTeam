@@ -1,6 +1,7 @@
 <%--@ page import="kr.co.ict.BoardVO"--%>
 <%--@ page import="kr.co.ict.BoardDAO"--%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -85,7 +86,7 @@ transition :0.5s;
   	height:100px; 
   	line-height:100px;}
 	
-	.tab_menu .btn:hover{
+	.tab_menu a:hover{
 	color: #f1f1f1;
 	}
 	
@@ -96,13 +97,88 @@ transition :0.5s;
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
-	#mainboard .row>.col-md-1{
+	#mainboard .row>.col-md-12{
 	margin-right:14px;
+	padding-bottom: 15px;
 	}
 	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
+	#mainboard .row #read{
+	text-align:right;
+	padding-right: 5px;
+	}
+	#mainboard .row #writer{
+	font-size: 2vmin;
+	text-align:right;
+	}
+	#mainboard .row #no{
+	font-size: 2vmin;
+	margin: 0 auto;
+	}
+	#mainboard .row #read{
+	
+	font-size: 2vmin;
+	margin: 0 auto;
+	}
+	
+	#mainboard #productamount {
+	max-width: 35%;
+	min-width:35%;
+  	height: auto;
+  	display: block;
+	font-weight: 700;
+	margin-top: -5px;
+	margin-bottom: -30px;
+	}
+	#mainboard #contents {
+	align:left;
+	width:100%;
+	}
+	
+	
+	#fav{
+	max-width: 25%;
+	float:right;
+	margin-top:-75px;
+	}
+	#fav a:hover{
+	color: #f1f1f1;
+	}
+	
+	#navgate{
+	display: flex;
+	justify-content: center;
+	margin-top:-25px;
+	max-width: 90%;
+  	font-size: 2vmin;
+	}
+	#navgate .btn:hover{
+	color: #f1f1f1;
+	}
+	#navgate #list{
+    white-space: nowrap;
+	text-align:left;
+	margin-left:5px;
+	}
+	
+	#navgate #post{
+    white-space: nowrap;
+	float:right;
+	}
+	
+	#navgate #edit{
+    white-space: nowrap;
+	float:right;
+	}
+	
+	#navgate #del{
+    white-space: nowrap;
+	float:right;
+	margin-right:30px;
+	}
+	
 	
 	
 	footer{
@@ -110,7 +186,7 @@ transition :0.5s;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
-	
+	display: flex;
 	}	
 	
 	footer div{
@@ -249,52 +325,72 @@ transition :0.5s;
 	
 </script>
 
+
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">${sentence }</h3>
-<h5 class="col-md-1">Trade</h5>
-<table class="tab_menu">
-  <tr class="list">
-  	<td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
-      	<input type="submit" class="btn" name="board_info" value="WTS">
-      </form>
-    </td>
-    <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
-      	<input type="submit" class="btn" name="board_info" value="WTB">
-      </form>
-    </td>
-    <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
-      	<input type="submit" class="btn" name="board_info" value="ALL">
-      </form>      
-    </td>
-  </tr>
+<h3 class="col-md-11">[WTS]Macbook Pro 15' late 2015</h3>
+<!--<h3 class="col-md-11">${boarddetail.board_title}</h3>-->
+<h6 class="col-md-12">Trade </h6>
+<p id="no" class="col-2">No.6666</p>
+<!--<p class="col-1">No.${boarddetail.board_num}</p>-->
+
+<!-- Korean <p class="col-9">${boarddetail.user_id}님이 ${boardthread.writetime}에 작성하신 게시글입니다.</p>-->
+<p id="writer" class="col-9">written by 'theforce6oy' at '18:56/14/03/2022'</p>
+<!--<p class="col-9">written by '${boarddetail.user_id}' at '${boardthread.writetime}'</p>-->
+
+<p id="read" class="col-1">123 read</p>
+<!--<p id="read" class="col-1">${boardthread.hit},read</p>-->
+<hr/>
+</div>
+<div id="productamount" class="row">
+<!-- notate unit of bills (below)-->
+<!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
+<table class="table table-dark table-hover" style="margin-left:14px; font-size: 2vmin;">
+<tr>
+	<th>Price</th>
+	<td style="text-align:right;">₩ 1,200,000</td>
+    <!--<td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>-->
+</tr>
+<tr>
+	<th>Cartegory</th>
+	<td style="text-align:right; ">Computers Dep</td>
+    <!--<td style="text-align:right;">${boarddetail.board_cartegory}</td>-->
+</tr>
 </table>
 </div>
-	<table class="table table-hover" style="font-size:80%">
-		<tr>
-			<th class="col-md-1">No</th>
-			<th class="col-md-8">제목</th>
-			<th>가격</th>
-			<th>글쓴이</th>
-			<th>날짜</th>
-			<th>조회</th>
-	</tr>
-		<c:forEach items="${boardList}" var="board">
-		<tr>
-	    	<td class="col-md-1">${board.board_num}</td>
-			<td class="col-md-8">
-				<a href="http://localhost:8181/ICT_MARKET/boardPost?board_num=${board.board_num}">
-				${board.board_title}</a></td>
-			<td>${board.board_amount}</td>
-			<td>${board.user_id}</td>
-			<td>${board.board_writetime}</td>
-			<td>${board.board_hit}</td>
-		</tr>
-		</c:forEach>
-	</table>
+<div id="contents" class="row">
+<img src="https://post-phinf.pstatic.net/MjAxOTA2MjFfMjg3/MDAxNTYxMDg3NDk5MTIy.
+bp1vf_oadW6orDpLRWjRF9bdfq33Ru7nnHMzCjs9wmEg.oFfpbBUlqI6M-5Sa7Nzh3TZV0Ww5iZkuUn4aIxGB7IQg.JPEG
+/maxresdefault.jpg?type=w1200" style="float:left;"/>
+<p class="text-left">Dummy Contents</p>
+<p class="text-left">${boardthread.content}</p>
+<hr/>
+</div>
+<div id="navgate" class="container">
+
+<form id="list" class="col-md-11">
+    <a href="http://localhost:8181/ICT_MARKET/boardList/">
+        <input type="button" class="btn" value="List">
+    </a>
+</form>
+
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="submit" type="button" class="btn" value="Post Thread">
+</form>
+
+<form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
+<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="submit" type="button" class="btn" value="Edit">
+</form>
+
+<form id="del" action="http://localhost:8181/MyFirstWeb/boarddelete" method="post">
+<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="submit" type="button" class="btn" value="Delete">
+</form>
+
+</div>
 </div>
 </body>
 </html>
+
