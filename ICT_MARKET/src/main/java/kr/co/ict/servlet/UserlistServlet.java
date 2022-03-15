@@ -17,13 +17,13 @@ import kr.co.ict.UserVO;
  * Servlet implementation class Userlist
  */
 @WebServlet("/Userlist")
-public class Userlist extends HttpServlet {
+public class UserlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */ 
-    public Userlist() {
+    public UserlistServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
