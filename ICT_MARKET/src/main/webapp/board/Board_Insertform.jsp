@@ -123,7 +123,23 @@ transition :0.5s;
     border: none;
     resize: none;
   }
+  	.pricearea {
+    width: 100%;
+    height: 3em;
+    border: none;
+    resize: none;
+    text-align: right;
+  	}
 	
+	.form-check{
+    margin: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+	}
 	
 	
 	footer{
@@ -255,19 +271,49 @@ transition :0.5s;
 <h3 class="col-md-11">Post thread</h3>
 <h5 class="col-md-1">Trade</h5>
 </div>
-	<div>
+	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
+		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
+		<input type="text" name="user_id" placeholder="ID" required>
+	
 	<table class="table" style="font-size:80%">
 	<tr>
-	<form action="" method="post">
 		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
-		<th><textarea class="titlearea" name="title" placeholder="title"/></textarea><br/></th>
+		<th colspan="3"><textarea class="titlearea" name="board_title" placeholder="title" required/></textarea></th>
 	</tr>
 	<tr>
-	<th><textarea class="contentarea" name="content" placeholder="content"/></textarea><br/></th>
+		<th colspan="3"><textarea class="contentarea" name="board_content" placeholder="content" required/></textarea><br/></th>
 	</tr>
-	</form>
+	
+	<tr>
+		<th>
+			<select name="board_category" class="form-select" aria-label="Default select example">			  	
+				<option value="" class="dropdown-item" default>category</option>
+				<option value="전자기기" class="dropdown-item">전자기기</option>
+				<option value="도서/음반" class="dropdown-item">도서/음반</option>
+				<option value="의류" class="dropdown-item">의류</option>
+				<option value="가구류" class="dropdown-item">가구류</option>
+			</select>
+		</th>
+		<th style="text-align:right;">
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="board_info" id="inlineRadio1" value="true" checked>
+			  <label class="form-check-label" for="inlineRadio1">sell</label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="board_info" id="inlineRadio2" value="false">
+			  <label class="form-check-label" for="inlineRadio2">buy</label>
+			</div>
+		</th>
+		
+		<th><input type="number" class="pricearea" name="board_amount" placeholder="price"/></input><br/></th>
+	</tr>
+	
+	
 	</table>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<input type="submit" value="posting" class="btn btn-outline-primary">
 	</div>
+	</form>
 </div>
 
 </body>

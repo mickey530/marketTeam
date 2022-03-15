@@ -36,6 +36,7 @@ public class BoardUpdateFormServlet extends HttpServlet {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardVO board= dao.getBoardDetail(boardnum);
+
 		request.setAttribute("board", board);
 		RequestDispatcher dp = request.getRequestDispatcher("/board/boardUpdateForm.jsp");
 		dp.forward(request, response);
