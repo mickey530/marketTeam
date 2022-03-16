@@ -1,9 +1,0 @@
-diff a/ICT_MARKET/src/main/java/kr/co/ict/UserDAO.java b/ICT_MARKET/src/main/java/kr/co/ict/UserDAO.java	(rejected hunks)
-@@ -188,6 +188,7 @@
- 			con = ds.getConnection();
- 	
- 		String sql = "INSERT INTO userinfo(user_id,user_pw,user_name,user_pnum,user_address) VALUE (?,?,?,?,?)";
-+
- 		pstmt = con.prepareStatement(sql);
- 		pstmt.setString(1, user_id);
- 		pstmt.setString(2, user_pw);
