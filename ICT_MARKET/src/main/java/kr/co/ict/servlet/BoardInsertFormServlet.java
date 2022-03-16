@@ -32,13 +32,15 @@ public class BoardInsertFormServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("session_id");
 		request.setAttribute("session_id", sId);
-		System.out.println(sId);
-		if(sId == null) {
-			RequestDispatcher dp = request.getRequestDispatcher("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
-		}
 		
-		RequestDispatcher dp = request.getRequestDispatcher("/board/Board_Insertform.jsp");
-		dp.forward(request, response);
+		System.out.println("세션에 아이디 있음? : " + sId);
+		
+		if(sId == null) {
+			response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
+		} else {
+			RequestDispatcher dp = request.getRequestDispatcher("/board/Board_Insertform.jsp");
+			dp.forward(request, response);
+		}
 		
 	}
 

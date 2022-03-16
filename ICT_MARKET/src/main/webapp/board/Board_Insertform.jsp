@@ -272,8 +272,7 @@ transition :0.5s;
 <h5 class="col-md-1">Trade</h5>
 </div>
 	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
-		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
-		<input type="text" name="user_id" placeholder="ID" required>
+		<input type="hidden" name="user_id" value="${sessionScope.session_id}" required>
 	
 	<table class="table" style="font-size:80%">
 	<tr>
