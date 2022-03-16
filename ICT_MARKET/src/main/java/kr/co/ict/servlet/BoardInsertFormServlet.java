@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class BoardInsertPostingSevlet
@@ -28,8 +29,17 @@ public class BoardInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String sId = (String)session.getAttribute("session_id");
+		request.setAttribute("session_id", sId);
+		System.out.println(sId);
+		if(sId == null) {
+			RequestDispatcher dp = request.getRequestDispatcher("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
+		}
+		
 		RequestDispatcher dp = request.getRequestDispatcher("/board/Board_Insertform.jsp");
 		dp.forward(request, response);
+		
 	}
 
 }
