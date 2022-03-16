@@ -43,8 +43,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		</tr>
 		</c:forEach>
 	</table>
-		<form action="BoardCommentInsertService" method="post">
-			<textarea rows="3" cols="50" placeholder="댓글을 입력해주세요." name="board_num" value="${board.board_num }"></textarea>
+		<form action="http://localhost:8181/ICT_MARKET/BoardCommentInsertServlet" method="get">
+			<input type="hidden" name="board_num" value="${board.board_num }">
+			<textarea rows="2" cols="50" placeholder="댓글을 입력해주세요." name="comment_content"></textarea>
+			<input type="submit" value="댓글달기">
 		</form>
 </body>
 </html>
