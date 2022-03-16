@@ -41,7 +41,6 @@ public class BoardInsertServlet extends HttpServlet {
 				int board_amount = Integer.parseInt(boardAmount); // casting
 				
 				dao.insertBoard(user_id, board_info, board_category, board_title, board_content, board_amount);
-
 				response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
 		
 	}
