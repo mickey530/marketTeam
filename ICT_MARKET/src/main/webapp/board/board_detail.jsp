@@ -135,6 +135,9 @@ transition :0.5s;
 	#mainboard #contents {
 	align:left;
 	width:100%;
+	display: flex;
+	max-width: 100%;
+	justify-content: center;
 	}
 	
 	
@@ -151,27 +154,32 @@ transition :0.5s;
 	display: flex;
 	justify-content: center;
 	margin-top:-15px;
-	max-width: 90%;
+	max-width: 100%;
   	font-size: 2vmin;
+	}
+	#navgate .btn:hover{
+	color: #f1f1f1;
 	}
 	#navgate #list{
     white-space: nowrap;
 	text-align:left;
-	margin-left:5px;
 	}
+	
 	#navgate #post{
     white-space: nowrap;
 	float:right;
 	}
+	
 	#navgate #edit{
     white-space: nowrap;
 	float:right;
 	}
+	
 	#navgate #del{
     white-space: nowrap;
 	float:right;
-	margin-right:30px;
 	}
+	
 	
 	
 	footer{
@@ -279,14 +287,21 @@ transition :0.5s;
 	function openNav(){
 		document.getElementById("mySidenav").style.height="160px";
 		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
-		document.getElementById("main").style.filter="blur(3px)";
+		document.getElementById("mainboard").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
 		document.body.style.backgroundColor="white";
-		document.getElementById("main").style.filter="blur(0)";
-	
+		document.getElementById("mainboard").style.filter="blur(0)";
+	}
+
+	<!--search script-->
+	function press(f){ 
+		if(f.keyCode == 13){ 
+		searchHeader.submit(); 
+		} 
+	} 
 	 const tabList = document.querySelectorAll('.tab_menu .list li');
 	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
 	  let activeCont = '';
@@ -312,67 +327,65 @@ transition :0.5s;
 </script>
 
 
-<div id= "mainboard" class="container">
+<div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">[WTS]Macbook Pro 15' late 2015</h3>
-<!--<h3 class="col-md-11">${boarddetail.board_title}</h3>-->
+<h3 class="col-md-11">${boarddetail.board_title}</h3>
 <h6 class="col-md-12">Trade </h6>
-<p id="no" class="col-2">No.6666</p>
-<!--<p class="col-1">No.${boarddetail.board_num}</p>-->
+<p class="col-1">No.${boarddetail.board_num}</p>
 
-<!-- Korean <p class="col-10">${boarddetail.user_id}님이 ${boardthread.writetime}에 작성하신 게시글입니다.</p>-->
-<p id="writer" class="col-9">written by 'theforce6oy' at '18:56/14/03/2022'</p>
-<!--<p class="col-10">written by '${boarddetail.user_id}' at '${boardthread.writetime}'</p>-->
+<p class="col-10">${boarddetail.user_id}님이 ${boardthread.writetime}에 작성하신 게시글입니다.</p>
 
-<p id="read" class="col-1">123 read</p>
-<!--<p id="read" class="col-1">${boardthread.hit},read</p>-->
+<p id="read" class="col-1">${boardthread.hit},read</p>
 <hr/>
 </div>
 <div id="productamount" class="row">
+
 <!-- notate unit of bills (below)-->
-<!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
 <table class="table table-dark table-hover" style="margin-left:14px; font-size: 2vmin;">
 <tr>
 	<th>Price</th>
-	<td style="text-align:right;">₩ 1,200,000</td>
-    <!--<td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>-->
+    <td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>
 </tr>
 <tr>
 	<th>Cartegory</th>
-	<td style="text-align:right; ">Computers Dep</td>
-    <!--<td style="text-align:right;">${boarddetail.board_cartegory}</td>-->
+    <td style="text-align:right;">${boarddetail.board_cartegory}</td>
 </tr>
 </table>
 </div>
 <div id="contents" class="row">
-<img src="https://post-phinf.pstatic.net/MjAxOTA2MjFfMjg3/MDAxNTYxMDg3NDk5MTIy.
-bp1vf_oadW6orDpLRWjRF9bdfq33Ru7nnHMzCjs9wmEg.oFfpbBUlqI6M-5Sa7Nzh3TZV0Ww5iZkuUn4aIxGB7IQg.JPEG
-/maxresdefault.jpg?type=w1200" style="float:left;"/>
-<p class="text-left">Dummy Contents</p>
+<img src="" style="float:left;"/>
 <p class="text-left">${boardthread.content}</p>
-<hr/>
 </div>
+<hr/>
 <div id="navgate" class="container">
 
 <form id="list" class="col-md-11">
     <a href="http://localhost:8181/ICT_MARKET/boardList/">
-        <input type="button" value="List">
+        <input type="button" class="btn" value="List">
     </a>
 </form>
 
+<!--
+if: SId == null -> hide 'Post Thread'
+-->
+<c:choose>
+<c:when test="${SId != null}">
 <form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" value="Post Thread">
+<input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-
+</c:when>
+<c:otherwise>
+</c:otherwise>
+</c:choose>
 <form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
 <input type="hidden" value="${boardthread.board_num}" name="board_num">
-<input type="submit" value="Edit">
+<input type="submit" type="button" class="btn" value="Edit">
 </form>
 
 <form id="del" action="http://localhost:8181/MyFirstWeb/boarddelete" method="post">
 <input type="hidden" value="${boardthread.board_num}" name="board_num">
-<input type="submit" value="Delete">
+<input type="submit" type="button" class="btn" value="Delete">
 </form>
 
 </div>

@@ -35,7 +35,7 @@ public class BoardCommentDAO {
 		return dao;
 	}
 
-	public List<BoardCommentVO> getAllBoardCommentList(){
+	public List<BoardCommentVO> getBoardCommentList(int comment_board_num){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -52,7 +52,6 @@ public class BoardCommentDAO {
 				
 				int comment_num = rs.getInt("comment_num");
 				String comment_id = rs.getString("comment_id");
-				int comment_board_num = rs.getInt("comment_board_num");
 				String comment_content = rs.getString("comment_content");
 				Date comment_writetime = rs.getDate("comment_writetime");
 				Date comment_updatetime = rs.getDate("comment_updatetime");
