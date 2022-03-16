@@ -43,9 +43,9 @@ public class BoardCommentDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM boardcomment ORDER BY comment_num DESC";
+			String sql = "SELECT * FROM boardcomment WHERE comment_board_num = ? ORDER BY comment_num DESC";
 			pstmt = con.prepareStatement(sql);
-			
+			pstmt.setInt(1, comment_board_num);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -58,9 +58,9 @@ public class BoardCommentDAO {
 
 
 
-				BoardCommentVO boardData = new BoardCommentVO(comment_num, comment_id, comment_board_num, 
+				BoardCommentVO commentData = new BoardCommentVO(comment_num, comment_id, comment_board_num, 
 						comment_content, comment_writetime, comment_updatetime);
-				boardcommentList.add(boardData);
+				boardcommentList.add(commentData);
 			
 				
 				
@@ -78,4 +78,48 @@ public class BoardCommentDAO {
 		}	
 		return boardcommentList;
 	}
+	
+//	INSERT INTO boardcomment (comment_id, comment_board_num, comment_content) VALUES ("calmdownman", "29", "이건 댓글입니다 댓글");
+	
+	public void insertComment (String comment_id, int comment_board_num, String comment_content ) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "INSERT INTO boardcomment (comment_id, comment_board_num, comment_content) VALUES (?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, comment_id);
+			pstmt.setInt(2, comment_board_num);
+			pstmt.setString(3, comment_content);
+			pstmt.executeUpdate();
+			
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
