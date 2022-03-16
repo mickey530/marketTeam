@@ -123,9 +123,47 @@ transition :0.5s;
     border: none;
     resize: none;
   }
+  
+  	.form-select{
+  	height: 40px;
+    color: rgb(162,162,162);
+  	}
+  	.pricearea {
+    width: 100%;
+    height: 40px;
+    resize: none;
+    text-align: right;
+    border:none;
+  	}
+  	.btn-group{
+  	vertical-align: center;
+  	height: 40px;
+  	}
+  	.btn-group :hover{
+	color: #f1f1f1;
+	}
+	.btn-group :hover{
+	color: #f1f1f1;
+	}
 	
+	#post{
+    white-space: nowrap;
+	float:right;
+	margin-top:-15px;
+	}
+	#post :hover{
+	color: #f1f1f1;
+	}
 	
-	
+	.form-check{
+    margin: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+	}
 	footer{
 	font-size: 40%;
 	height: 150px;
@@ -188,7 +226,7 @@ transition :0.5s;
 				</form>
 
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -197,7 +235,7 @@ transition :0.5s;
 				</li>
                
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -231,16 +269,45 @@ transition :0.5s;
 <script>
 	function openNav(){
 		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
-		document.getElementById("main").style.filter="blur(3px)";
+		document.getElementById("mainboard").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
-		document.getElementById("main").style.filter="blur(0)";
+		document.getElementById("mainboard").style.filter="blur(0)";
 	}
+	
+	function inputNumberFormat(obj) {
+	     obj.value = comma(uncomma(obj.value));
+	 }
+	function comma(str) {
+	     str = String(str);
+	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	 }
+	 function uncomma(str) {
+	     str = String(str);
+	     return str.replace(/[^\d]+/g, '');
+	 }
+	 
+	 <!-- sell or buy button -->
+	 var buttonClickedsell = true;
+	 var buttonClickbuy = false;
+	 window.addEventListener('load',function(){
+	   document.getElementById('sellButton').addEventListener('click',function(){
+		   buttonClickedsell = true;
+		   buttonClickbuy = false;
+	     document.getElementById("sellButton").style.color="Blue";
+	     document.getElementById("buyButton").style.color="rgb(162,162,162)";
+	   });
+	   document.getElementById('buyButton').addEventListener('click',function(){
+		   buttonClickedsell = false;
+		   buttonClickbuy = true;
+	     document.getElementById("buyButton").style.color="Blue";
+	     document.getElementById("sellButton").style.color="rgb(162,162,162)";
+	   });
+	 });
 
+	
 	<!--search script-->
 	function press(f){ 
 		if(f.keyCode == 13){ 
@@ -250,25 +317,49 @@ transition :0.5s;
 </script>
 
 
-<div class="container" onclick="closeNav()">
+<div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">Post thread</h3>
-<h5 class="col-md-1">Trade</h5>
+<h6 class="col-md-12">Trade</h6>
 </div>
-	<div>
-	<table class="table" style="font-size:80%">
+<div class="row" style="margin-top:20px">
+	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
+		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
+		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
+	
+	<table class="table">
 	<tr>
-	<form action="" method="post">
 		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
-		<th><textarea class="titlearea" name="title" placeholder="title"/></textarea><br/></th>
+		<th colspan="3" style=""><textarea class="titlearea" name="board_title" placeholder="title" required/></textarea></th>
 	</tr>
 	<tr>
-	<th><textarea class="contentarea" name="content" placeholder="content"/></textarea><br/></th>
-	</tr>
-	</form>
-	</table>
+		<th colspan="3" style="font-size:80%"><textarea class="contentarea" name="board_content" placeholder="Description here" required/></textarea><br/></tr>
+    	 <tr>
+    	 <th>
+    	  <select name="board_category" class="form-select" style="border:none; float:right;">			  	
+				<option value="" class="dropdown-item">Select Category</option>
+				<option value="전자기기/모바일" class="dropdown-item">전자기기/모바일</option>
+				<option value="컴퓨터" class="dropdown-item">컴퓨터</option>
+				<option value="도서/음반" class="dropdown-item">도서/음반</option>
+				<option value="취미/완구" class="dropdown-item">취미/완구</option>
+				<option value="의류" class="dropdown-item">의류</option>
+				<option value="가구류" class="dropdown-item">가구류</option>
+			</select>
+			</th>
+    	 	<th style="text-align:center; width:50%">
+      		<input type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
+      		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+      		</th>
+      		<th><div class="btn-group" style="justify-content: center; float:right;">
+      		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
+      		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
+			</th>
+			</tr>
+   		 </table>
+   		 <div id="post"><input type="submit" value="Post" class="btn"></div>
+		</form>
+	</div>
 	</div>
 </div>
-
 </body>
 </html>

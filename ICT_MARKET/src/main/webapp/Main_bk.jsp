@@ -96,11 +96,9 @@ transition :0.5s;
 	
 	.recently{
 	overflow: auto;
-	border: 1px solid #ccc;
 	margin-top: 10px;
 	width: 100%;
 	height: 450px;
-	background-color: #dcdcdc;
 	}
 	
 	.wts{
@@ -251,7 +249,7 @@ transition :0.5s;
 <div id="main" onclick="closeNav()">
 	<div class="main_head">
 		<c:choose>
-			<c:when test="${not empty user}">
+			<c:when test="${sessionScope.session_id eq null}">
 			<h2 class="text-center">Welcome back<!--, ${param.user}--></h2>
 			</c:when>
 			<c:otherwise>
@@ -266,7 +264,7 @@ transition :0.5s;
 				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
 				Recently thread
 				</h6>
-				<button type="button" class="btn btn-sm" style="float:right;">+</button>
+				<a href="ICT_MARKET/boardList.com" type="button" class="btn btn-sm" style="float:right;">+</a>
 				<div class="line"></div>
 					<div class="recently">
 					
@@ -274,9 +272,8 @@ transition :0.5s;
 						Want to Buy
 						<c:forEach items="" var="wtbpreview">
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>${boardList.title}</td>
+								<td>${boardList.board_amount}</td>
 							</tr>
 						</c:forEach>
 						</div>
@@ -287,9 +284,8 @@ transition :0.5s;
 						Want to Sell
 						<c:forEach items="" var="wtspreview">
 							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>${boardList.title}</td>
+								<td>${boardList.board_amount}</td>
 							</tr>
 						</c:forEach>
 						</div>
