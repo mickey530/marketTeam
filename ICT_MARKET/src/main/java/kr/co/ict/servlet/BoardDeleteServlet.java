@@ -1,6 +1,8 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,10 @@ public class BoardDeleteServlet extends HttpServlet {
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(board_num);
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/board/Board_list.jsp");
+
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
+//		RequestDispatcher dp = request.getRequestDispatcher("boardList?board_info=ALL");
+//		dp.forward(request, response);
 	}
 
 }
