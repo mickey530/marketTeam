@@ -82,7 +82,7 @@ public class UserDAO {
 	
 	
 	
-	public UserVO getUserData(int userNum) {
+	public UserVO getUserData(String user_id) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
@@ -91,17 +91,16 @@ public class UserDAO {
 			
 				try {
 					con = ds.getConnection();
-				String sql = "SELECT * FROM userinfo WHERE user_num=?";
+				String sql = "SELECT * FROM userinfo WHERE user_id=?";
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setInt(1, userNum);
+				pstmt.setString(1, user_id);
 				rs = pstmt.executeQuery();
 				if(rs.next()){ 
 				int user_num = rs.getInt("user_num");
 				String user_name = rs.getString("user_name");
 				String user_pnum = rs.getString("user_pnum");
 				String user_address = rs.getString("user_address");
-				String user_id = rs.getString("user_id");
 				String user_pw= rs.getString("user_pw");
 				
 				user = new UserVO(user_num,user_id,user_pw, user_name, user_pnum, user_address);
@@ -165,8 +164,7 @@ public class UserDAO {
 
 
 	
-	public void updateCheck(int user_num , String user_pw, String user_pnum, String
-			user_address) {
+	public void updateCheck(String user_id , String user_pw, String user_pnum, String user_address) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -175,12 +173,12 @@ public class UserDAO {
 		try {
 			con = ds.getConnection();
 
-		String sql = "UPDATE userinfo SET user_pw=?, user_address=?, user_pnum=? WHERE user_num =?";
+		String sql = "UPDATE userinfo SET user_pw=?, user_address=?, user_pnum=? WHERE user_id =?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, user_pw);
 		pstmt.setString(2, user_address);
 		pstmt.setString(3, user_pnum);
-		pstmt.setInt(4, user_num);
+		pstmt.setString(4, user_id);
 		pstmt.executeUpdate();
 		}
 		
