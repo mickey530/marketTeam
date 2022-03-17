@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,10 +146,13 @@
   
 
   </form>
+    <c:if test="${sId eq user.user_id }">
   <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
+
+    <input type="hidden" value="${user.user_id }" name="user_id"/>
     <input type="hidden" value="${user.user_num }" name="user_num"/>
       <input type="submit" class="form-control" value="탈퇴" readonly/>
     </div>
@@ -158,13 +162,14 @@
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
+    
     <input type="hidden" value="${user.user_num }" name="user_num"/>
       <input type="submit" class="form-control" value="수정" readonly/>
     </div>
   </div>
-
   </form>
-</div>
+ </c:if>
+ </div>
  
 
 
