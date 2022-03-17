@@ -123,13 +123,37 @@ transition :0.5s;
     border: none;
     resize: none;
   }
+  
+  	.form-select{
+  	height: 40px;
+    color: rgb(162,162,162);
+  	}
   	.pricearea {
     width: 100%;
-    height: 3em;
-    border: none;
+    height: 40px;
     resize: none;
     text-align: right;
+    border:none;
   	}
+  	.btn-group{
+  	vertical-align: center;
+  	height: 40px;
+  	}
+  	.btn-group :hover{
+	color: #f1f1f1;
+	}
+	.btn-group :hover{
+	color: #f1f1f1;
+	}
+	
+	#post{
+    white-space: nowrap;
+	float:right;
+	margin-top:-15px;
+	}
+	#post :hover{
+	color: #f1f1f1;
+	}
 	
 	.form-check{
     margin: 0px;
@@ -140,8 +164,6 @@ transition :0.5s;
     padding-bottom: 10px;
 
 	}
-	
-	
 	footer{
 	font-size: 40%;
 	height: 150px;
@@ -159,6 +181,9 @@ transition :0.5s;
 <title>ICT Market</title>
 </head>
 <body>
+<c:if test="${s eq null}">
+<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist.do"); %>
+</c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <!-- <header class="p-3 border-bottom bg-white sticky-top">
@@ -247,16 +272,45 @@ transition :0.5s;
 <script>
 	function openNav(){
 		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
-		document.getElementById("main").style.filter="blur(3px)";
+		document.getElementById("mainboard").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
-		document.getElementById("main").style.filter="blur(0)";
+		document.getElementById("mainboard").style.filter="blur(0)";
 	}
+	
+	function inputNumberFormat(obj) {
+	     obj.value = comma(uncomma(obj.value));
+	 }
+	function comma(str) {
+	     str = String(str);
+	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	 }
+	 function uncomma(str) {
+	     str = String(str);
+	     return str.replace(/[^\d]+/g, '');
+	 }
+	 
+	 <!-- sell or buy button -->
+	 var buttonClickedsell = true;
+	 var buttonClickbuy = false;
+	 window.addEventListener('load',function(){
+	   document.getElementById('sellButton').addEventListener('click',function(){
+		   buttonClickedsell = true;
+		   buttonClickbuy = false;
+	     document.getElementById("sellButton").style.color="Blue";
+	     document.getElementById("buyButton").style.color="rgb(162,162,162)";
+	   });
+	   document.getElementById('buyButton').addEventListener('click',function(){
+		   buttonClickedsell = false;
+		   buttonClickbuy = true;
+	     document.getElementById("buyButton").style.color="Blue";
+	     document.getElementById("sellButton").style.color="rgb(162,162,162)";
+	   });
+	 });
 
+	
 	<!--search script-->
 	function press(f){ 
 		if(f.keyCode == 13){ 
@@ -266,54 +320,51 @@ transition :0.5s;
 </script>
 
 
-<div class="container" onclick="closeNav()">
+<div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">Post thread</h3>
-<h5 class="col-md-1">Trade</h5>
+<h6 class="col-md-12">Trade</h6>
 </div>
+
+<div class="row" style="margin-top:20px">
 	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
-		<input type="hidden" name="user_id" value="${sessionScope.session_id}" required>
+		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
+		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 	
-	<table class="table" style="font-size:80%">
+	<table class="table">
 	<tr>
 		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
-		<th colspan="3"><textarea class="titlearea" name="board_title" placeholder="title" required/></textarea></th>
+		<th colspan="3" style=""><textarea class="titlearea" name="board_title" placeholder="title" required/></textarea></th>
 	</tr>
 	<tr>
-		<th colspan="3"><textarea class="contentarea" name="board_content" placeholder="content" required/></textarea><br/></th>
-	</tr>
-	
-	<tr>
-		<th>
-			<select name="board_category" class="form-select" aria-label="Default select example">			  	
-				<option value="" class="dropdown-item" default>category</option>
-				<option value="전자기기" class="dropdown-item">전자기기</option>
+		<th colspan="3" style="font-size:80%"><textarea class="contentarea" name="board_content" placeholder="Description here" required/></textarea><br/></tr>
+    	 <tr>
+    	 <th>
+    	  <select name="board_category" class="form-select" style="border:none; float:right;">			  	
+				<option value="" class="dropdown-item">Select Category</option>
+				<option value="전자기기/모바일" class="dropdown-item">전자기기/모바일</option>
+				<option value="컴퓨터" class="dropdown-item">컴퓨터</option>
 				<option value="도서/음반" class="dropdown-item">도서/음반</option>
+				<option value="취미/완구" class="dropdown-item">취미/완구</option>
 				<option value="의류" class="dropdown-item">의류</option>
 				<option value="가구류" class="dropdown-item">가구류</option>
 			</select>
-		</th>
-		<th style="text-align:right;">
-			<div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="board_info" id="inlineRadio1" value="true" checked>
-			  <label class="form-check-label" for="inlineRadio1">sell</label>
-			</div>
-			<div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="board_info" id="inlineRadio2" value="false">
-			  <label class="form-check-label" for="inlineRadio2">buy</label>
-			</div>
-		</th>
-		
-		<th><input type="number" class="pricearea" name="board_amount" placeholder="price"/></input><br/></th>
-	</tr>
-	
-	
-	</table>
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<input type="submit" value="posting" class="btn btn-outline-primary">
+			</th>
+    	 	<th style="text-align:center; width:50%">
+      		<input type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
+      		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+      		</th>
+      		<th><div class="btn-group" style="justify-content: center; float:right;">
+      		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
+      		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
+			</th>
+			</tr>
+   		 </table>
+   		 <div id="post"><input type="submit" value="Post" class="btn"></div>
+		</form>
+	</div>
 	</div>
 	</form>
 </div>
-
 </body>
 </html>

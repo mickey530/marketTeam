@@ -95,7 +95,7 @@ transition :0.5s;
 	}
 	#mainboard .row{
 	margin-top: 50px;
-	margin-bottom: 10px;
+	
 	}
 	#mainboard .row>.col-md-12{
 	margin-right:14px;
@@ -118,9 +118,9 @@ transition :0.5s;
 	margin: 0 auto;
 	}
 	#mainboard .row #read{
-	
 	font-size: 2vmin;
 	margin: 0 auto;
+	
 	}
 	
 	#mainboard #productamount {
@@ -135,9 +135,6 @@ transition :0.5s;
 	#mainboard #contents {
 	align:left;
 	width:100%;
-	display: flex;
-	max-width: 100%;
-	justify-content: center;
 	}
 	
 	
@@ -154,7 +151,7 @@ transition :0.5s;
 	display: flex;
 	justify-content: center;
 	margin-top:-15px;
-	max-width: 100%;
+	max-width: 90%;
   	font-size: 2vmin;
 	}
 	#navgate .btn:hover{
@@ -163,6 +160,7 @@ transition :0.5s;
 	#navgate #list{
     white-space: nowrap;
 	text-align:left;
+	margin-left:30px;
 	}
 	
 	#navgate #post{
@@ -178,6 +176,7 @@ transition :0.5s;
 	#navgate #del{
     white-space: nowrap;
 	float:right;
+	margin-right:30px;
 	}
 	
 	
@@ -331,16 +330,16 @@ transition :0.5s;
 <div class="row">
 <h3 class="col-md-11">${boarddetail.board_title}</h3>
 <h6 class="col-md-12">Trade </h6>
-<p class="col-1">No.${boarddetail.board_num}</p>
 
-<p class="col-10">${boarddetail.user_id}님이 ${boardthread.writetime}에 작성하신 게시글입니다.</p>
-
-<p id="read" class="col-1">${boardthread.hit},read</p>
+<p id="no" class="col-2">No.${boarddetail.board_num}</p>
+<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.writetime}에 작성하신 게시글입니다.</p>
+<p id="read" class="col-1">${boarddetail.hit},read</p>
 <hr/>
 </div>
-<div id="productamount" class="row">
 
+<div id="productamount" class="row">
 <!-- notate unit of bills (below)-->
+<!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
 <table class="table table-dark table-hover" style="margin-left:14px; font-size: 2vmin;">
 <tr>
 	<th>Price</th>
@@ -354,7 +353,8 @@ transition :0.5s;
 </div>
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
-<p class="text-left">${boardthread.content}</p>
+<p class="text-left">${boarddetail.content}</p>
+
 </div>
 <hr/>
 <div id="navgate" class="container">
@@ -365,31 +365,23 @@ transition :0.5s;
     </a>
 </form>
 
-<!--
-if: SId == null -> hide 'Post Thread'
--->
-<c:choose>
-<c:when test="${SId != null}">
 <form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-</c:when>
-<c:otherwise>
-</c:otherwise>
-</c:choose>
+<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
 <form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
-<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="hidden" value="${boarddetail.user_id}" name="user_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Edit">
 </form>
-
 <form id="del" action="http://localhost:8181/MyFirstWeb/boarddelete" method="post">
-<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="hidden" value="${boarddetail.user_id}" name="user_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Delete">
 </form>
-
+</c:if>
 </div>
 </div>
 </body>
 </html>
-
