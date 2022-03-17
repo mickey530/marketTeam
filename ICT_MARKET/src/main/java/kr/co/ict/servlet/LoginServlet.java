@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 						HttpSession session = request.getSession();
 						session.setAttribute("session_id", uId);
 						session.setAttribute("session_pw", uPw);
-						RequestDispatcher dp = request.getRequestDispatcher("/");
+						RequestDispatcher dp = request.getRequestDispatcher("/Main_bk.jsp");
 						dp.forward(request, response);
 
 					} else {

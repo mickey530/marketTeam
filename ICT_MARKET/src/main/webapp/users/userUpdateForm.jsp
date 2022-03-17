@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${sId ne user.id }">
+<c:if test="${sId ne user_id}">
 <%
-response.sendRedirect("http://localhost:8181/MyFirstWeb/userlist.com");
+response.sendRedirect("/ICT_MARKET/userlist.com");
 %>
 </c:if>
 <!DOCTYPE html>

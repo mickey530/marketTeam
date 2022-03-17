@@ -364,12 +364,13 @@ transition :0.5s;
         <input type="button" class="btn" value="List">
     </a>
 </form>
-
+<!--<c:if test="${sId ne null}">-->
 <form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
+<!--</c:if>-->
+<c:if test="${sId eq boarddetail.user_id}">
 <form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">

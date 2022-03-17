@@ -9,7 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.BoardCommentInsertService;
+import service.BoardDeleteService;
+import service.BoardDetailService;
+import service.BoardInsertService;
 import service.BoardListService;
+import service.BoardUpdateFormService;
+import service.BoardUpdateService;
+import service.JoinService;
+import service.LoginService;
+import service.LogoutService;
+import service.UserInfoDeleteService;
+import service.UserInfoService;
+import service.UserInfoUpdateFormService;
+import service.UserInfoUpdateService;
+import service.UserListManagerService;
 import service.boardInterface_Service;
 
 /**
@@ -46,10 +60,70 @@ public class frontController extends HttpServlet {
 		String ui = null;
 		boardInterface_Service is = null;
 		
-		if (uri.equals("/ICT_MARKET/boardList.com")) {
+		if (uri.equals("/ICT_MARKET/userJoin.com")) {
+			is = new JoinService();
+			is.execute(request, response);
+			ui = "/users/join_welcome.jsp";
+		}else if (uri.equals("/ICT_MARKET/userLogin.com")) {
+			is = new LoginService();
+			is.execute(request, response);
+			ui = "/Main_bk.jsp";
+		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
+			is = new LogoutService();
+			is.execute(request, response);
+			ui = "/index.com";
+		}else if (uri.equals("/ICT_MARKET/userInfo.com")) {
+			is = new UserInfoService();
+			is.execute(request, response);
+			ui = "/users/userinfo.jsp";
+		}else if (uri.equals("/ICT_MARKET/userInfoDel.com")) {
+			is = new UserInfoDeleteService();
+			is.execute(request, response);
+			ui = "/index.com";
+		}else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
+			is = new UserInfoUpdateFormService();
+			is.execute(request, response);
+			ui = "/users/userUpdateForm.jsp";
+		}else if (uri.equals("/ICT_MARKET/userInfoUpdate.com")) {
+			is = new UserInfoUpdateService();
+			is.execute(request, response);
+			ui = "/ICT_MARKET/userInfo.com?user_num="+ request.getParameter("user_num");
+		}else if (uri.equals("/ICT_MARKET/userList.com")) {
+			is = new UserListManagerService();
+			is.execute(request, response);
+			ui = "/users/userlist.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardList.com")) {
 			is = new BoardListService();
 			is.execute(request, response);
 			ui = "/board/board_list.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
+			is = new BoardDetailService();
+			is.execute(request, response);
+			ui = "/board/board_detail.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
+			//comment
+			is = new BoardCommentInsertService();
+			is.execute(request, response);
+			ui = "/board/board_detail.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardInsertForm.com")) {
+			ui = "/board/board_insertform.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardInsert.com")) {
+			is = new BoardInsertService();
+			is.execute(request, response);
+			ui = "/ICT_MARKET/boardList.com";
+		}else if (uri.equals("/ICT_MARKET/boardUpdateForm.com")) {
+			is = new BoardUpdateFormService();
+			is.execute(request, response);
+			ui = "/board/boardUpdateForm.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
+			is = new BoardUpdateService();
+			is.execute(request, response);
+			ui = "/ICT_MARKET/boardDetail.com?board_num=" 
+							+ request.getParameter("board_num");
+		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
+			is = new BoardDeleteService();
+			is.execute(request, response);
+			ui = "/ICT_MARKET/boardList.com";
 		}
 		
 		RequestDispatcher dp = request.getRequestDispatcher(ui);

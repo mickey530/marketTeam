@@ -39,15 +39,15 @@ public class BoardDetailServlet extends HttpServlet {
 				int board_num = Integer.parseInt(boardnum);
 				
 				BoardDAO dao = BoardDAO.getInstance();
-				BoardVO board = dao.getBoardDetail(board_num);
-				request.setAttribute("board", board);
+				BoardVO boarddetail = dao.getBoardDetail(board_num);
+				request.setAttribute("boarddetail", boarddetail);
 				
 				BoardCommentDAO cDao = BoardCommentDAO.getInstance();
 				List<BoardCommentVO> comment = cDao.getBoardCommentList(board_num);
 				request.setAttribute("comment", comment);
 
 				
-				RequestDispatcher dp = request.getRequestDispatcher("/board/boarddetail.jsp");
+				RequestDispatcher dp = request.getRequestDispatcher("/board/board_detail.jsp");
 				dp.forward(request, response);
 	}
 
