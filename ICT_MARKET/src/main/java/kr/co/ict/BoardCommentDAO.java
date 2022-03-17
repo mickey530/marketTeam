@@ -79,8 +79,45 @@ public class BoardCommentDAO {
 		return boardcommentList;
 	}
 	
-//	INSERT INTO boardcomment (comment_id, comment_board_num, comment_content) VALUES ("calmdownman", "29", "이건 댓글입니다 댓글");
+	public BoardCommentVO getComment(int comment_num){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardCommentVO comment = null;
+		try {
+			con = ds.getConnection();
 	
+			String sql = "SELECT * FROM boardcomment WHERE comment_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_num);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				String comment_id = rs.getString("comment_id");
+				int comment_board_num = rs.getInt("comment_board_num");
+				String comment_content = rs.getString("comment_content");
+				Date comment_writetime = rs.getDate("comment_writetime");
+				Date comment_updatetime = rs.getDate("comment_updatetime");
+
+
+
+				comment = new BoardCommentVO(comment_num, comment_id, comment_board_num, 
+						comment_content, comment_writetime, comment_updatetime);				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+		return comment;
+	}
+		
 	public void insertComment (String comment_id, int comment_board_num, String comment_content ) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -109,7 +146,52 @@ public class BoardCommentDAO {
 		
 	}
 	
+	public void updateComment (String comment_content, int comment_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "UPDATE boardcomment SET comment_content = ? WHERE comment_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, comment_content);
+			pstmt.setInt(2, comment_num);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		
+	}
 	
+	public void deleteComment (int comment_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "DELETE FROM boardcomment WHERE comment_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_num);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		
+	}
 	
 	
 	
