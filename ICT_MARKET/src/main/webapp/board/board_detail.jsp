@@ -332,8 +332,8 @@ transition :0.5s;
 <h6 class="col-md-12">Trade </h6>
 
 <p id="no" class="col-2">No.${boarddetail.board_num}</p>
-<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boardthread.writetime}에 작성하신 게시글입니다.</p>
-<p id="read" class="col-1">${boardthread.hit},read</p>
+<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.writetime}에 작성하신 게시글입니다.</p>
+<p id="read" class="col-1">${boarddetail.hit},read</p>
 <hr/>
 </div>
 
@@ -353,7 +353,7 @@ transition :0.5s;
 </div>
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
-<p class="text-left">${boardthread.content}</p>
+<p class="text-left">${boarddetail.content}</p>
 
 </div>
 <hr/>
@@ -369,17 +369,18 @@ transition :0.5s;
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-
+<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
 <form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
-<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="hidden" value="${boarddetail.user_id}" name="user_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Edit">
 </form>
-
 <form id="del" action="http://localhost:8181/MyFirstWeb/boarddelete" method="post">
-<input type="hidden" value="${boardthread.board_num}" name="board_num">
+<input type="hidden" value="${boarddetail.user_id}" name="user_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Delete">
 </form>
-
+</c:if>
 </div>
 </div>
 </body>

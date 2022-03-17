@@ -181,6 +181,9 @@ transition :0.5s;
 <title>ICT Market</title>
 </head>
 <body>
+<c:if test="${s eq null}">
+<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist.do"); %>
+</c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <!-- <header class="p-3 border-bottom bg-white sticky-top">

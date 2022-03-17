@@ -236,11 +236,8 @@ transition :0.5s;
 		document.getElementById("main").style.filter="blur(0)";
 	}
 
-	<!--search script-->
-	function press(f){ 
-		if(f.keyCode == 13){ 
-		searchHeader.submit(); 
-		} 
+	<!--search-->
+	
 	} 
 </script>
 
@@ -250,11 +247,11 @@ transition :0.5s;
 	<div class="main_head">
 		<c:choose>
 			<c:when test="${sessionScope.session_id eq null}">
-			<h2 class="text-center">Welcome back<!--, ${param.user}--></h2>
-			</c:when>
-			<c:otherwise>
 				<h2 class="text-center">Welcome to ICT Market!</h2>
 				<p class="text-center">Online Marketplace to Buy & Sell</p>
+			</c:when>
+			<c:otherwise>
+				<h2 class="text-center">Welcome back<!--, ${param.user_id}--></h2>
 			</c:otherwise>
 		</c:choose>
 		

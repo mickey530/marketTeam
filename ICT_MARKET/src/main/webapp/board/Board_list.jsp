@@ -104,6 +104,20 @@ transition :0.5s;
 	font-size:30px;
 	}
 	
+	#navgate{
+	display: flex;
+	justify-content:flex-end;
+	margin-top:-15px;
+  	font-size: 2vmin;
+	}
+	#navgate .btn:hover{
+	color: #f1f1f1;
+	}
+	
+	#navgate #post{
+    white-space: nowrap;
+	float:right;
+	}
 	
 	footer{
 	font-size: 40%;
@@ -295,6 +309,16 @@ transition :0.5s;
 		</tr>
 		</c:forEach>
 	</table>
+	<div id="navgate" class="container">
+<!--<c:if test="${sessionScope.session_id eq null}">-->
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="submit" type="button" class="btn" value="Post Thread">
+</form>
+<!--</c:if>-->
 </div>
+</div>
+
+
 </body>
 </html>
