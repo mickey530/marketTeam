@@ -78,7 +78,7 @@ public class BoardCommentDAO {
 		}	
 		return boardcommentList;
 	}
-	
+	// when use "comment upadate form"
 	public BoardCommentVO getComment(int comment_num){
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -262,8 +262,6 @@ public class BoardDAO {
 		pstmt.setInt(1, board_num);
 		pstmt.executeUpdate();
 		
-		pstmt.executeUpdate();	
-
 	}catch(Exception e) {
 		e.printStackTrace();
 		
