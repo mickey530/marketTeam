@@ -7,6 +7,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,18 +29,33 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		<input type="hidden" value="${board.board_num }" name="board_num">
 		<input type="submit" value="수정하기">
 	</form>
-		
+	
+<!-- comment -->
+<div class="comment">
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
-			<th class="col-md-1">아이디</th>
+			<th class="col-md-1">comment</th>
 			<th class="col-md-8"></th>
-			<th>날짜</th>
+			<th colspan=3></th>
 	</tr>
 		<c:forEach items="${comment}" var="comment">
 		<tr>
 			<td>${comment.comment_id }</td>
 			<td>${comment.comment_content }</td>
 			<td>${comment.comment_updatetime }</td>
+			<td>
+				<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm" method="post">
+					<input type="hidden" name="comment_num" value="${comment.comment_num }">
+					<input type="submit" value="수정">
+				</form>
+			</td>
+			<td>
+				<form action="http://localhost:8181/ICT_MARKET/CommentDelete" method="post">
+					<input type="hidden" name="comment_num" value="${comment.comment_num }">
+					<input type="hidden" name="board_num" value="${board.board_num }">
+					<input type="submit" value="삭제">
+				</form>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -48,5 +64,6 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			<textarea rows="2" cols="50" placeholder="댓글을 입력해주세요." name="comment_content"></textarea>
 			<input type="submit" value="댓글달기">
 		</form>
+</div>
 </body>
 </html>
