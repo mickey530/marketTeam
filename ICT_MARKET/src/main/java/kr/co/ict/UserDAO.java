@@ -192,7 +192,7 @@ public class UserDAO {
 	}
 
 
-public void deleteUser(int user_num) {
+public void deleteUser(String user_id) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -201,9 +201,9 @@ public void deleteUser(int user_num) {
 		try {
 			con = ds.getConnection();
 	
-		String sql = "DELETE FROM userinfo WHERE user_num =?";
+		String sql = "DELETE FROM userinfo WHERE user_id = ?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, user_num);
+		pstmt.setString(1, user_id);
 		pstmt.executeUpdate();
 		}
 		
