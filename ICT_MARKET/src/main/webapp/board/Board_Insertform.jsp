@@ -300,14 +300,14 @@ transition :0.5s;
 		     document.getElementById("sellButton").style.color="Blue";
 		     document.getElementById("buyButton").style.color="rgb(162,162,162)";
 		     
-		     document.getElementById("board_info").value = true;
+		     document.getElementByName("board_info").value = true;
 		     
 		   });
 		   document.getElementById('buyButton').addEventListener('click',function(){
 		     document.getElementById("buyButton").style.color="Blue";
 		     document.getElementById("sellButton").style.color="rgb(162,162,162)";
 		 
-		     document.getElementById("board_info").value = false;
+		     document.getElementByName("board_info").value = false;
 		   });
 		 });
 
