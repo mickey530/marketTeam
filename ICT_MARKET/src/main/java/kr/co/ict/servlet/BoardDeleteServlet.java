@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.BoardCommentDAO;
 import kr.co.ict.BoardDAO;
 
 /**
@@ -32,6 +33,9 @@ public class BoardDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardnum = request.getParameter("board_num");
 		int board_num = Integer.parseInt(boardnum);
+		
+		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
+		cDao.deleteBoardComment(board_num);
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(board_num);
