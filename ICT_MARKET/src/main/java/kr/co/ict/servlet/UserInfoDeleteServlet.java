@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.ict.UserDAO;
 
@@ -28,15 +29,14 @@ public class UserInfoDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String struNum = request.getParameter("user_num");
-		int uNum = Integer.parseInt(struNum);
-		
-		// 1. dao생성
+
+		HttpSession session = request.getSession();
+		String sId = (String)session.getAttribute("session_id");
+
 		UserDAO dao = UserDAO.getInstance();
-		// 2. 삭제로직 실행
-		dao.deleteUser(uNum);
-		// 3. 삭제후 boardList로 리다이렉트
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/Userlist");
+		dao.deleteUser(sId);
+		session.invalidate();
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/");
 		
 	}
 

@@ -11,8 +11,7 @@ public class BoardInsertPostingSV implements boardInterface_Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dp = request.getRequestDispatcher("/ICT_MARKET/board/posting.jsp");
-		dp.forward(request, response);
+
 		
 	}
 
