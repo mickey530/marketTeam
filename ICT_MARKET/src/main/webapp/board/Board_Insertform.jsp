@@ -296,19 +296,20 @@ transition :0.5s;
 	 var buttonClickedsell = true;
 	 var buttonClickbuy = false;
 	 window.addEventListener('load',function(){
-	   document.getElementById('sellButton').addEventListener('click',function(){
-		   buttonClickedsell = true;
-		   buttonClickbuy = false;
-	     document.getElementById("sellButton").style.color="Blue";
-	     document.getElementById("buyButton").style.color="rgb(162,162,162)";
-	   });
-	   document.getElementById('buyButton').addEventListener('click',function(){
-		   buttonClickedsell = false;
-		   buttonClickbuy = true;
-	     document.getElementById("buyButton").style.color="Blue";
-	     document.getElementById("sellButton").style.color="rgb(162,162,162)";
-	   });
-	 });
+		   document.getElementById('sellButton').addEventListener('click',function(){
+		     document.getElementById("sellButton").style.color="Blue";
+		     document.getElementById("buyButton").style.color="rgb(162,162,162)";
+		     
+		     document.getElementById("board_info").value = true;
+		     
+		   });
+		   document.getElementById('buyButton').addEventListener('click',function(){
+		     document.getElementById("buyButton").style.color="Blue";
+		     document.getElementById("sellButton").style.color="rgb(162,162,162)";
+		 
+		     document.getElementById("board_info").value = false;
+		   });
+		 });
 
 	
 	<!--search script-->
@@ -355,8 +356,9 @@ transition :0.5s;
       		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
       		</th>
       		<th><div class="btn-group" style="justify-content: center; float:right;">
-      		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
-      		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
+      		<button type="button" class="btn" id="sellButton" name="buttonClickedsell" value="true">Sell</button>
+			<button type="button" class="btn" id="buyButton" name="buttonClickedbuy" value="false">Buy</button>
+			<input type="hidden" name="board_info" value=""/></div>
 			</th>
 			</tr>
    		 </table>
