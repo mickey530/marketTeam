@@ -278,7 +278,7 @@ public class BoardDAO {
 	}
 	}
 	
-	public ArrayList<BoardVO> getsearchBoard(String keyword, String searchword) {
+	public ArrayList<BoardVO> getsearchBoard(String where, Boolean sorB, String searchword) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -289,10 +289,11 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM board WHERE "+keyword+" LIKE ?";
+			String sql = "SELECT * FROM board WHERE "+where+" AND board_info= ? LIKE '%?%'";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%"+searchword+"%");
+			pstmt.setBoolean(1, sorB);
+			pstmt.setString(2, searchword);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {

@@ -14,6 +14,7 @@ import service.BoardDeleteService;
 import service.BoardDetailService;
 import service.BoardInsertService;
 import service.BoardListService;
+import service.BoardSearchService;
 import service.BoardUpdateFormService;
 import service.BoardUpdateService;
 import service.JoinService;
@@ -106,11 +107,11 @@ public class frontController extends HttpServlet {
 			is.execute(request, response);
 			ui = "/board/board_detail.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardInsertForm.com")) {
-			ui = "/board/board_insertform.jsp";
+			ui = "/board/Board_Insertform.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardInsert.com")) {
 			is = new BoardInsertService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardList.com";
+			ui = "/ICT_MARKET/Board_InsertForm.com";
 		}else if (uri.equals("/ICT_MARKET/boardUpdateForm.com")) {
 			is = new BoardUpdateFormService();
 			is.execute(request, response);
@@ -124,6 +125,11 @@ public class frontController extends HttpServlet {
 			is = new BoardDeleteService();
 			is.execute(request, response);
 			ui = "/ICT_MARKET/boardList.com";
+
+		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com?"+ request.getParameter("search_keyword"))){
+			is = new BoardSearchService();
+			is.execute(request, response);
+			ui = "/board/Board_search.jsp";
 		}
 		
 		RequestDispatcher dp = request.getRequestDispatcher(ui);

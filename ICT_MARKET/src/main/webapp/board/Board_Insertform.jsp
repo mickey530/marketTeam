@@ -225,7 +225,7 @@ transition :0.5s;
            
 				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="searchkey" placeholder="Search" aria-label="Search">
+					<input type="search" class="form-control" name="searchkey" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 
 				<li>
@@ -341,6 +341,7 @@ transition :0.5s;
 		<th colspan="3" style="font-size:80%"><textarea class="contentarea" name="board_content" placeholder="Description here" required/></textarea><br/></tr>
     	 <tr>
     	 <th>
+    	 
     	  <select name="board_category" class="form-select" style="border:none; float:right;">			  	
 				<option value="" class="dropdown-item">Select Category</option>
 				<option value="전자기기/모바일" class="dropdown-item">전자기기/모바일</option>
