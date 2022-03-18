@@ -43,7 +43,7 @@ public class BoardCommentDAO {
 		try {
 			con = ds.getConnection();
 	
-			String sql = "SELECT * FROM boardcomment WHERE comment_board_num = ? ORDER BY comment_num DESC";
+			String sql = "SELECT * FROM boardcomment WHERE comment_board_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, comment_board_num);
 			rs = pstmt.executeQuery();
@@ -193,7 +193,29 @@ public class BoardCommentDAO {
 		
 	}
 	
-	
+	// do this before BoardDelete
+	public void deleteBoardComment (int comment_board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "DELETE FROM boardcomment WHERE comment_board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_board_num);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		
+	}
 	
 	
 	

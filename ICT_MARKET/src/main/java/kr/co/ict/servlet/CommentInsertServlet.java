@@ -13,14 +13,14 @@ import kr.co.ict.BoardCommentDAO;
 /**
  * Servlet implementation class BoardCommentInsertServlet
  */
-@WebServlet("/BoardCommentInsertServlet")
-public class BoardCommentInsertServlet extends HttpServlet {
+@WebServlet("/CommentInsert")
+public class CommentInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardCommentInsertServlet() {
+    public CommentInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class BoardCommentInsertServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		String comment_id = (String)session.getAttribute("session_id");
