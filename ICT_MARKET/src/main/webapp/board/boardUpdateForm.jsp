@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<c:if test="${sessionScope.session_id ne boarddetail.user_id }">
+	<c:if test="${sessionScope.session_id ne board.user_id }">
 		<% response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList.com"); %>
 	</c:if>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 	<form action="http://localhost:8181/ICT_MARKET/boardUpdate" method="post">
 		<input type="hidden" name="board_num" value="${board.board_num }">
 		<input type="text" name="board_title" placeholder="title" value="${board.board_title }">
-		<input type="text" name="user_id" placeholder="user_id" value="${boarddetail.user_id }">
+		<input type="text" name="user_id" placeholder="user_id" value="${board.user_id }">
 		<input type="text" name="board_category" placeholder="category" value="${board.board_category }">
 		<input type="text" name="board_info" placeholder="info" value="${board.board_info }"><br/>
 		<input type="hidden" value="${board_writetime}" readonly>
