@@ -34,8 +34,7 @@ public class ReportDAO {
 		return dao;
 	}
 	
-	// report 데이터 전체 불러오는 메서드
-	public List<ReportVO> getAllReportList(){
+	public List<ReportVO> getAllReportedList(){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,18 +42,20 @@ public class ReportDAO {
 		
 		try {
 			con = ds.getConnection();
-			String getInfo = "SELECT * FROM reportlist";
+			String getInfo = "SELECT * FROM reportlist ORDER BY reported_num DESC";
 			pstmt = con.prepareStatement(getInfo);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
+				int reported_num = rs.getInt("reported_num");
+				String reporting_id = rs.getString("reporting_id");
 				String reported_id = rs.getString("reported_id");
 				int reported_board_num = rs.getInt("reported_board_num");
 				String reported_reason = rs.getString("reported_reason");
 				
 				
 				// 클래스 생성 및 ArrayList에 저장
-				ReportVO reportData = new ReportVO(reported_id, reported_board_num, reported_reason);
+				ReportVO reportData = new ReportVO(reported_num, reporting_id, reported_id, reported_board_num, reported_reason);
 				ReportList.add(reportData);
 				}
 			
@@ -71,13 +72,11 @@ public class ReportDAO {
 				se.printStackTrace();		
 			}
 		}
-		// 리턴 값
 		return ReportList;
-
 	}
 	
-	// 특정 유저 검색용 메서드(검색창에서 input으로 받을 예정)
-	public List<ReportVO> getReportedUser(String input_id){
+	// reported user search
+	public List<ReportVO> getReportedUser(String reported_id){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -85,19 +84,18 @@ public class ReportDAO {
 		
 		try {
 			con = ds.getConnection();
-			String getInfo = "SELECT * FROM reportlist WHERE reported_id = ?";
+			String getInfo = "SELECT * FROM reportlist WHERE reported_id = ? ORDER BY reported_num DESC";
 			pstmt = con.prepareStatement(getInfo);
-			pstmt.setString(1, input_id);
+			pstmt.setString(1, reported_id);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
-				String reported_id = rs.getString("reported_id");
+				int reported_num = rs.getInt("reported_num");
+				String reporting_id = rs.getString("reporting_id");
 				int reported_board_num = rs.getInt("reported_board_num");
 				String reported_reason = rs.getString("reported_reason");
 				
-				
-				// 클래스 생성 및 ArrayList에 저장
-				ReportVO reportData = new ReportVO(reported_id, reported_board_num, reported_reason);
+				ReportVO reportData = new ReportVO(reported_num, reporting_id, reported_id, reported_board_num, reported_reason);
 				ReportList.add(reportData);
 				}
 			
@@ -114,8 +112,73 @@ public class ReportDAO {
 				se.printStackTrace();		
 			}
 		}
-		// 리턴 값
 		return ReportList;
+	}
+	
+	// reported detail page
+	public ReportVO getReportedDetail(int reported_num){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReportVO reportData = null;
+		
+		try {
+			con = ds.getConnection();
+			String getInfo = "SELECT * FROM reportlist WHERE reported_num = ?";
+			pstmt = con.prepareStatement(getInfo);
+			pstmt.setInt(1, reported_num);
+			rs = pstmt.executeQuery();
 
+			while(rs.next()) {
+				String reporting_id = rs.getString("reporting_id");
+				String reported_id = rs.getString("reported_id");
+				int reported_board_num = rs.getInt("reported_board_num");
+				String reported_reason = rs.getString("reported_reason");
+				
+				reportData = new ReportVO(reported_num, reporting_id, reported_id, reported_board_num, reported_reason);
+				}
+			
+			
+		} catch(Exception e){
+			e.printStackTrace();		
+		} finally{
+			
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();		
+			}
+		}
+		return reportData;
+	}
+	
+	// board report method
+	public void reportBoard(String reporting_id, String reported_id, int reported_board_num, String reported_reason) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			String report = "INSERT INTO reportlist (reporting_id, reported_id, reported_board_num, reported_reason) VALUES (?, ?, ?, ?) ";
+			pstmt = con.prepareStatement(report);
+			pstmt.setString(1, reporting_id);
+			pstmt.setString(2, reported_id);
+			pstmt.setInt(3, reported_board_num);
+			pstmt.setString(4, reported_reason);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e){
+			e.printStackTrace();		
+		} finally{
+			
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();		
+			}
+		}
 	}
 }
