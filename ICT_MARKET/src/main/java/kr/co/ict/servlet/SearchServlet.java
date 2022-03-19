@@ -31,16 +31,27 @@ public class SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BoardDAO boardao = BoardDAO.getInstance();
+		BoardDAO dao = BoardDAO.getInstance();
 		
 		request.setCharacterEncoding("utf-8");
 		
-	    String search = request.getParameter("searchkey");
+		//Search Keyword
+	    String searchkeyword = request.getParameter("search_keyword");
 	    
-	    request.setAttribute("search",search);
+	    //WTS or WTB
+	    String sellorbuy = request.getParameter("board_info");
+	    Boolean SorB = Boolean.valueOf(sellorbuy).booleanValue();
+	    
+	    //Search criteria
+	    String sCrite = request.getParameter("search_category");
+	    
+	    //* criteria (OR)
+	    //String qOnly = request.getParameter("only");
+	    //String qAnd = request.getParameter("and");
+	    
+	    dao.getsearchBoard(sCrite,SorB,searchkeyword);
 	   
 	    RequestDispatcher dp = request.getRequestDispatcher("/board/Board_search.jsp");
-	    
 	    dp.forward(request, response);
 	}
 

@@ -8,22 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import kr.co.ict.UserDAO;
-import kr.co.ict.UserVO;
+import kr.co.ict.BoardCommentDAO;
+import kr.co.ict.BoardCommentVO;
 
 /**
- * Servlet implementation class UserInfoUpdateFormServlet
+ * Servlet implementation class CommentUpdateFormServlet
  */
-@WebServlet("/userInfoUpdateForm")
-public class UserInfoUpdateFormServlet extends HttpServlet {
+@WebServlet("/CommentUpdateForm")
+public class CommentUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoUpdateFormServlet() {
+    public CommentUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +31,13 @@ public class UserInfoUpdateFormServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("session_id"); // session_id
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		BoardCommentDAO dao = BoardCommentDAO.getInstance();
+		BoardCommentVO comment = dao.getComment(comment_num);
 		
-		UserDAO dao = UserDAO.getInstance();
-		UserVO user = dao.getUserData(user_id);
-		
-		request.setAttribute("user", user);
-		
-		RequestDispatcher dp = request.getRequestDispatcher("/users/userUpdateForm.jsp");
+		request.setAttribute("comment", comment);
+		RequestDispatcher dp = request.getRequestDispatcher("/board/Comment_update_Form.jsp");
 		dp.forward(request, response);
 	}
 
-	}
-
-
+}

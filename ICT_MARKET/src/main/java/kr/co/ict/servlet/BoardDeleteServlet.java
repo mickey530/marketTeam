@@ -1,12 +1,15 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.BoardCommentDAO;
 import kr.co.ict.BoardDAO;
 
 /**
@@ -31,9 +34,15 @@ public class BoardDeleteServlet extends HttpServlet {
 		String boardnum = request.getParameter("board_num");
 		int board_num = Integer.parseInt(boardnum);
 		
+		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
+		cDao.deleteBoardComment(board_num);
+		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(board_num);
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/board/Board_list.jsp");
+
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList?board_info=ALL");
+//		RequestDispatcher dp = request.getRequestDispatcher("boardList?board_info=ALL");
+//		dp.forward(request, response);
 	}
 
 }

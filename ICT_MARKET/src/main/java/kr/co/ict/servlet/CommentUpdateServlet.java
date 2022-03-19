@@ -8,22 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import kr.co.ict.UserDAO;
-import kr.co.ict.UserVO;
+import kr.co.ict.BoardCommentDAO;
 
 /**
- * Servlet implementation class UserInfoUpdateFormServlet
+ * Servlet implementation class BoardCommentUpdateServlet
  */
-@WebServlet("/userInfoUpdateForm")
-public class UserInfoUpdateFormServlet extends HttpServlet {
+@WebServlet("/CommentUpdate")
+public class CommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoUpdateFormServlet() {
+    public CommentUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,15 @@ public class UserInfoUpdateFormServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("session_id"); // session_id
+		request.setCharacterEncoding("utf-8");
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		int comment_board_num = Integer.parseInt(request.getParameter("comment_board_num"));
+		String comment_content = request.getParameter("comment_content");
 		
-		UserDAO dao = UserDAO.getInstance();
-		UserVO user = dao.getUserData(user_id);
-		
-		request.setAttribute("user", user);
-		
-		RequestDispatcher dp = request.getRequestDispatcher("/users/userUpdateForm.jsp");
-		dp.forward(request, response);
+		BoardCommentDAO dao = BoardCommentDAO.getInstance();
+		dao.updateComment(comment_content, comment_num);
+			
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/boardDetail?board_num=" + comment_board_num);
 	}
 
-	}
-
-
+}

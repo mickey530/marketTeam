@@ -11,8 +11,12 @@ public class BoardInsertService implements boardInterface_Service{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		BoardDAO dao = BoardDAO.getInstance();
 		String user_id =  request.getParameter("user_id"); // session
+		
 		String boardInfo = request.getParameter("board_info");
-		Boolean board_info = Boolean.parseBoolean(boardInfo); // casting
+		System.out.println("fuckfuck "+boardInfo);
+		Boolean board_info = Boolean.valueOf(boardInfo).booleanValue() ;
+		System.out.println("test "+board_info);
+		
 		String board_category = request.getParameter("board_category");
 		String board_title = request.getParameter("board_title");
 		String board_content = request.getParameter("board_content");

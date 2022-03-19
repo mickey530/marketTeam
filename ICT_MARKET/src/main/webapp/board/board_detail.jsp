@@ -179,6 +179,10 @@ transition :0.5s;
 	margin-right:30px;
 	}
 	
+	#comment:hover{
+	color: #f1f1f1;
+	}
+	
 	
 	
 	footer{
@@ -200,11 +204,12 @@ transition :0.5s;
 <body>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<!-- <header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id eq null }">
+<header class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0">ICT MARKET</h2>
+			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -216,15 +221,17 @@ transition :0.5s;
 						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
 					</form>
 	
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</header> -->
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
+<c:if test="${sessionScope.session_id ne null }">\
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -238,7 +245,7 @@ transition :0.5s;
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search..." aria-label="Search">
 				</form>
                
 				<li>
@@ -265,7 +272,7 @@ transition :0.5s;
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
+				<li><a href="#" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id }</a></li>
 				<div id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
@@ -276,6 +283,7 @@ transition :0.5s;
 	</div>
 </div>
 </header>
+</c:if>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
 					<a href="#" class="text-center">Profile</a>
@@ -332,8 +340,8 @@ transition :0.5s;
 <h6 class="col-md-12">Trade </h6>
 
 <p id="no" class="col-2">No.${boarddetail.board_num}</p>
-<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.writetime}에 작성하신 게시글입니다.</p>
-<p id="read" class="col-1">${boarddetail.hit},read</p>
+<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
+<p id="read" class="col-1">${boarddetail.board_hit},read</p>
 <hr/>
 </div>
 
@@ -347,41 +355,88 @@ transition :0.5s;
 </tr>
 <tr>
 	<th>Cartegory</th>
-    <td style="text-align:right;">${boarddetail.board_cartegory}</td>
+    <td style="text-align:right;">${boarddetail.board_category}</td>
 </tr>
 </table>
 </div>
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
-<p class="text-left">${boarddetail.content}</p>
+<p class="text-left">${boarddetail.board_content}</p>
 
 </div>
 <hr/>
 <div id="navgate" class="container">
 
 <form id="list" class="col-md-11">
-    <a href="http://localhost:8181/ICT_MARKET/boardList/">
+    <a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL">
         <input type="button" class="btn" value="List">
     </a>
 </form>
 
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
+<!--<c:if test="${sId ne null}">-->
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
+<!--</c:if>-->
+<c:if test="${sId eq boarddetail.user_id}">
 <form id="edit" action="http://localhost:8181/MyFirstWeb/boardupdateform" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Edit">
+<input type="submit" type="button" class="btn" value="Edit" id="comment">
 </form>
-<form id="del" action="http://localhost:8181/MyFirstWeb/boarddelete" method="post">
+<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Delete">
+<input type="submit" type="button" class="btn" value="Delete" id="comment">
 </form>
 </c:if>
 </div>
+<br/>
+
+<!-- comment -->
+<div class="comment">
+	<table class="table table-hover" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">comments</th>
+			<th class="col-md-8"></th>
+			<th colspan=3></th>
+	</tr>
+		<c:forEach items="${comment}" var="comment">
+		<tr>
+			<td class="align-middle">${comment.comment_id }</td>
+			<td class="align-middle">${comment.comment_content }</td>
+			<td class="align-middle">${comment.comment_updatetime }</td>
+			<td>
+				<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm" method="post">
+					<input type="hidden" name="comment_num" value="${comment.comment_num }">
+					<input class="btn" type="submit" value="Correction">
+				</form>
+			</td>
+			<td>
+				<form action="http://localhost:8181/ICT_MARKET/CommentDelete" method="post">
+					<input type="hidden" name="comment_num" value="${comment.comment_num }">
+					<input type="hidden" name="board_num" value="${boarddetail.board_num }">
+					<input class="btn" type="submit" value="Delete">
+				</form>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
+		<form action="http://localhost:8181/ICT_MARKET/CommentInsert" method="post">
+			<div class="form-floating">
+			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
+			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
+			  <label for="floatingTextarea">Comments</label>
+			</div>		
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<input class="btn" type="submit" value="write" id="comment">
+			</div>
+		</form>
+		
 </div>
+</div>
+
+
 </body>
 </html>
