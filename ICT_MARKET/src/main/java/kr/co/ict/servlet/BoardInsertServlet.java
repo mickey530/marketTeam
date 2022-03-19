@@ -32,13 +32,12 @@ public class BoardInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				BoardDAO dao = BoardDAO.getInstance();
 				request.setCharacterEncoding("utf-8");
+
 				HttpSession session = request.getSession();
 				String user_id = (String)session.getAttribute("session_id"); // session_id
 				
 				String info = request.getParameter("board_info");
 				Boolean board_info = Boolean.parseBoolean(info); // casting
-				System.out.println("게시판 정보 : " + info);
-				System.out.println("게시판 정보 : " + board_info);
 				
 				String board_category = request.getParameter("board_category");
 				String board_title = request.getParameter("board_title");

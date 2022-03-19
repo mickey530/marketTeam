@@ -58,7 +58,8 @@ public class LoginServlet extends HttpServlet {
 						HttpSession session = request.getSession();
 						session.setAttribute("session_id", uId);
 						session.setAttribute("session_pw", uPw);
-						RequestDispatcher dp = request.getRequestDispatcher("/main.jsp");
+						RequestDispatcher dp = request.getRequestDispatcher("/main.jsp"); // 로직 테스트용
+						// RequestDispatcher dp = request.getRequestDispatcher("/Main_bk.jsp"); // 나중엔 이걸로
 						dp.forward(request, response);
 
 					} else {

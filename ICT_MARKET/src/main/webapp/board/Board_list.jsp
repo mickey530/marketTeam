@@ -181,7 +181,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search..." aria-label="Search">
 				</form>
                
 				<li>
@@ -321,7 +321,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	</table>
 	<div id="navgate" class="container">
 <!--<c:if test="${sessionScope.session_id eq null}">-->
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertPosting" method="post">
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>

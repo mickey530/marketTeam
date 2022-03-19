@@ -40,7 +40,7 @@ public class BoardDetailServlet extends HttpServlet {
 				
 				BoardDAO dao = BoardDAO.getInstance();
 				BoardVO boarddetail = dao.getBoardDetail(board_num);
- 				request.setAttribute("boarddetail", boarddetail);
+				request.setAttribute("boarddetail", boarddetail);
 				
 				BoardCommentDAO cDao = BoardCommentDAO.getInstance();
 				List<BoardCommentVO> comment = cDao.getBoardCommentList(board_num);

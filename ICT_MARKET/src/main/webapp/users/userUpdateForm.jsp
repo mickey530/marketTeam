@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:if test="${sessionScope.session_id ne user.user_id }">
 <%
-response.sendRedirect("http://localhost:8181/MyFirstWeb/userlist.com");
+response.sendRedirect("/ICT_MARKET/userlist.com");
 %>
 </c:if>
 <!DOCTYPE html>
