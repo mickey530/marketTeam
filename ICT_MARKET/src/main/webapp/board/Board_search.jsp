@@ -212,9 +212,9 @@ transition :0.5s;
 </header>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
+					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){

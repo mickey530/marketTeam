@@ -35,7 +35,7 @@ public class BoardVO {
 		this.board_writetime = board_writetime;
 		this.board_updatetime = board_updatetime;
 	}
-
+	
 	public int getBoard_num() {
 		return board_num;
 	}
