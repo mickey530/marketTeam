@@ -113,7 +113,7 @@ public class PickedDAO {
 		return PickedList;
 	}
 	
-	public void Pick(String session_id, Boolean picked_board_info, int picked_board_num){
+	public void pick(String session_id, Boolean picked_board_info, int picked_board_num){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
