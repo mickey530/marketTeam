@@ -208,7 +208,7 @@ transition :0.5s;
 </head>
 <body>
 <c:if test="${sessionScope.session_id eq null}">
-<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist.do"); %>
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET/board/Board_list.com"); %>
 </c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->

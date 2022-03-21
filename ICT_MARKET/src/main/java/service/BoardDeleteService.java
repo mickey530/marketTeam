@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.ict.BoardCommentDAO;
 import kr.co.ict.BoardDAO;
 
 public class BoardDeleteService implements boardInterface_Service{
@@ -17,11 +18,16 @@ public class BoardDeleteService implements boardInterface_Service{
 		String user_id = request.getParameter("user_id");
 		
 		HttpSession session = request.getSession();
-		String sId = (String)session.getAttribute("session_id");
+		String sId = (String)session.getAttribute("session_id");		
 		
 		if(sId.equals(user_id)) {
-			BoardDAO dao = BoardDAO.getInstance();
-			dao.deleteBoard(board_num);
+			
+		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
+		cDao.deleteBoardComment(board_num);
+		
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.deleteBoard(board_num);
+		
 		}
 	}
 }
