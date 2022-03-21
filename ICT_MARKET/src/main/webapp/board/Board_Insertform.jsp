@@ -340,7 +340,7 @@ transition :0.5s;
 </div>
 
 <div class="row" style="margin-top:20px">
-	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/boardInsert.com" method="post">
 		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
 		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 	

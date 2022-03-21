@@ -119,7 +119,7 @@ response.sendRedirect("/ICT_MARKET/userlist.com");
 
 
 
-<form class="info" action="http://localhost:8181/ICT_MARKET/userInfoUpdate" method="post">
+<form class="info" action="http://localhost:8181/ICT_MARKET/userInfoUpdate.com" method="post">
 	<div class="row mb-3">
     <label class="col-sm-2 col-form-label">아이디</label> 
     <div class="col-sm-3">

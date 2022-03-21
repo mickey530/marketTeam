@@ -29,7 +29,8 @@ public class BoardListService implements boardInterface_Service {
 			boardList = dao.getAllBoardList();
 			info = "All Products";
 		}
-				
+		
+		request.setAttribute("board_info", board_info);
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("info", info);
 		

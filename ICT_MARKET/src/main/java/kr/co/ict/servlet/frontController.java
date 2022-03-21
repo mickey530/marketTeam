@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.CommentInsertService;
 import service.BoardDeleteService;
 import service.BoardDetailService;
+import service.BoardInsertFormService;
 import service.BoardInsertService;
 import service.BoardListService;
 import service.BoardSearchService;
@@ -69,11 +70,19 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userJoin.com")) {
 			is = new JoinService();
 			is.execute(request, response);
-			ui = "/main.com";
+			ui = "/users/join_form.jsp";
 		}else if (uri.equals("/ICT_MARKET/userLogin.com")) {
 			is = new LoginService();
 			is.execute(request, response);
-			ui = "/main.com";
+			ui = "/users/login_form.jsp";
+		}else if (uri.equals("/ICT_MARKET/userJoinCheck.com")) {
+			is = new JoinService();
+			is.execute(request, response);
+			ui = "/";
+		}else if (uri.equals("/ICT_MARKET/userLoginCheck.com")) {
+			is = new LoginService();
+			is.execute(request, response);
+			ui = "/";
 		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
 			is = new LogoutService();
 			is.execute(request, response);
@@ -82,7 +91,7 @@ public class frontController extends HttpServlet {
 			is = new UserInfoService();
 			is.execute(request, response);
 			ui = "/users/userinfo.jsp";
-		}else if (uri.equals("/ICT_MARKET/userInfoDel.com")) {
+		}else if (uri.equals("/ICT_MARKET/userInfoDelete.com")) {
 			is = new UserInfoDeleteService();
 			is.execute(request, response);
 			ui = "/main.com";
@@ -93,7 +102,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userInfoUpdate.com")) {
 			is = new UserInfoUpdateService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/userInfo.com?user_num="+ request.getParameter("user_num");
+			ui = "/userInfo.com";
 		}else if (uri.equals("/ICT_MARKET/userList.com")) {
 			is = new UserListManagerService();
 			is.execute(request, response);
@@ -101,22 +110,19 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardList.com")) {
 			is = new BoardListService();
 			is.execute(request, response);
-			ui = "/board/board_list.jsp";
+			ui = "/board/Board_list.jsp?board_info=" + request.getParameter("board_info");
 		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
 			is = new BoardDetailService();
 			is.execute(request, response);
 			ui = "/board/board_detail.jsp";
-		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
-			//comment
-			is = new CommentInsertService();
-			is.execute(request, response);
-			ui = "/board/board_detail.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardInsertForm.com")) {
+			is = new BoardInsertFormService();
+			is.execute(request, response);
 			ui = "/board/Board_Insertform.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardInsert.com")) {
 			is = new BoardInsertService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/Board_InsertForm.com";
+			ui = "/boardList.com";
 		}else if (uri.equals("/ICT_MARKET/boardUpdateForm.com")) {
 			is = new BoardUpdateFormService();
 			is.execute(request, response);
@@ -124,8 +130,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
 			is = new BoardUpdateService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" 
-							+ request.getParameter("board_num");
+			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
 			is = new BoardDeleteService();
 			is.execute(request, response);

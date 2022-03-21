@@ -52,8 +52,6 @@ public class LoginServlet extends HttpServlet {
 
 					String uId = user.getUser_id();// hint * getter
 					String uPw = user.getUser_pw();
-					System.out.println("DB�� ���� ���̵� : " + uId);
-					System.out.println("DB�� ���� ��й�ȣ : " + uPw);
 
 					if(id.equals(uId) && pw.equals(uPw)){
 

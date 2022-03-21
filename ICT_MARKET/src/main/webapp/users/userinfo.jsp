@@ -152,7 +152,7 @@
 
   </form>
     <c:if test="${sessionScope.session_id eq user.user_id }">
-  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete" method="post">
+  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
@@ -163,7 +163,7 @@
     </div>
   </div>
   </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm" method="post">
+  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com"" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">

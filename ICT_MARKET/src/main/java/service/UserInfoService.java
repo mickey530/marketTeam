@@ -16,6 +16,7 @@ public class UserInfoService implements boardInterface_Service{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	HttpSession session = request.getSession();
 		String session_id = (String)session.getAttribute("session_id");
+		System.out.println(session_id);
 		
 		UserDAO dao = UserDAO.getInstance();
 		UserVO user = dao.getUserData(session_id);

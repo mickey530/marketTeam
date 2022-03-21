@@ -91,7 +91,7 @@ public class UserDAO {
 			
 				try {
 					con = ds.getConnection();
-				String sql = "SELECT * FROM userinfo WHERE user_num=?";
+				String sql = "SELECT * FROM userinfo WHERE user_id=?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, session_id);
@@ -165,7 +165,7 @@ public class UserDAO {
 
 
 	
-	public void updateCheck(int user_num , String user_pw, String user_pnum, String
+	public void updateCheck(String session_id , String user_pw, String user_pnum, String
 			user_address) {
 		
 		Connection con = null;
@@ -175,12 +175,12 @@ public class UserDAO {
 		try {
 			con = ds.getConnection();
 
-		String sql = "UPDATE userinfo SET user_pw=?, user_address=?, user_pnum=? WHERE user_num =?";
+		String sql = "UPDATE userinfo SET user_pw=?, user_address=?, user_pnum=? WHERE user_id =?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, user_pw);
 		pstmt.setString(2, user_address);
 		pstmt.setString(3, user_pnum);
-		pstmt.setInt(4, user_num);
+		pstmt.setString(4, session_id);
 		pstmt.executeUpdate();
 		}
 		
@@ -188,9 +188,6 @@ public class UserDAO {
 		catch(Exception e) {
 			e.printStackTrace();
 			}
-			
-							
-		
 	}
 
 

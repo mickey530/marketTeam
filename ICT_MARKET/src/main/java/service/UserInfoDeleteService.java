@@ -18,11 +18,12 @@ public class UserInfoDeleteService implements boardInterface_Service{
 		int uNum = Integer.parseInt(struNum);
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("session_id");
-		// 1. dao»ý¼º
+		// 1. daoï¿½ï¿½ï¿½ï¿½
 		if(sId == user_id) {
 		UserDAO dao = UserDAO.getInstance();
-		// 2. »èÁ¦·ÎÁ÷ ½ÇÇà
+		// 2. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		dao.deleteUser(uNum);
+		session.invalidate();
 		}
 	}
 

@@ -19,6 +19,7 @@ public class BoardDetailService implements boardInterface_Service {
 		
 		String boardnum = request.getParameter("board_num");
 		int board_num = Integer.parseInt(boardnum);
+		request.setAttribute("boardnum", boardnum);
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		BoardVO boarddetail = dao.getBoardDetail(board_num);
