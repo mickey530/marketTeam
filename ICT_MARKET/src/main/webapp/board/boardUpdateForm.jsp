@@ -14,7 +14,7 @@
 	<form action="http://localhost:8181/ICT_MARKET/boardUpdate" method="post">
 		<input type="hidden" name="board_num" value="${board.board_num }">
 		<input type="text" name="board_title" placeholder="title" value="${board.board_title }">
-		<input type="text" name="user_id" placeholder="user_id" value="${boarddetail.user_id }">
+		<input type="text" name="user_id" placeholder="user_id" value="${board.user_id }">
 		<input type="text" name="board_category" placeholder="category" value="${board.board_category }">
 		<input type="text" name="board_info" placeholder="info" value="${board.board_info }"><br/>
 		<input type="hidden" value="${board_writetime}" readonly>
@@ -208,7 +208,7 @@ transition :0.5s;
 </head>
 <body>
 <c:if test="${sessionScope.session_id eq null}">
-<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist.do"); %>
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET/board/Board_list.com"); %>
 </c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
