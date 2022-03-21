@@ -31,17 +31,12 @@ public class BoardUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String Num = request.getParameter("board_num");
 		int board_num = Integer.parseInt(Num); // casting
-		
 		String info = request.getParameter("board_info");
 		Boolean board_info = Boolean.parseBoolean(info); // casting
-		System.out.println(info);
-		System.out.println(board_info);
-		
 		String board_category = request.getParameter("board_category");
 		String board_title= request.getParameter("board_title");
 		String board_content= request.getParameter("board_content");
-		
-		String price = request.getParameter("board_amount").replaceAll(",", "");
+		String price = request.getParameter("board_amount");
 		int board_amount = Integer.parseInt(price); // casting
 		
 		System.out.println(board_num);

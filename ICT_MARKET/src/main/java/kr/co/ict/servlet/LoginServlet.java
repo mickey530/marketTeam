@@ -47,19 +47,20 @@ public class LoginServlet extends HttpServlet {
 			
 			UserDAO dao = UserDAO.getInstance();
 			
-			UserVO user = dao.getUserLoginData(id);
-			if(user != null){
+			 UserVO user = dao.getUserLoginData(id);
+			 if(user != null){
 
 					String uId = user.getUser_id();// hint * getter
 					String uPw = user.getUser_pw();
+					System.out.println("DB�� ���� ���̵� : " + uId);
+					System.out.println("DB�� ���� ��й�ȣ : " + uPw);
 
 					if(id.equals(uId) && pw.equals(uPw)){
 
 						HttpSession session = request.getSession();
 						session.setAttribute("session_id", uId);
 						session.setAttribute("session_pw", uPw);
-						RequestDispatcher dp = request.getRequestDispatcher("/main.jsp"); // 로직 테스트용
-						// RequestDispatcher dp = request.getRequestDispatcher("/Main_bk.jsp"); // 나중엔 이걸로
+						RequestDispatcher dp = request.getRequestDispatcher("/Main_bk.jsp");
 						dp.forward(request, response);
 
 					} else {

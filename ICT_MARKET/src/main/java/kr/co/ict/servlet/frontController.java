@@ -20,6 +20,7 @@ import service.BoardUpdateService;
 import service.JoinService;
 import service.LoginService;
 import service.LogoutService;
+import service.MainService;
 import service.UserInfoDeleteService;
 import service.UserInfoService;
 import service.UserInfoUpdateFormService;
@@ -61,18 +62,22 @@ public class frontController extends HttpServlet {
 		String ui = null;
 		boardInterface_Service is = null;
 		
-		if (uri.equals("/ICT_MARKET/userJoin.com")) {
+		if (uri.equals("/ICT_MARKET/main.com")) {
+			is = new MainService();
+			is.execute(request, response);
+			ui = "/main.jsp";
+		}else if (uri.equals("/ICT_MARKET/userJoin.com")) {
 			is = new JoinService();
 			is.execute(request, response);
-			ui = "/users/join_welcome.jsp";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLogin.com")) {
 			is = new LoginService();
 			is.execute(request, response);
-			ui = "/Main_bk.jsp";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
 			is = new LogoutService();
 			is.execute(request, response);
-			ui = "/index.com";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userInfo.com")) {
 			is = new UserInfoService();
 			is.execute(request, response);
@@ -80,7 +85,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userInfoDel.com")) {
 			is = new UserInfoDeleteService();
 			is.execute(request, response);
-			ui = "/index.com";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
 			is = new UserInfoUpdateFormService();
 			is.execute(request, response);

@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.co.ict.UserDAO;
 
@@ -30,16 +29,15 @@ public class UserInfoUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("session_id"); // session_id
-		String user_pw = request.getParameter("pw");
-		String user_address = request.getParameter("address");
-		String user_pnum= request.getParameter("pNum");
-
+		String suNum = request.getParameter("user_num");
+		String pw = request.getParameter("pw");
+		String address = request.getParameter("address");
+		String pNum= request.getParameter("pNum");
+		int uNum = Integer.parseInt(suNum);
 		UserDAO dao = UserDAO.getInstance();
-		dao.updateCheck(user_id, user_pw, user_pnum, user_address);
+		dao.updateCheck(uNum,pw,pNum,address);
 		
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo?user_id=" + user_id);
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo?user_num="+uNum);
 	}
 
 }

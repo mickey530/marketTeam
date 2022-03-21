@@ -171,7 +171,8 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
@@ -212,9 +213,9 @@ transition :0.5s;
 </header>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
+					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){
@@ -310,7 +311,7 @@ transition :0.5s;
 		</tr>
 		</c:forEach>
 	</table>
-	<form action="http://localhost:8181/ICT_MARKET/board_search.com" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/search"  method="post">
 	<table id="navgate" class="container">
 	<tr>
     <th>

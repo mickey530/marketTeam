@@ -26,6 +26,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 transition :0.5s;
 }
 
+#head{
+font-family: 'Play', sans-serif;
+font-size: 90%;
+}
 
 .sidenav{
 	width:100px;
@@ -205,10 +209,10 @@ transition :0.5s;
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <c:if test="${sessionScope.session_id eq null }">
-<header class="p-3 border-bottom bg-white sticky-top">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -217,9 +221,10 @@ transition :0.5s;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
 					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
 					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
@@ -232,10 +237,10 @@ transition :0.5s;
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <c:if test="${sessionScope.session_id ne null }">
-<header class="p-3 border-bottom bg-white sticky-top">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -244,8 +249,9 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="search_keyword" placeholder="Search..." aria-label="Search">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
@@ -286,9 +292,9 @@ transition :0.5s;
 </c:if>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="http://localhost:8181/ICT_MARKET/userInfo" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/logOut" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){

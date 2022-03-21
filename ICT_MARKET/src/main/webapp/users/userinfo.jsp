@@ -41,12 +41,13 @@
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="font-family: 'Play', sans-serif; font-size: 80%">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li style="font-family: 'Play', sans-serif; font-size: 80%"><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li style="font-family: 'Play', sans-serif; font-size: 80%"><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -68,8 +69,9 @@
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="font-family: 'Play', sans-serif; font-size: 80%">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>

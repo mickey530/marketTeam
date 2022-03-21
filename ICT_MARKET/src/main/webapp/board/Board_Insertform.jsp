@@ -201,9 +201,10 @@ transition :0.5s;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
 					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
 					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
@@ -228,10 +229,9 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="searchkey" name="search_keyword" placeholder="Search" aria-label="Search">
-
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
@@ -276,9 +276,9 @@ transition :0.5s;
 
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
+					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){

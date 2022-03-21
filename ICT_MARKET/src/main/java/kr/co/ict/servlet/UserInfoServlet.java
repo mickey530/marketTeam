@@ -33,16 +33,22 @@ public class UserInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("session_id"); // session_id
-		System.out.println(user_id);
+		String usernum = request.getParameter("user_num");
+		int user_num = Integer.parseInt(usernum);
+		System.out.println(user_num);
+		// dao 생성
 		UserDAO dao = UserDAO.getInstance();
-		UserVO user = dao.getUserData(user_id);
-		System.out.println(user);
-		request.setAttribute("user",user);
-
-		RequestDispatcher dp = request.getRequestDispatcher("/users/userinfo.jsp");
-		dp.forward(request, response);
+		// dao에서 해당 글번호에 대한 정보를 가져오고 
+		UserVO user = dao.getUserData(user_num);
+		// 정보가 들어왔는지 디버깅
+		 System.out.println(user);
+		// 디테일페이지로 포워딩(조금이따)
+		 request.setAttribute("user",user);
+			
+			// 4. /board/boardlist.jsp로 포워딩하기
+			// 포워딩 후  el로 바인딩한 자료를 화면에 뿌려보세요
+			RequestDispatcher dp = request.getRequestDispatcher("/users/userinfo.jsp");
+			dp.forward(request, response);
 			
 	}
 
