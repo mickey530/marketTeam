@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.BoardCommentInsertService;
+import service.CommentInsertService;
 import service.BoardDeleteService;
 import service.BoardDetailService;
 import service.BoardInsertService;
@@ -103,7 +103,7 @@ public class frontController extends HttpServlet {
 			ui = "/board/board_detail.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
 			//comment
-			is = new BoardCommentInsertService();
+			is = new CommentInsertService();
 			is.execute(request, response);
 			ui = "/board/board_detail.jsp";
 		}else if (uri.equals("/ICT_MARKET/boardInsertForm.com")) {

@@ -78,6 +78,38 @@ public class BoardCommentDAO {
 		}	
 		return boardcommentList;
 	}
+	
+	// how many comment 
+	public int getNumberOfComment(int comment_board_num){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int comment_count = 0;
+		try {
+			con = ds.getConnection();
+	
+			String sql = "SELECT COUNT(comment_board_num) FROM boardcomment WHERE comment_board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_board_num);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				comment_count = rs.getInt("COUNT(comment_board_num)");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+		return comment_count;
+	}
+	
 	// when use "comment upadate form"
 	public BoardCommentVO getComment(int comment_num){
 		Connection con = null;

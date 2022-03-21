@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.ict.BoardCommentDAO;
 
-public class BoardCommentInsertService implements boardInterface_Service{
+public class CommentInsertService implements boardInterface_Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
