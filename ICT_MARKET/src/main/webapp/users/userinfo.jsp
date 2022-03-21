@@ -168,7 +168,7 @@
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
     
-    <input type="hidden" value="${user.user_num }" name="user_num"/>
+    <input type="hidden" value="${user.user_id }" name="user_id"/>
       <input type="submit" class="form-control" value="수정" readonly/>
     </div>
   </div>

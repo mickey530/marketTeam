@@ -14,20 +14,12 @@ public class UserInfoUpdateFormService implements boardInterface_Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String struNum = request.getParameter("user_num");
-		int uNum = 0;
-		if(struNum != null) {
-			uNum = Integer.parseInt(struNum);
-		}
+    	HttpSession session = request.getSession();
+		String session_id = (String)session.getAttribute("session_id");
 		
 		UserDAO dao = UserDAO.getInstance();
-		// 2. BoardVO 가져오기
-		UserVO user = dao.getUserData(uNum);
-		// 3. 가져온 데이터 바인딩
+		UserVO user = dao.getUserData(session_id);
 		request.setAttribute("user", user);
-		// 4. 목적지로 포워딩(boardUpdateForm.jsp)
-		HttpSession session = request.getSession();
-		String sId = (String)session.getAttribute("session_id");
 	}
 
 }

@@ -82,7 +82,7 @@ public class UserDAO {
 	
 	
 	
-	public UserVO getUserData(int userNum) {
+	public UserVO getUserData(String session_id) {
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
@@ -94,7 +94,7 @@ public class UserDAO {
 				String sql = "SELECT * FROM userinfo WHERE user_num=?";
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setInt(1, userNum);
+				pstmt.setString(1, session_id);
 				rs = pstmt.executeQuery();
 				if(rs.next()){ 
 				int user_num = rs.getInt("user_num");
