@@ -187,7 +187,7 @@
 					<td id="name"><input type="text" name="name"required></td>
 				</tr>
 				<tr>
-					<td id="id"> 아이디  </td>
+					<td id="id"> 아이디 </td>
 					<td>
 						<input type="text" name="id"required>
 					</td>				
