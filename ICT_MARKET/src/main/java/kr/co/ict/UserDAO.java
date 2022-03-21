@@ -256,7 +256,40 @@ public void deleteUser(String user_id) {
 			}
 		}	
 }
-	
+	public int getPageNum() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pageNum = 0;	
+		
+		
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT COUNT(*) FROM userinfo";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pageNum = rs.getInt(1);
+				
+				
+				
+				
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return pageNum;	
+	}
 	}
 
 
