@@ -28,12 +28,12 @@
 </head>
 <body>
 <div id="wrapper">
-<!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<!-- <header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id eq null }">
+<header class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0">ICT MARKET</h2>
+			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -41,24 +41,27 @@
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="font-family: 'Play', sans-serif; font-size: 80%">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li style="font-family: 'Play', sans-serif; font-size: 80%"><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li style="font-family: 'Play', sans-serif; font-size: 80%"><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</header> -->
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
+<c:if test="${sessionScope.session_id ne null }">
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-			<h2 style="margin:0">ICT MARKET</h2>
+		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
 		<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -66,12 +69,13 @@
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="font-family: 'Play', sans-serif; font-size: 80%">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -80,7 +84,7 @@
 				</li>
                
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -94,8 +98,8 @@
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -106,6 +110,7 @@
 	</div>
 </div>
 </header>
+</c:if>
 
 
 <!-- main 컨텐츠 내용 -->
@@ -146,7 +151,7 @@
   
 
   </form>
-    <c:if test="${sId eq user.user_id }">
+    <c:if test="${sessionScope.session_id eq user.user_id }">
   <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>

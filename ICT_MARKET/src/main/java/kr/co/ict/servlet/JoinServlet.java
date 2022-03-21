@@ -60,7 +60,7 @@ public class JoinServlet extends HttpServlet {
 		    request.setAttribute("phone",phone);
 		    request.setAttribute("addr",addr);
 		    
-		    RequestDispatcher dp = request.getRequestDispatcher("/users/join_welcome.jsp");
+		    RequestDispatcher dp = request.getRequestDispatcher("/main.jsp");
 		    dp.forward(request, response);
 		    
 		

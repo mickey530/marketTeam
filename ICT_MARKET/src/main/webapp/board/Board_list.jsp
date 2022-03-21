@@ -2,6 +2,8 @@
 <%--@ page import="kr.co.ict.BoardDAO"--%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,9 +24,13 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		padding-bottom: 157px;
 	}
 	body{
-transition :0.5s;
-}
+	transition :0.5s;
+	}
 
+#head{
+font-family: 'Play', sans-serif;
+font-size: 90%;
+}
 
 .sidenav{
 	width:100px;
@@ -119,6 +125,8 @@ transition :0.5s;
 	float:right;
 	}
 	
+	td > a {text-decoration:none; color:black}
+	
 	footer{
 	font-size: 40%;
 	height: 150px;
@@ -138,11 +146,12 @@ transition :0.5s;
 <body>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<!-- <header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id eq null }">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0">ICT MARKET</h2>
+			<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -150,23 +159,26 @@ transition :0.5s;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</header> -->
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
-<header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id ne null }">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -175,8 +187,9 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="search_keyword" placeholder="Search..." aria-label="Search">
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
@@ -203,22 +216,25 @@ transition :0.5s;
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<div id="defaultNav" class="dNav">
-					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
-					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li>
+					<a href="#" id="profile" style="padding: 15px;"> 
+						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
 					</a>
-				</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
+</c:if>
+
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
-					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+					<a href="http://localhost:8181/ICT_MARKET/userInfo" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/logOut" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){
@@ -265,7 +281,7 @@ transition :0.5s;
 
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">${sentence }</h3>
+<h3 class="col-md-11">${info}</h3>
 <h5 class="col-md-1">Trade</h5>
 <table class="tab_menu">
   <tr class="list">
@@ -291,33 +307,33 @@ transition :0.5s;
 		<tr>
 			<th class="col-md-1">No</th>
 			<th class="col-md-8">제목</th>
-			<th>가격</th>
-			<th>글쓴이</th>
-			<th>날짜</th>
-			<th>조회</th>
+			<th style="text-align:center;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회</th>
 	</tr>
 		<c:forEach items="${boardList}" var="board">
 		<tr>
 	    	<td class="col-md-1">${board.board_num}</td>
 			<td class="col-md-8">			
-				<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}">
+				<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" style="text-decoration:none;">
 					${board.board_title}
 				</a>
 			</td>
-			<td>${board.board_amount}</td>
-			<td>${board.user_id}</td>
-			<td>${board.board_writetime}</td>
-			<td>${board.board_hit}</td>
+			<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:right;">${board.user_id}</td>
+			<td style="text-align:right;">${board.board_writetime}</td>
+			<td style="text-align:right;">${board.board_hit}</td>
 		</tr>
 		</c:forEach>
 	</table>
 	<div id="navgate" class="container">
-<!--<c:if test="${sessionScope.session_id eq null}">-->
+<c:if test="${not empty sessionScope.session_id}">
 <form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
-<!--</c:if>-->
+</c:if>
 </div>
 </div>
 
