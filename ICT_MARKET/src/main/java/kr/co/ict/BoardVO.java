@@ -16,11 +16,12 @@ public class BoardVO {
 	private int board_reported;
 	private Date board_writetime;
 	private Date board_updatetime;
+	private int board_picked_num;
 	// FOREIGN KEY(user_id) REFERENCES userinfo(user_id));
 	
 	public BoardVO(int board_num, String user_id, boolean board_info, String board_category, String board_title, String board_content,
 			int board_amount, boolean board_sold,  int board_hit, int board_reported, Date board_writetime,
-			Date board_updatetime) {
+			Date board_updatetime, int board_picked_num) {
 		super();
 		this.board_num = board_num;
 		this.user_id = user_id;
@@ -34,6 +35,7 @@ public class BoardVO {
 		this.board_hit = board_hit;
 		this.board_writetime = board_writetime;
 		this.board_updatetime = board_updatetime;
+		this.board_picked_num = board_picked_num;
 	}
 	
 	public int getBoard_num() {
