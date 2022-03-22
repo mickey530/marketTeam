@@ -99,7 +99,7 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			int limitNum = (PageNum -1) * 10;
-			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo + " ORDER BY board_num DESC limit ?, 20";
+			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo + " ORDER BY board_num DESC limit ?, 10";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, limitNum);
 			rs = pstmt.executeQuery();
@@ -167,7 +167,7 @@ public class BoardDAO {
 		}	
 	}
 	
-	public void updateBoard(int board_num, String board_title, String board_category, boolean board_info, String board_content, int board_amount) {
+	public void updateBoard(int board_num, String board_title, String board_category, boolean board_sold, String board_content, int board_amount) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -175,13 +175,13 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			
-			String update = "UPDATE board SET board_title = ?, board_category = ?, board_info = ?, board_content = ?,  board_amount = ?, board_updatetime = NOW() WHERE board_num = ?";
+			String update = "UPDATE board SET board_title = ?, board_category = ?, board_sold = ?, board_content = ?,  board_amount = ?, board_updatetime = NOW() WHERE board_num = ?";
 			
 			pstmt = con.prepareStatement(update);
 			
 			pstmt.setString(1, board_title);
 			pstmt.setString(2, board_category);
-			pstmt.setBoolean(3, board_info);
+			pstmt.setBoolean(3, board_sold);
 			pstmt.setString(4, board_content);
 			pstmt.setInt(5, board_amount);
 			pstmt.setInt(6, board_num);
@@ -482,7 +482,7 @@ public void pickedCount(int pick) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String allpagenum = "SELECT COUNT(*) board";
+		String allpagenum = "SELECT COUNT(*) FROM board";
 		int pageNum = 0;
 		
 		try {

@@ -28,21 +28,20 @@ transition :0.5s;
 font-family: 'Play', sans-serif;
 font-size: 90%;
 }
+#profile{
+position: relative;
+}
 
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -150,7 +149,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -216,36 +215,33 @@ font-size: 90%;
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
 				<li id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
-<!-- Header Menu(onclick main body->close-->
-				<div id="mySidenav" class="sidenav">
-					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
-					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
-            	</div>
 </c:if>
 
 <script>
 
 	function openNav(){
-		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
+		document.getElementById("mySidenav").style.height="150px";
 		document.getElementById("main").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
 		document.getElementById("main").style.filter="blur(0)";
 	}
 
@@ -264,7 +260,7 @@ font-size: 90%;
 	<div class="main_head">
 		<c:choose>
 			<c:when test="${not empty sessionScope.session_id}">
-			<h2 class="text-center">Welcome back! ${myname.user_name }.</h2>
+			<h2 class="text-center">Welcome back! ${myname.user_name}.</h2>
 			</c:when>
 			<c:otherwise>
 				<h2 class="text-center">Welcome to ICT Market!</h2>
@@ -278,12 +274,12 @@ font-size: 90%;
 				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
 				Recently thread
 				</h6>
-				<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" type="button" class="btn btn-sm" style="float:right;">+</a>
+				<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" type="button" class="btn btn-sm" style="float:right;">+</a>
 				<div class="line"></div>
 					<div class="recently">
 					
-						<div class="wtb" style="float:left;">
-						<h5 style="text-align:center; margin:20px">Want to Buy</h5>
+						<div class="wts" style="float:left;">
+						<h5 style="text-align:center; margin:20px">Want to Sell</h5>
 						<c:forEach items="${boardListsell}" var="board">
 						<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
@@ -298,8 +294,8 @@ font-size: 90%;
 					
 					<div class="line2" style="float:left;"></div>
 					
-						<div class="wts" style="float:right;">
-						<h5 style="text-align:center; margin:20px">Want to Sell</h5>
+						<div class="wtb" style="float:right;">
+						<h5 style="text-align:center; margin:20px">Want to Buy</h5>
 						<c:forEach items="${boardListbuy}" var="board">
 							<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>

@@ -6,9 +6,10 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&
+family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
@@ -17,27 +18,31 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
 	body{
 transition :0.5s;
 }
 
+#head{
+font-family: 'Play', sans-serif;
+font-size: 90%;
+}
+
+#profile{
+position: relative;
+}
 
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -189,10 +194,10 @@ transition :0.5s;
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <c:if test="${sessionScope.session_id eq null }">
-<header class="p-3 border-bottom bg-white sticky-top">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -206,8 +211,8 @@ transition :0.5s;
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userLogin.com" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userJoin.com" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -217,10 +222,10 @@ transition :0.5s;
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <c:if test="${sessionScope.session_id ne null }">
-<header class="p-3 border-bottom bg-white sticky-top">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -235,7 +240,7 @@ transition :0.5s;
 				</form>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -258,14 +263,16 @@ transition :0.5s;
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
-				<!-- 로그아웃 버튼 : 드롭다운 메뉴 완성 시 삭제 예정 -->
-				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
-				<li>
-				<div id="defaultNav" class="dNav">
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
 				</li>
 			</ul>
 		</div>
@@ -274,21 +281,16 @@ transition :0.5s;
 </header>
 </c:if>
 
-<!-- Header Menu(onclick main body->close-->
-				<div id="mySidenav" class="sidenav">
-					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
-					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
-            	</div>
 <script>
+
 	function openNav(){
-		document.getElementById("mySidenav").style.height="160px";
-		document.getElementById("mainboard").style.filter="blur(3px)";
+		document.getElementById("mySidenav").style.height="150px";
+		document.getElementById("main").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.getElementById("mainboard").style.filter="blur(0)";
+		document.getElementById("main").style.filter="blur(0)";
 	}
 	
 	function inputNumberFormat(obj) {
@@ -310,14 +312,16 @@ transition :0.5s;
 	       document.getElementById('sellButton').addEventListener('click',function(){
 	         document.getElementById("sellButton").style.color="Blue";
 	         document.getElementById("buyButton").style.color="rgb(162,162,162)";
-
+	         <!--price input on/off-->
+	         document.getElementById("priceinsert").disabled = false;
 	         document.getElementById("board_info").value = true;
 
 	       });
 	       document.getElementById('buyButton').addEventListener('click',function(){
 	         document.getElementById("buyButton").style.color="Blue";
 	         document.getElementById("sellButton").style.color="rgb(162,162,162)";
-
+	         <!--price input on/off-->
+	         document.getElementById("priceinsert").disabled = true;
 	         document.getElementById("board_info").value = false;
 	       });
 	     });
@@ -364,7 +368,7 @@ transition :0.5s;
 			</select>
 			</th>
     	 	<th style="text-align:center; width:50%">
-      		<input type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
+      		<input id="priceinsert" type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
       		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/ required>
       		</th>
       		<th><div class="btn-group" style="justify-content: center; float:right;">
@@ -372,6 +376,7 @@ transition :0.5s;
       		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
       		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
       		<input type="hidden" name="board_info" id="board_info">
+      		<input type="hidden" name="board_sold" id="board_sold">
 
 			</th>
 			</tr>

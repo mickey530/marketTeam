@@ -20,31 +20,31 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
 	body{
-transition :0.5s;
-}
+	transition :0.5s;
+	}
 
 #head{
 font-family: 'Play', sans-serif;
 font-size: 90%;
 }
 
+#profile{
+position: relative;
+}
+
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -139,6 +139,7 @@ font-size: 90%;
 	#mainboard #contents {
 	align:left;
 	width:100%;
+	position: relative;
 	}
 	
 	
@@ -153,41 +154,49 @@ font-size: 90%;
 	
 	#navgate{
 	display: flex;
-	justify-content: center;
+	justify-content:center;
 	margin-top:-15px;
-	max-width: 90%;
+	max-width: 93%;
   	font-size: 2vmin;
 	}
 	#navgate .btn:hover{
 	color: #f1f1f1;
 	}
 	#navgate #list{
-    white-space: nowrap;
-	text-align:left;
-	margin-left:30px;
+	float: left;
+	margin-left:0px;
 	}
 	
 	#navgate #post{
-    white-space: nowrap;
-	float:right;
+	float: left;
+	}
+	
+	#contents #picked input[type="submit"]{
+	display: none;
+	}
+	#pickeddiv{
+	width:auto;
+	margin-top: 5px;
+	float: right;
+	align-content: center;
+	}
+	#pickeddiv:hover{
+	color: #f1f1f1;
 	}
 	
 	#navgate #edit{
     white-space: nowrap;
-	float:right;
+	float: left;
 	}
 	
 	#navgate #del{
     white-space: nowrap;
-	float:right;
-	margin-right:30px;
+	float: left;
 	}
 	
 	#comment:hover{
 	color: #f1f1f1;
 	}
-	
-	
 	
 	footer{
 	font-size: 40%;
@@ -212,7 +221,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -226,8 +235,8 @@ font-size: 90%;
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userLogin.com" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userJoin.com" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -249,13 +258,13 @@ font-size: 90%;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -264,7 +273,7 @@ font-size: 90%;
 				</li>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -272,41 +281,40 @@ font-size: 90%;
 					</a>
 				</li>
 				<li>
-					<a href="" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id }</a></li>
-				<div id="defaultNav" class="dNav">
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
-				</div>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
 </c:if>
-<!-- Header Menu(onclick main body->close-->
-				<div id="mySidenav" class="sidenav">
-					<a href="http://localhost:8181/ICT_MARKET/userInfo" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
-					<a href="http://localhost:8181/ICT_MARKET/logOut" class="text-center">Logout</a>
-            	</div>
+
 <script>
+
 	function openNav(){
-		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
-		document.getElementById("mainboard").style.filter="blur(3px)";
+		document.getElementById("mySidenav").style.height="150px";
+		document.getElementById("main").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
-		document.getElementById("mainboard").style.filter="blur(0)";
+		document.getElementById("main").style.filter="blur(0)";
 	}
 
 	<!--search script-->
@@ -336,17 +344,16 @@ font-size: 90%;
 	      document.querySelector(activeCont).style.display = 'block';
 	    });
 	  }
+	  
 	
 </script>
-
-
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">${boarddetail.board_title}</h3>
+<h3 class="col-md-11">${info}${boarddetail.board_title}</h3>
 <h6 class="col-md-12">Trade </h6>
 
 <p id="no" class="col-2">No.${boarddetail.board_num}</p>
-<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
+<p id="writer" class="col-9" style="font-size:80%; float:left;">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
 <p id="read" class="col-1">${boarddetail.board_hit},read</p>
 <hr/>
 </div>
@@ -355,45 +362,65 @@ font-size: 90%;
 <!-- notate unit of bills (below)-->
 <!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
 <table class="table table-dark table-hover" style="margin-left:14px; font-size: 2vmin;">
+<c:if test="${boarddetail.board_info}">
+<tr>
+	<th>Status</th>
+	<c:if test="${boarddetail.board_sold}">
+    <td style="text-align:right;">Soldout</td></c:if>
+    <c:if test="${!boarddetail.board_sold}">
+    <td style="text-align:right;">Sold</td></c:if>
+</tr>
 <tr>
 	<th>Price</th>
     <td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>
 </tr>
+</c:if>
 <tr>
 	<th>Cartegory</th>
     <td style="text-align:right;">${boarddetail.board_category}</td>
 </tr>
 </table>
+<!--<c:if test="${not empty sessionScope.session_id},${sessionScope.session_id eq boarddetail.user_id}">-->
+<form id="picked" action="http://localhost:8181/ICT_MARKET/Picked" method="post">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<label>
+<input type="submit"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+	<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z">
+      </svg>
+</label>
+</form>
+<h6>sad</h6>
+</div>
+<!--</c:if>-->
 </div>
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
 <p class="text-left">${boarddetail.board_content}</p>
-
 </div>
 <hr/>
 <div id="navgate" class="container">
 
-<form id="list" class="col-md-11">
+<form id="list" class="col-11">
     <a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL">
         <input type="button" class="btn" value="List">
     </a>
 </form>
 
-<!--<c:if test="${sId ne null}">-->
-<c:if test="${sessionScope.session_id ne null}">
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm" method="post">
+<c:if test="${not empty sessionScope.session_id}">
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
 </c:if>
-<!--</c:if>-->
+
 <c:if test="${sessionScope.session_id eq boarddetail.user_id}">
-<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm" method="post">
+<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Edit" id="comment">
 </form>
-<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete" method="post">
+<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Delete" id="comment">
@@ -448,7 +475,5 @@ font-size: 90%;
 		
 </div>
 </div>
-
-
 </body>
 </html>

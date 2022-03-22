@@ -78,11 +78,11 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userJoinCheck.com")) {
 			is = new JoinService();
 			is.execute(request, response);
-			ui = "/";
+			ui = "/ICT_MARKET/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLoginCheck.com")) {
 			is = new LoginService();
 			is.execute(request, response);
-			ui = "/";
+			ui = "/ICT_MARKET/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
 			is = new LogoutService();
 			is.execute(request, response);
@@ -110,7 +110,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardList.com")) {
 			is = new BoardListService();
 			is.execute(request, response);
-			ui = "/board/Board_list.jsp?board_info=" + request.getParameter("board_info");
+			ui = "/board/Board_list.jsp?pageNum="+request.getParameter("PageNum")+"?board_info=" + request.getParameter("board_info");
 		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
 			is = new BoardDetailService();
 			is.execute(request, response);

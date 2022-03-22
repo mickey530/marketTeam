@@ -32,20 +32,20 @@ font-family: 'Play', sans-serif;
 font-size: 90%;
 }
 
+#profile{
+position: relative;
+}
+
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -109,14 +109,31 @@ font-size: 90%;
 	font-weight: 700;
 	font-size:30px;
 	}
-	
-	.pNation:hover{
+	.pagination{
+	color:black;
+	list-style: none;
+	display: inline-block;
+	margin-top: 5px;
+	}
+	.pagination li{
+	display: inline-block;
+	text-align: center;
+	}
+	.pagination a{
+	color: black;
+	display: block;
+	font-size: 17px;
+	text-decoration: none;
+	padding-left:5px;
+	padding-right:5px;
+	}
+	.pagination a:hover{
 	color: #f1f1f1;
 	}
 	
 	#navgate{
 	display: flex;
-	justify-content:flex-end;
+	justify-content:space-between;
 	margin-top:-15px;
   	font-size: 2vmin;
 	}
@@ -154,7 +171,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -168,8 +185,8 @@ font-size: 90%;
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userLogin.com" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userJoin.com" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -182,7 +199,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -220,12 +237,16 @@ font-size: 90%;
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
-				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
-				<li>
-					<a href="#" id="profile" style="padding: 15px;"> 
-						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li id="defaultNav" class="dNav">
+					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
+					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
 				</li>
 			</ul>
 		</div>
@@ -243,13 +264,11 @@ font-size: 90%;
 <script>
 	function openNav(){
 		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
 		document.getElementById("mainboard").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
 		document.getElementById("mainboard").style.filter="blur(0)";
 	}
 
@@ -310,8 +329,16 @@ font-size: 90%;
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
 			<th class="col-md-1">No</th>
-			<th class="col-md-8">제목</th>
+			<c:choose>
+	    	<c:when test="${info eq 'Want to Sell'}">
+			<th class="col-md-1">판매여부</th>
+			<th class="col-md-6">제목</th>
 			<th style="text-align:center;">가격</th>
+			</c:when>
+			<c:otherwise>
+			<th class="col-md-8">제목</th>
+			</c:otherwise>
+			</c:choose>
 			<th style="text-align:center;">글쓴이</th>
 			<th style="text-align:center;">날짜</th>
 			<th style="text-align:center;">조회</th>
@@ -321,50 +348,58 @@ font-size: 90%;
 		<c:forEach items="${boardList}" var="board">
 		<tr>
 	    	<td class="col-md-1">${board.board_num}</td>
-			<td class="col-md-8">			
-				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
-					${board.board_title}
+	    	<c:choose>
+	    	<c:when test="${info eq 'Want to Sell'}">
+	    	<c:if test="${board.board_sold == false}">
+			<td class="col-md-1">On Sale</td>
+			</c:if>
+			<c:if test="${board.board_sold == true}">
+			<td class="col-md-1">Soldout</td>
+			</c:if>
+			<td class="col-md-6">
+			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+				${board.board_title}
 				</a>
 			</td>
 			<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
-			<td style="text-align:right;">${board.user_id}</td>
-			<td style="text-align:right;">${board.board_writetime}</td>
-			<td style="text-align:right;">${board.board_hit}</td>
+			</c:when>
+			<c:otherwise>
+			<td class="col-md-8">
+			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+				${board.board_title}
+				</a>
+			</td>
+			</c:otherwise>
+			</c:choose>
+				
 			
-			<td style="text-align:right;">${board.board_picked_num}</td>
+			<td style="text-align:center;">${board.user_id}</td>
+			<td style="text-align:center;">${board.board_writetime}</td>
+			<td style="text-align:center;">${board.board_hit}</td>
+			
+			<td style="text-align:center;">${board.board_picked_num}</td>
 		</tr>
 		</c:forEach>
 	</table>
-	
-	<!--Pagination
-	.pNation>p>a:hover{
-	color: #f1f1f1;
-	}
-	-->
-	<script>
-	
-	</script>
-	<div>
-	<label class="pNation">
-    <c:if test="${dto.startPage eq 1}">
-    <p><a href="?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
-    </c:if>
-    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
-  	<p><a href="?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
-    </c:forEach>
-    <c:if test="${dto.endPage ne dto.totalPages}">
-    <p><a href="?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
-    </c:if>
-    </label>
-    </div>
  	
 	<div id="navgate" class="container">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=${infourl}?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
 	<c:if test="${not empty sessionScope.session_id}">
 	<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 	<input type="hidden" value="${boarddetail.board_num}" name="board_num">
 	<input type="submit" type="button" class="btn" value="Post Thread">
 	</form>
 	</c:if>
+	
 </div>
 </div>
 </body>
