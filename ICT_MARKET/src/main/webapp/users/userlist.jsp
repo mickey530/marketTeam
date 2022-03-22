@@ -7,7 +7,10 @@
 
 <!--add [no access for unauthorize manager option]-->
 <c:if test="${sId eq null}">
-<% response.sendRedirect("/ICT_MARKET/userLogin.com"); %>
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET/userLogin.com"); %>
+</c:if>
+<c:if test="${sId ne 'Manager' }">
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo.com"); %>
 </c:if>
 
 <meta charset="UTF-8">
@@ -129,7 +132,7 @@
  <c:forEach var="user" items="${userList}">
  <tr>
   <td>${ user.user_num}</td>
-  <td><a href="http://localhost:8181/ICT_MARKET/userInfo?user_num=${user.user_num}">${ user.user_name}</a></td>
+  <td><a href="http://localhost:8181/ICT_MARKET/userInfoManager.com?user_num=${user.user_num}">${ user.user_name}</a></td>
   <td>${ user.user_id}</td>
   <td>${ user.user_pnum }</td>
   <td>${ user.user_address }</td>
@@ -139,8 +142,23 @@
 </table>
 
 </div>
-
+<nav aria-label="Page navigation example">
+  	<ul class="pagination justify-content-center">
+  	
+    <li class="page-item ${dto.startPage eq 1 ? 'disabled' : '' }">
+      <a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${dto.startPage - 1}">Previous</a>
+    </li>
+    
+    <c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+    <li class="page-item ${dto.currentPage eq pageIndex ? 'active' : ''}"><a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${pageIndex}">${pageIndex}</a></li>
+    </c:forEach>
+    <li class="page-item ${dto.endPage eq dto.totalPages ? 'disabled' : '' }">
+      <a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${dto.endPage + 1}">Next</a>
+    </li>
+  	</ul>
+	</nav>
 </div>
+
 <!-- 여기서 부터는 푸터 -->
 
 <footer class="p-3 py-3 border-top">
