@@ -133,27 +133,27 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
 			is = new BoardUpdateService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
 			is = new BoardDeleteService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardList.com";
+			ui = "/boardList.com?board_info=ALL";
 		}else if (uri.equals("/ICT_MARKET/CommentInsert.com")) {
 			is = new CommentInsertService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/CommentUpdateForm.com")) {
 			is = new CommentUpdateFormService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/ICT_MARKET/CommentUpdate.com";
+			ui = "/board/Comment_update_form.jsp";
 		}else if (uri.equals("/ICT_MARKET/CommentUpdate.com")) {
 			is = new CommentUpdateService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/board/board_detail.jsp";
 		}else if (uri.equals("/ICT_MARKET/CommentDelete.com")) {
 			is = new CommentDeleteService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com?"+ request.getParameter("search_keyword"))){
 			is = new BoardSearchService();
 			is.execute(request, response);

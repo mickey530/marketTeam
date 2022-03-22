@@ -427,6 +427,7 @@ font-size: 90%;
 				<c:if test="${sessionScope.session_id eq comment.comment_id}">			
 					<form action="http://localhost:8181/ICT_MARKET/CommentDelete.com" method="post">
 						<input type="hidden" name="comment_num" value="${comment.comment_num }">
+						<input type="hidden" name="comment_id" value="${comment.comment_id }">
 						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
 						<input class="btn btn-sm" type="submit" value="Delete">
 					</form>
@@ -435,6 +436,7 @@ font-size: 90%;
 		</tr>
 		</c:forEach>
 	</table>
+	<!-- insert comment -->
 		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
 			<div class="form-floating">
 			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
