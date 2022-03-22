@@ -37,7 +37,7 @@ public class BoardVO {
 		this.board_updatetime = board_updatetime;
 		this.board_picked_num = board_picked_num;
 	}
-	
+
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -134,16 +134,22 @@ public class BoardVO {
 		this.board_updatetime = board_updatetime;
 	}
 
+	public int getBoard_picked_num() {
+		return board_picked_num;
+	}
+
+	public void setBoard_picked_num(int board_picked_num) {
+		this.board_picked_num = board_picked_num;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", user_id=" + user_id + ", board_info=" + board_info
 				+ ", board_category=" + board_category + ", board_title=" + board_title + ", board_content="
 				+ board_content + ", board_amount=" + board_amount + ", board_sold=" + board_sold + ", board_hit="
 				+ board_hit + ", board_reported=" + board_reported + ", board_writetime=" + board_writetime
-				+ ", board_updatetime=" + board_updatetime + "]";
+				+ ", board_updatetime=" + board_updatetime + ", board_picked_num=" + board_picked_num + "]";
 	}
 
-	
-	
 }
 	
