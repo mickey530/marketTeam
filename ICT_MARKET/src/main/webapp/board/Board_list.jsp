@@ -110,6 +110,10 @@ font-size: 90%;
 	font-size:30px;
 	}
 	
+	.pNation:hover{
+	color: #f1f1f1;
+	}
+	
 	#navgate{
 	display: flex;
 	justify-content:flex-end;
@@ -164,8 +168,8 @@ font-size: 90%;
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userLogin.com" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userJoin.com" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -311,6 +315,8 @@ font-size: 90%;
 			<th style="text-align:center;">글쓴이</th>
 			<th style="text-align:center;">날짜</th>
 			<th style="text-align:center;">조회</th>
+			
+			<th style="text-align:center;">찜</th>
 	</tr>
 		<c:forEach items="${boardList}" var="board">
 		<tr>
@@ -324,19 +330,42 @@ font-size: 90%;
 			<td style="text-align:right;">${board.user_id}</td>
 			<td style="text-align:right;">${board.board_writetime}</td>
 			<td style="text-align:right;">${board.board_hit}</td>
+			
+			<td style="text-align:right;">${board.board_picked_num}</td>
 		</tr>
 		</c:forEach>
 	</table>
+	
+	<!--Pagination
+	.pNation>p>a:hover{
+	color: #f1f1f1;
+	}
+	-->
+	<script>
+	
+	</script>
+	<div>
+	<label class="pNation">
+    <c:if test="${dto.startPage eq 1}">
+    <p><a href="?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
+    </c:if>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+  	<p><a href="?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
+    </c:forEach>
+    <c:if test="${dto.endPage ne dto.totalPages}">
+    <p><a href="?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
+    </c:if>
+    </label>
+    </div>
+ 	
 	<div id="navgate" class="container">
-<c:if test="${not empty sessionScope.session_id}">
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Post Thread">
-</form>
-</c:if>
+	<c:if test="${not empty sessionScope.session_id}">
+	<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
+	<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+	<input type="submit" type="button" class="btn" value="Post Thread">
+	</form>
+	</c:if>
 </div>
 </div>
-
-
 </body>
 </html>
