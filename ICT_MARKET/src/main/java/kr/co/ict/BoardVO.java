@@ -150,6 +150,7 @@ public class BoardVO {
 				+ board_hit + ", board_reported=" + board_reported + ", board_writetime=" + board_writetime
 				+ ", board_updatetime=" + board_updatetime + ", board_picked_num=" + board_picked_num + "]";
 	}
-
+	
+	
 }
 	

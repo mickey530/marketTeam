@@ -48,13 +48,15 @@ public class ReportDAO {
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
+				int reported_num = rs.getInt("reported_num");
+				String reporting_id = rs.getString("reporting_id");
 				String reported_id = rs.getString("reported_id");
 				int reported_board_num = rs.getInt("reported_board_num");
 				String reported_reason = rs.getString("reported_reason");
 				
 				
 				// 클래스 생성 및 ArrayList에 저장
-				ReportVO reportData = new ReportVO(reported_id, reported_board_num, reported_reason);
+				ReportVO reportData = new ReportVO(reported_num, reporting_id, reported_id, reported_board_num, reported_reason);
 				ReportList.add(reportData);
 				}
 			
@@ -77,45 +79,43 @@ public class ReportDAO {
 	}
 	
 	// 특정 유저 검색용 메서드(검색창에서 input으로 받을 예정)
-	public List<ReportVO> getReportedUser(String input_id){
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<ReportVO> ReportList = new ArrayList<>();
+//		public List<ReportVO> getReportedUser(String input_id){
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		List<ReportVO> ReportList = new ArrayList<>();
 		
-		try {
-			con = ds.getConnection();
-			String getInfo = "SELECT * FROM reportlist WHERE reported_id = ?";
-			pstmt = con.prepareStatement(getInfo);
-			pstmt.setString(1, input_id);
-			rs = pstmt.executeQuery();
+//		try {
+//			con = ds.getConnection();
+//			String getInfo = "SELECT * FROM reportlist WHERE reported_id = ?";
+//			pstmt = con.prepareStatement(getInfo);
+//			pstmt.setString(1, input_id);
+//			rs = pstmt.executeQuery();
 
-			while(rs.next()) {
-				String reported_id = rs.getString("reported_id");
-				int reported_board_num = rs.getInt("reported_board_num");
-				String reported_reason = rs.getString("reported_reason");
+//			while(rs.next()) {
+//				String reported_id = rs.getString("reported_id");
+//				int reported_board_num = rs.getInt("reported_board_num");
+//				String reported_reason = rs.getString("reported_reason");
 				
 				
 				// 클래스 생성 및 ArrayList에 저장
-				ReportVO reportData = new ReportVO(reported_id, reported_board_num, reported_reason);
-				ReportList.add(reportData);
-				}
+//				ReportVO reportData = new ReportVO(reported_id, reported_board_num, reported_reason);
+//				ReportList.add(reportData);
+//				}
 			
 			
-		} catch(Exception e){
-			e.printStackTrace();		
-		} finally{
+//		} catch(Exception e){
+//			e.printStackTrace();		
+//		} finally{
 			
-			try {
-				con.close();
-				pstmt.close();
-				rs.close();
-			} catch(SQLException se) {
-				se.printStackTrace();		
-			}
-		}
+//			try {
+//				con.close();
+//				pstmt.close();
+//				rs.close();
+//			} catch(SQLException se) {
+//				se.printStackTrace();		
+//			}
+//		}
 		// 리턴 값
-		return ReportList;
-
+//		return ReportList;
 	}
-}
