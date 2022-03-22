@@ -16,9 +16,7 @@ public class CommentUpdateFormService implements boardInterface_Service{
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		BoardCommentDAO dao = BoardCommentDAO.getInstance();
 		BoardCommentVO comment = dao.getComment(comment_num);
-		
 		request.setAttribute("comment", comment);
-		
 	}
 
 }
