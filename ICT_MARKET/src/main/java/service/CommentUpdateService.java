@@ -14,9 +14,10 @@ public class CommentUpdateService implements boardInterface_Service{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
-		int comment_board_num = Integer.parseInt(request.getParameter("comment_board_num"));
+		int board_num = Integer.parseInt(request.getParameter("comment_board_num"));
 		String comment_content = request.getParameter("comment_content");
 		
+		request.setAttribute("board_num", board_num);
 		BoardCommentDAO dao = BoardCommentDAO.getInstance();
 		dao.updateComment(comment_content, comment_num);		
 	}

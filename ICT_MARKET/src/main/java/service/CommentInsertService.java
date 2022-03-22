@@ -15,7 +15,6 @@ public class CommentInsertService implements boardInterface_Service{
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String comment_content = request.getParameter("comment_content");
 		
-		
 		BoardCommentDAO dao = BoardCommentDAO.getInstance();
 		dao.insertComment(comment_id, board_num, comment_content);
 	}

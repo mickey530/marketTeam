@@ -381,19 +381,19 @@ font-size: 90%;
 
 <!--<c:if test="${sId ne null}">-->
 <c:if test="${sessionScope.session_id ne null}">
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm" method="post">
+<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Post Thread">
 </form>
 </c:if>
 <!--</c:if>-->
 <c:if test="${sessionScope.session_id eq boarddetail.user_id}">
-<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm" method="post">
+<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Edit" id="comment">
 </form>
-<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete" method="post">
+<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input type="submit" type="button" class="btn" value="Delete" id="comment">
@@ -417,7 +417,7 @@ font-size: 90%;
 			<td class="align-middle">${comment.comment_updatetime }</td>
 			<td>
 				<c:if test="${sessionScope.session_id eq comment.comment_id}">
-					<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm" method="post">
+					<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm.com" method="post">
 						<input type="hidden" name="comment_num" value="${comment.comment_num }">
 						<input class="btn btn-sm" type="submit" value="Edit">
 					</form>
@@ -425,7 +425,7 @@ font-size: 90%;
 			</td>
 			<td>
 				<c:if test="${sessionScope.session_id eq comment.comment_id}">			
-					<form action="http://localhost:8181/ICT_MARKET/CommentDelete" method="post">
+					<form action="http://localhost:8181/ICT_MARKET/CommentDelete.com" method="post">
 						<input type="hidden" name="comment_num" value="${comment.comment_num }">
 						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
 						<input class="btn btn-sm" type="submit" value="Delete">
@@ -435,7 +435,7 @@ font-size: 90%;
 		</tr>
 		</c:forEach>
 	</table>
-		<form action="http://localhost:8181/ICT_MARKET/CommentInsert" method="post">
+		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
 			<div class="form-floating">
 			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
 			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
