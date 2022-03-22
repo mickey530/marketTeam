@@ -37,17 +37,20 @@ public class UserDAO {
 			return dao;
 		}
 	
-	public List<UserVO> getAllUserList(){
+	public List<UserVO> getAllUserList(int pageNum){
 	
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<UserVO> userList = new ArrayList<>();
-	
+		final int USER_COUNT = 10;
 		try {
 		con = ds.getConnection();
-		String sql = "SELECT * FROM userinfo";
+		int limitNum = ((pageNum - 1)* USER_COUNT);
+		String sql = "SELECT * FROM userinfo ORDER BY user_num DESC limit ?, ?";
 		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, limitNum);
+		pstmt.setInt(2, USER_COUNT);
 		rs = pstmt.executeQuery();
 		
 		
@@ -121,6 +124,45 @@ public class UserDAO {
 				}
 			return user;
 	}
+	public UserVO getUserDataManager(int user_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		UserVO user = null;
+		
+	
+		try {
+			con = ds.getConnection();
+		String sql = "SELECT * FROM userinfo WHERE user_num=?";
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setInt(1, user_num);
+		rs = pstmt.executeQuery();
+		if(rs.next()){ 
+		user_num = rs.getInt("user_num");
+		String user_name = rs.getString("user_name");
+		String user_pnum = rs.getString("user_pnum");
+		String user_address = rs.getString("user_address");
+		String user_id = rs.getString("user_id");
+		String user_pw= rs.getString("user_pw");
+		
+		user = new UserVO(user_num,user_id,user_pw, user_name, user_pnum, user_address);
+			 }
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		finally{
+			try {
+			con.close();
+			pstmt.close();
+			rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	return user;
+}
 	public UserVO getUserLoginData(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
