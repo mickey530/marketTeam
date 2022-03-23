@@ -14,11 +14,13 @@ public class UserInfoUpdateFormService implements boardInterface_Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	HttpSession session = request.getSession();
-		String session_id = (String)session.getAttribute("session_id");
+    	
+		String suNum = request.getParameter("user_num");
+		int uNum = Integer.parseInt(suNum);
+		
 		
 		UserDAO dao = UserDAO.getInstance();
-		UserVO user = dao.getUserData(session_id);
+		UserVO user = dao.getUserDataManager(uNum);
 		request.setAttribute("user", user);
 	}
 

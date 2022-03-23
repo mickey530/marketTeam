@@ -9,22 +9,22 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.ict.UserDAO;
 
-public class UserInfoDeleteService implements boardInterface_Service{
+public class UserInfoManagerDeleteService implements boardInterface_Service{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String user_id = request.getParameter("user_id");
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String struNum = request.getParameter("user_num");
 		int uNum = Integer.parseInt(struNum);
-		HttpSession session = request.getSession();
-		String sId = (String)session.getAttribute("session_id");
+		
 
-		if(sId == user_id) {
 		UserDAO dao = UserDAO.getInstance();
 
 		dao.deleteUser(uNum);
-		session.invalidate();
+
 		}
+
+		
 	}
 
-}
+

@@ -23,6 +23,7 @@ import service.LoginService;
 import service.LogoutService;
 import service.MainService;
 import service.UserInfoDeleteService;
+import service.UserInfoManagerDeleteService;
 import service.UserInfoManagerService;
 import service.UserInfoService;
 import service.UserInfoUpdateFormService;
@@ -102,7 +103,13 @@ public class frontController extends HttpServlet {
 			is = new UserInfoDeleteService();
 			is.execute(request, response);
 			ui = "/main.com";
-		}else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
+		}
+		else if (uri.equals("/ICT_MARKET/userInfoManagerDelete.com")) {
+			is = new UserInfoManagerDeleteService();
+			is.execute(request, response);
+			ui = "/main.com";
+		}
+		else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
 			is = new UserInfoUpdateFormService();
 			is.execute(request, response);
 			ui = "/users/userUpdateForm.jsp";
