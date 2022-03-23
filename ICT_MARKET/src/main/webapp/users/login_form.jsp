@@ -155,6 +155,7 @@
 	</div>
 </header> -->
 
+
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
