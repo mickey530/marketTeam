@@ -155,7 +155,6 @@
 	</div>
 </header> -->
 
-
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
@@ -275,26 +274,5 @@
 	</div>        
 
 </footer>
-
-=======
-	<h3> 로그인 </h3>
-	<form action="http://localhost:8181/ICT_MARKET/userLoginCheck.com" name="loginForm" method="post">
-		<table border="1">
-			<tr>
-				<td id="id"> 아이디 </td>
-				<td><input type="text" name="id"></td>
-			</tr>
-			<tr>
-				<td id="pw"> 비밀번호 </td>
-				<td><input type="password" name="pw"></td>
-			</tr>
-			<tr>
-				<td id="submit" colspan="2">
-					<input type="submit" value="로그인" > 
-					<a href="http://localhost:8181/ICT_MARKET/userJoin.com">회원가입</a>
-			</tr>
-		</table>
-	</form>
->>>>>>> master
 </body>
 </html>

@@ -1,6 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- member/loginForm.jsp --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+   <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+
 <style>
+	
+	   .form-member-join{
+     
+      width:900px;
+   
+     margin-left:1400px;
+     margin-bottom: 400px;
+     margin-top: 100px;
+      }
+      
+
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	
+	
+	
+	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
@@ -93,6 +127,7 @@
 <title>ICT Market</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
@@ -119,6 +154,7 @@
 		</div>
 	</div>
 </header> -->
+
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <header class="p-3 border-bottom bg-white sticky-top">
@@ -176,51 +212,48 @@
 
 
 <!-- main 컨텐츠 내용 -->
-<div id="main">
-	 <h1 align="center"> 회원 가입 </h1>
-<fieldset id="fieldset" >	
-	
-		<form action="http://localhost:8181/ICT_MARKET/userJoinCheck.com"  method="post">
-			<table border="1" width="1265px">
-				<tr>
-					<td id="name"> 이 름 </td>
-					<td id="name"><input type="text" name="name"required></td>
-				</tr>
-				<tr>
-					<td id="id"> 아이디 </td>
-					<td>
-						<input type="text" name="id"required>
-					</td>				
-				</tr>
-				<tr>
-					<td id="pw"> 비밀번호 </td>
-					<td><input type="password" name="pw"required></td>
-				</tr>
-				
-				
-				<tr>
-					<td id="phone"> 폰번호 </td>
-					<td>
-						<input type="text" name="phone" maxlength="11" required>
-						
-					</td>
-				</tr>
-				<tr>
-					<td id="addr"> 주 소 </td>
-					<td><input type="text" name="addr" size="50"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value="회원가입"> 
-						<input type="reset" value="초기화">
-					</td>
-				</tr>
-			</table>
-		</form>
->>>>>>> master
-</fieldset>	
+ <body class="text-center">
+    
+<main class="form-member-join">
+  <form action="http://localhost:8181/ICT_MARKET/ICTJ"method="post">
+   
+    <h1 class="h3 mb-3 fw-normal"><h1>회 원 가 입</h1></br>
 
-</div>
+     <div class="form-floating">
+      <h4>이 름</h4>
+      <input type=text" class="form-control" name="name" required placeholder="name">
+      <label for="floatingInput">name</label></br></br>
+    </div>
+    <h4>아이디</h4>
+    <div class="form-floating">
+      <input type=text" class="form-control" name="id" required placeholder="id">
+      <label for="floatingInput">id</label></br></br>
+    </div>
+    <h4>비밀 번호</h4>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="pw" required placeholder="password">
+       <label for="floatingInput">password</label></br></br>
+    </div>
+    <h4>폰 번호</h4>
+    <div class="form-floating">
+      <input type="text" class="form-control" name="phone" maxlength="11" required placeholder="phone">
+       <label for="floatingInput">phone</label></br></br>
+    </div>
+    <h4>주 소</h4>
+     <div class="form-floating">
+      <input type="addr" class="form-control" name="addr"  required placeholder="addr">
+       <label for="floatingInput">addr</label></br></br>
+    </div>
+
+    
+    <button class="w-100 btn btn-lg btn-primary" type="submit"><h2>회원 가입</h2></button>
+    
+  </form>
+</main>
+
+
+    
+  </body>
 <!-- 여기서 부터는 푸터 -->
 
 <footer class="p-3 py-3 border-top">
@@ -256,5 +289,8 @@
 
 </footer>
 
+
+		</table>
+	</form>
 </body>
 </html>
