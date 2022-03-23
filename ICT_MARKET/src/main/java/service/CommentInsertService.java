@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.ict.BoardCommentDAO;
 
-public class BoardCommentInsertService implements boardInterface_Service{
+public class CommentInsertService implements boardInterface_Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -15,7 +15,7 @@ public class BoardCommentInsertService implements boardInterface_Service{
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String comment_content = request.getParameter("comment_content");
 		
-		
+		request.setAttribute("board_num", board_num);
 		BoardCommentDAO dao = BoardCommentDAO.getInstance();
 		dao.insertComment(comment_id, board_num, comment_content);
 	}

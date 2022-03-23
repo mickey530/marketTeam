@@ -151,7 +151,7 @@
   
 
   </form>
-    <c:if test="${sessionScope.session_id eq user.user_id }">
+   
   <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
@@ -173,7 +173,7 @@
     </div>
   </div>
   </form>
- </c:if>
+
  </div>
  
 

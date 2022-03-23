@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.BoardDAO;
+import kr.co.ict.BoardDTO;
 import kr.co.ict.BoardVO;
 
 public class BoardListService implements boardInterface_Service {
@@ -17,22 +18,33 @@ public class BoardListService implements boardInterface_Service {
 		BoardDAO dao = BoardDAO.getInstance();
 		List<BoardVO> boardList;
 		String info;
+		String strpNum = request.getParameter("PageNum");
+		int pNum = 0;
+		try {
+			pNum = Integer.parseInt(strpNum);
+		}catch(Exception e) {
+			pNum = 1;
+		}
 		
 		if(board_info.equals("WTS")) {
-			boardList = dao.getAllBoardList(true);
+			boardList = dao.getAllBoardList(true,pNum);
 			info = "Want to Sell";
 			
 		} else if(board_info.equals("WTB")) {
-			boardList = dao.getAllBoardList(false);
+			boardList = dao.getAllBoardList(false,pNum);
 			info = "Want to Buy";
 		} else {
-			boardList = dao.getAllBoardList();
+			boardList = dao.getAllBoardList(pNum);
 			info = "All Products";
 		}
 				
 		request.setAttribute("boardList", boardList);
-		request.setAttribute("info", info);
 		
+		int allPageNum = dao.getAllPageNum();
+		BoardDTO dto = new BoardDTO(allPageNum, pNum);
+		request.setAttribute("dto", dto);
+		
+		request.setAttribute("info", info);
 	}
 
 }

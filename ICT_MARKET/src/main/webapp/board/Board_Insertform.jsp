@@ -82,7 +82,7 @@ transition :0.5s;
 	}
 	
 	.main_contain{
-	font-family: font-family: 'Hahmlet', serif;
+	font-family: 'Hahmlet', serif;
 	width: 60%;
 	height: auto;
 	}
@@ -181,16 +181,19 @@ transition :0.5s;
 <title>ICT Market</title>
 </head>
 <body>
-<c:if test="${s eq null}">
-<% response.sendRedirect("http://localhost:8181/MyFirstWeb/boardlist.do"); %>
+
+<c:if test="${sessionScope.session_id eq null}">
+ <%response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList.com");%>
+
 </c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<!-- <header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id eq null }">
+<header class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0">ICT MARKET</h2>
+			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -198,23 +201,26 @@ transition :0.5s;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</header> -->
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
+<c:if test="${sessionScope.session_id ne null }">
 <header class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -223,11 +229,11 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="searchkey" placeholder="Search" aria-label="Search">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
-
+               
 				<li>
 					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
@@ -238,7 +244,7 @@ transition :0.5s;
 				</li>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -252,22 +258,27 @@ transition :0.5s;
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<!-- 로그아웃 버튼 : 드롭다운 메뉴 완성 시 삭제 예정 -->
+				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li>
 				<div id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
-				</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
+</c:if>
+
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
+					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){
@@ -296,19 +307,21 @@ transition :0.5s;
 	 var buttonClickedsell = true;
 	 var buttonClickbuy = false;
 	 window.addEventListener('load',function(){
-	   document.getElementById('sellButton').addEventListener('click',function(){
-		   buttonClickedsell = true;
-		   buttonClickbuy = false;
-	     document.getElementById("sellButton").style.color="Blue";
-	     document.getElementById("buyButton").style.color="rgb(162,162,162)";
-	   });
-	   document.getElementById('buyButton').addEventListener('click',function(){
-		   buttonClickedsell = false;
-		   buttonClickbuy = true;
-	     document.getElementById("buyButton").style.color="Blue";
-	     document.getElementById("sellButton").style.color="rgb(162,162,162)";
-	   });
-	 });
+	       document.getElementById('sellButton').addEventListener('click',function(){
+	         document.getElementById("sellButton").style.color="Blue";
+	         document.getElementById("buyButton").style.color="rgb(162,162,162)";
+
+	         document.getElementById("board_info").value = true;
+
+	       });
+	       document.getElementById('buyButton').addEventListener('click',function(){
+	         document.getElementById("buyButton").style.color="Blue";
+	         document.getElementById("sellButton").style.color="rgb(162,162,162)";
+
+	         document.getElementById("board_info").value = false;
+	       });
+	     });
+
 
 	
 	<!--search script-->
@@ -327,7 +340,7 @@ transition :0.5s;
 </div>
 
 <div class="row" style="margin-top:20px">
-	<form action="http://localhost:8181/ICT_MARKET/boardInsert" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/boardInsert.com" method="post">
 		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
 		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 	
@@ -340,7 +353,7 @@ transition :0.5s;
 		<th colspan="3" style="font-size:80%"><textarea class="contentarea" name="board_content" placeholder="Description here" required/></textarea><br/></tr>
     	 <tr>
     	 <th>
-    	  <select name="board_category" class="form-select" style="border:none; float:right;">			  	
+    	  <select name="board_category" class="form-select" style="border:none; float:right;" required>			  	
 				<option value="" class="dropdown-item">Select Category</option>
 				<option value="전자기기/모바일" class="dropdown-item">전자기기/모바일</option>
 				<option value="컴퓨터" class="dropdown-item">컴퓨터</option>
@@ -352,11 +365,14 @@ transition :0.5s;
 			</th>
     	 	<th style="text-align:center; width:50%">
       		<input type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
-      		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+      		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/ required>
       		</th>
       		<th><div class="btn-group" style="justify-content: center; float:right;">
+
       		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
       		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
+      		<input type="hidden" name="board_info" id="board_info">
+
 			</th>
 			</tr>
    		 </table>

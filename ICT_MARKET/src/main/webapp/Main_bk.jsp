@@ -179,7 +179,7 @@ transition :0.5s;
            
 				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="searchkey" placeholder="Search" aria-label="Search">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 
 				<li>
@@ -219,9 +219,9 @@ transition :0.5s;
 </header>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
-					<a href="#" class="text-center">Profile</a>
-					<a href="#" class="text-center">Sell</a>
-					<a href="#" class="text-center">Logout</a>
+					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
+					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 <script>
 	function openNav(){

@@ -1,26 +1,27 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import kr.co.ict.UserDAO;
+import kr.co.ict.BoardCommentDAO;
 
 /**
- * Servlet implementation class UserInfoUpdateServlet
+ * Servlet implementation class BoardCommentUpdateServlet
  */
-@WebServlet("/userInfoUpdate")
-public class UserInfoUpdateServlet extends HttpServlet {
+@WebServlet("/CommentUpdate")
+public class CommentUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoUpdateServlet() {
+    public CommentUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +31,14 @@ public class UserInfoUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-    	HttpSession session = request.getSession();
-		String session_id = (String)session.getAttribute("session_id");
-		String pw = request.getParameter("pw");
-		String address = request.getParameter("address");
-		String pNum= request.getParameter("pNum");
-
-		UserDAO dao = UserDAO.getInstance();
-		dao.updateCheck(session_id, pw,pNum,address);
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		int comment_board_num = Integer.parseInt(request.getParameter("comment_board_num"));
+		String comment_content = request.getParameter("comment_content");
 		
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo");
+		BoardCommentDAO dao = BoardCommentDAO.getInstance();
+		dao.updateComment(comment_content, comment_num);
+			
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/boardDetail?board_num=" + comment_board_num);
 	}
 
 }

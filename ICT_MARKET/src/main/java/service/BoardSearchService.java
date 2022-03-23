@@ -18,14 +18,21 @@ public class BoardSearchService implements boardInterface_Service {
 		
 		request.setCharacterEncoding("utf-8");
 		
-	    String search = request.getParameter("searchkey");
+		//Search Keyword
+	    String searchkeyword = request.getParameter("search_keyword");
 	    
-	    request.setAttribute("search",search);
-	   
-	    RequestDispatcher dp = request.getRequestDispatcher("/board/Board_search.jsp");
+	    //WTS or WTB
+	    String sellorbuy = request.getParameter("board_info");
+	    Boolean SorB = Boolean.valueOf(sellorbuy).booleanValue();
 	    
-	    dp.forward(request, response);
-		
+	    //Search criteria
+	    String sCrite = request.getParameter("search_category");
+	    
+	    //* criteria (OR)
+	    //String qOnly = request.getParameter("only");
+	    //String qAnd = request.getParameter("and");
+	    
+	    dao.getsearchBoard(sCrite,SorB,searchkeyword);
 	}
 
 }

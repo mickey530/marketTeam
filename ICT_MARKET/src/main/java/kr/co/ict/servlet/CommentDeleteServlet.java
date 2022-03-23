@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ict.UserDAO;
+import kr.co.ict.BoardCommentDAO;
 
 /**
- * Servlet implementation class UserInfoUpdateServlet
+ * Servlet implementation class CommentDeleteServlet
  */
-@WebServlet("/userInfoUpdate")
-public class UserInfoUpdateServlet extends HttpServlet {
+@WebServlet("/CommentDelete")
+public class CommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoUpdateServlet() {
+    public CommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,17 +29,18 @@ public class UserInfoUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-    	HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		String session_id = (String)session.getAttribute("session_id");
-		String pw = request.getParameter("pw");
-		String address = request.getParameter("address");
-		String pNum= request.getParameter("pNum");
+		String comment_id = request.getParameter("comment_id");
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
 
-		UserDAO dao = UserDAO.getInstance();
-		dao.updateCheck(session_id, pw,pNum,address);
+		if(session_id.equals(comment_id)) {
+			BoardCommentDAO dao = BoardCommentDAO.getInstance();
+			dao.deleteComment(comment_num);			
+		}
 		
-		response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo");
+		response.sendRedirect("http://localhost:8181/ICT_MARKET/boardDetail?board_num=" + board_num);
 	}
 
 }
