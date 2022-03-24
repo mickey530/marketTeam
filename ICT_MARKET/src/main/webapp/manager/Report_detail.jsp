@@ -380,12 +380,6 @@ font-size: 90%;
 </form>
 
 <!--<c:if test="${sId ne null}">-->
-<c:if test="${sessionScope.session_id ne null}">
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Post Thread">
-</form>
-</c:if>
 <!--</c:if>-->
 <c:if test="${sessionScope.session_id eq boarddetail.user_id}">
 <form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
@@ -401,54 +395,6 @@ font-size: 90%;
 </c:if>
 </div>
 <br/>
-
-<!-- comment -->
-<div class="comment">
-	<table class="table table-hover" style="font-size:80%">
-		<tr>
-			<th class="col-md-1">reported_reason</th>
-			<th class="col-md-8"></th>
-			<th colspan=3></th>
-	</tr>
-		<c:forEach items="${comment}" var="comment">
-		<tr>
-			<td class="align-middle">${report.reporting_id }</td>
-			<td class="align-middle">${comment.comment_content }</td>
-			<td class="align-middle">${comment.comment_updatetime }</td>
-			<td>
-				<c:if test="${sessionScope.session_id eq comment.comment_id}">
-					<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm.com" method="post">
-						<input type="hidden" name="comment_num" value="${comment.comment_num }">
-						<input class="btn btn-sm" type="submit" value="Edit">
-					</form>
-				</c:if>
-			</td>
-			<td>
-				<c:if test="${sessionScope.session_id eq comment.comment_id}">			
-					<form action="http://localhost:8181/ICT_MARKET/CommentDelete.com" method="post">
-						<input type="hidden" name="comment_num" value="${comment.comment_num }">
-						<input type="hidden" name="comment_id" value="${comment.comment_id }">
-						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
-						<input class="btn btn-sm" type="submit" value="Delete">
-					</form>
-				</c:if>
-			</td>
-		</tr>
-		</c:forEach>
-	</table>
-	<!-- insert comment -->
-		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
-			<div class="form-floating">
-			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
-			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
-			  <label for="floatingTextarea">reported_reason</label>
-			</div>		
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<input class="btn" type="submit" value="write" id="comment">
-			</div>
-		</form>
-		
-</div>
 </div>
 
 

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ict.BoardDAO;
+import kr.co.ict.BoardVO;
 import kr.co.ict.ReportDAO;
 import kr.co.ict.ReportVO;
 
@@ -35,10 +37,14 @@ public class ReportListServlet extends HttpServlet {
 		
 		
 		ReportDAO dao = ReportDAO.getInstance();
-		
 		List<ReportVO> reportList = dao.getAllReportList();
 		
+		BoardDAO bDao = BoardDAO.getInstance();
+		List<BoardVO> boardList = bDao.getAllBoardList(1);
+		
 		request.setAttribute("reportList", reportList);
+		request.setAttribute("boardList", boardList);
+		
 		RequestDispatcher dp = request.getRequestDispatcher("/manager/ReportList.jsp");
 		dp.forward(request, response);
 	}

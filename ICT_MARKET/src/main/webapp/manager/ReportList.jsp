@@ -290,19 +290,14 @@ font-size: 90%;
 <table class="tab_menu">
   <tr class="list">
   	<td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList.com" method="get">
-      	<input type="submit" class="btn" name="board_info" value="WTS">
+      <form action="#" method="get">
+      	<input type="submit" class="btn" name="board_info" value="User List">
       </form>
     </td>
-    <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList.com" method="get">
-      	<input type="submit" class="btn" name="board_info" value="WTB">
+  	<td>
+      <form action="#" method="get">
+      	<input type="submit" class="btn" name="board_info" value="Report List">
       </form>
-    </td>
-    <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList.com" method="get">
-      	<input type="submit" class="btn" name="board_info" value="ALL">
-      </form>      
     </td>
   </tr>
 </table>
@@ -310,10 +305,10 @@ font-size: 90%;
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
 			<th class="col-md-1">No</th>
-			<th class="col-md-8">신고자ID</th>
-			<th style="text-align:center;">신고당한ID</th>
-			<th style="text-align:center;">신고된게시글No</th>
-			<th style="text-align:center;">신고사유</th>
+			<th class="col-md-8">신고사유</th>
+			<!-- <th style="text-align:center;">신고된게시글No</th> -->
+			<th style="text-align:center;">신고된 유저</th>
+			<th style="text-align:center;">신고자ID</th>
 			
 			
 	</tr>
@@ -321,51 +316,20 @@ font-size: 90%;
 		<tr>
 	    	<td class="col-md-1">${report.reported_num}</td>
 			<td class="col-md-8">			
-				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${report.reported_num}" style="text-decoration:none;">
-					${report.reporting_id}
+				<a href="http://localhost:8181/ICT_MARKET/reportDetail?reported_num=${report.reported_num}&reported_board_num=${report.reported_board_num}" style="text-decoration:none;">
+					${report.reported_reason}
 				</a>
 			</td>
 
+			<%-- <td style="text-align:center;">${report.reported_board_num}</td> --%>
 			<td style="text-align:center;">${report.reported_id}</td>
-			<td style="text-align:center;">${report.reported_board_num}</td>
-			<td style="text-align:center;">${report.reported_reason}</td>
+			<td style="text-align:center;">${report.reporting_id}</td>
 			
 			
 			
 		</tr>
 		</c:forEach>
 	</table>
-	
-	<!--Pagination
-	.pNation>p>a:hover{
-	color: #f1f1f1;
-	}
-	-->
-	<script>
-	
-	</script>
-	<div>
-	<label class="pNation">
-    <c:if test="${dto.startPage eq 1}">
-    <p><a href="?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
-    </c:if>
-    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
-  	<p><a href="?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
-    </c:forEach>
-    <c:if test="${dto.endPage ne dto.totalPages}">
-    <p><a href="?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
-    </c:if>
-    </label>
-    </div>
- 	
-	<div id="navgate" class="container">
-	<c:if test="${not empty sessionScope.session_id}">
-	<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
-	<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-	<input type="submit" type="button" class="btn" value="Post Thread">
-	</form>
-	</c:if>
-</div>
 </div>
 </body>
 </html>

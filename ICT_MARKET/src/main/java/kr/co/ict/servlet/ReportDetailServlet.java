@@ -39,9 +39,15 @@ public class ReportDetailServlet extends HttpServlet {
 		String reportednum = request.getParameter("reported_num");
 		int reported_num = Integer.parseInt(reportednum);
 		
+		int reported_board_num = Integer.parseInt(request.getParameter("reported_board_num"));
+		
 		ReportDAO dao = ReportDAO.getInstance();
 		ReportVO reportDetail = dao.getreportDetail(reported_num);
 		request.setAttribute("reportDetail", reportDetail);
+		
+		BoardDAO bDao = BoardDAO.getInstance();
+		BoardVO boarddetail = bDao.getBoardDetail(reported_board_num);
+		request.setAttribute("boarddetail", boarddetail);
 		
 		RequestDispatcher dp = request.getRequestDispatcher("/manager/Report_detail.jsp");
 		dp.forward(request, response);
