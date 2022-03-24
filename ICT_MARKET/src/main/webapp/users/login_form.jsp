@@ -214,7 +214,7 @@
  <body class="text-center">
     
 <main class="form-signin">
-  <form action="http://localhost:8181/ICT_MARKET/ICTL"method="post">
+  <form action="http://localhost:8181/ICT_MARKET/userLoginCheck.com"method="post">
    
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 

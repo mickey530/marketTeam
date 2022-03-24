@@ -163,7 +163,6 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/CommentUpdate.com")) {
 			is = new CommentUpdateService();
 			is.execute(request, response);
-			System.out.println("서비스 > 컨트롤러 까지는 진입 하고 있음");
 			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/CommentDelete.com")) {
 			is = new CommentDeleteService();
