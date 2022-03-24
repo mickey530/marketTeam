@@ -35,17 +35,20 @@ public class BoardCommentDAO {
 		return dao;
 	}
 
-	public List<BoardCommentVO> getBoardCommentList(int comment_board_num){
+	public List<BoardCommentVO> getBoardCommentList(int comment_board_num, int pageNum){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<BoardCommentVO> boardcommentList = new ArrayList<>();
+		final int COMMENT_COUNT = 10;
 		try {
 			con = ds.getConnection();
-	
-			String sql = "SELECT * FROM boardcomment WHERE comment_board_num = ?";
+			int limitNum = ((pageNum - 1)* COMMENT_COUNT);
+			String sql = "SELECT * FROM boardcomment WHERE comment_board_num = ? limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, comment_board_num);
+			pstmt.setInt(2, limitNum);
+			pstmt.setInt(3, COMMENT_COUNT);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
