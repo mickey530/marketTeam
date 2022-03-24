@@ -118,4 +118,47 @@ public class ReportDAO {
 //		}
 		// 리턴 값
 //		return ReportList;
+	
+	public ReportVO getreportDetail(int reportedNum){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReportVO Report = null;
+		
+		try {
+			con = ds.getConnection();
+			String detail = "SELECT * FROM report WHERE reported_num = ?";
+			pstmt = con.prepareStatement(detail);
+			
+			pstmt.setInt(1, reportedNum);
+			
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				int reported_num = rs.getInt("reported_num");
+				String reporting_id = rs.getString("reporting_id");
+				String reported_id = rs.getString("reported_id");
+				int reported_board_num = rs.getInt("reported_board_num");
+				String reported_reason = rs.getString("reported_reason");
+				
+				Report = new ReportVO(reported_num, reporting_id, reported_id, reported_board_num, reported_reason);
+				}
+			
+			
+		} catch(Exception e){
+			e.printStackTrace();		
+		} finally{
+			
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();		
+			}
+		}
+		return Report;
+
+	}
+		
 	}
