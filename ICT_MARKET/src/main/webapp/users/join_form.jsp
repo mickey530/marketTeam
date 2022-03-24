@@ -127,7 +127,7 @@
 <title>ICT Market</title>
 </head>
 <body>
-<<<<<<< HEAD
+
 
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
