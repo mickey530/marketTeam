@@ -152,7 +152,7 @@
 
   </form>
    
-  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
+  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoManagerDelete.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
@@ -163,12 +163,12 @@
     </div>
   </div>
   </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com"" method="post">
+  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
     
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
+    <input type="hidden" value="${user.user_num }" name="user_num"/>
       <input type="submit" class="form-control" value="수정" readonly/>
     </div>
   </div>
