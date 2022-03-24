@@ -448,7 +448,7 @@ font-size: 90%;
 		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
 			<div class="form-floating">
 			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
-			<input type="hidden" name="page_num" value="${dto.endPage }">
+			<input type="hidden" name="page_num" value="${dto.totalPages eq 0 ? 1 : dto.totalPages}">
 			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
 			  <label for="floatingTextarea">Comments</label>
 			</div>		
@@ -457,6 +457,7 @@ font-size: 90%;
 			</div>
 		</form>
 	<!-- pagenation -->	
+	<c:if test="${dto.totalPages ne 0}">			
 	<nav aria-label="Page navigation example">
 	  	<ul class="pagination justify-content-center">
 	  	
@@ -473,9 +474,10 @@ font-size: 90%;
 	    </li>
 	  	</ul>
 	</nav>
+	</c:if>
 </div>
 </div>
-
+${dto}
 
 </body>
 </html>
