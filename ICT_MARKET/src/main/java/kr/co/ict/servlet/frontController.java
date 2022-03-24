@@ -82,11 +82,11 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userJoinCheck.com")) {
 			is = new JoinService();
 			is.execute(request, response);
-			ui = "/";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLoginCheck.com")) {
 			is = new LoginService();
 			is.execute(request, response);
-			ui = "/";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
 			is = new LogoutService();
 			is.execute(request, response);
@@ -140,7 +140,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
 			is = new BoardUpdateService();
 			is.execute(request, response);
-			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
 			is = new BoardDeleteService();
 			is.execute(request, response);
@@ -148,7 +148,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/CommentInsert.com")) {
 			is = new CommentInsertService();
 			is.execute(request, response);
-			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/CommentUpdateForm.com")) {
 			is = new CommentUpdateFormService();
 			is.execute(request, response);
@@ -156,11 +156,12 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/CommentUpdate.com")) {
 			is = new CommentUpdateService();
 			is.execute(request, response);
-			ui = "/board/board_detail.jsp";
+			System.out.println("서비스 > 컨트롤러 까지는 진입 하고 있음");
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/CommentDelete.com")) {
 			is = new CommentDeleteService();
 			is.execute(request, response);
-			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com?"+ request.getParameter("search_keyword"))){
 			is = new BoardSearchService();
 			is.execute(request, response);

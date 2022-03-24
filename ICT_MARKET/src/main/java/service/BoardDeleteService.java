@@ -20,6 +20,10 @@ public class BoardDeleteService implements boardInterface_Service{
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("session_id");		
 		
+		int page_num = Integer.parseInt(request.getParameter("page_num"));
+		request.setAttribute("page_num", page_num);
+		request.setAttribute("board_num", board_num);
+		
 		if(sId.equals(user_id)) {
 			
 		BoardCommentDAO cDao = BoardCommentDAO.getInstance();

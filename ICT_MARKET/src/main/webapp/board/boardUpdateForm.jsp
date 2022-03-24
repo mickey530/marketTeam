@@ -296,19 +296,20 @@ transition :0.5s;
 	 var buttonClickedsell = true;
 	 var buttonClickbuy = false;
 	 window.addEventListener('load',function(){
-	   document.getElementById('sellButton').addEventListener('click',function(){
-		   buttonClickedsell = true;
-		   buttonClickbuy = false;
-	     document.getElementById("sellButton").style.color="Blue";
-	     document.getElementById("buyButton").style.color="rgb(162,162,162)";
-	   });
-	   document.getElementById('buyButton').addEventListener('click',function(){
-		   buttonClickedsell = false;
-		   buttonClickbuy = true;
-	     document.getElementById("buyButton").style.color="Blue";
-	     document.getElementById("sellButton").style.color="rgb(162,162,162)";
-	   });
-	 });
+	       document.getElementById('sellButton').addEventListener('click',function(){
+	         document.getElementById("sellButton").style.color="Blue";
+	         document.getElementById("buyButton").style.color="rgb(162,162,162)";
+
+	         document.getElementById("board_info").value = true;
+
+	       });
+	       document.getElementById('buyButton').addEventListener('click',function(){
+	         document.getElementById("buyButton").style.color="Blue";
+	         document.getElementById("sellButton").style.color="rgb(162,162,162)";
+
+	         document.getElementById("board_info").value = false;
+	       });
+	     });
 
 	
 	<!--search script-->
@@ -328,7 +329,7 @@ transition :0.5s;
 
 <div class="row" style="margin-top:20px">
 	</form>
-	<form action="http://localhost:8181/ICT_MARKET/boardUpdate" method="post">
+	<form action="http://localhost:8181/ICT_MARKET/boardUpdate.com" method="post">
 		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
 		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 		<input type="hidden" name="user_id" valeu="${board.user_id }">
