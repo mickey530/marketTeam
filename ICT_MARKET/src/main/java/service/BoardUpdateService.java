@@ -18,8 +18,14 @@ public class BoardUpdateService implements boardInterface_Service {
 		String board_title= request.getParameter("board_title");
 		String board_content= request.getParameter("board_content");
 		
-		String price = request.getParameter("board_amount").replaceAll(",", "");
+		String boardAmount = request.getParameter("board_amount");
+		String price = boardAmount.replaceAll(",", "");
 		int board_amount = Integer.parseInt(price); // casting
+		
+		String page_num = request.getParameter("page_num");
+		
+		request.setAttribute("page_num", page_num);
+		request.setAttribute("board_num", board_num);
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.updateBoard(board_num, board_title, board_category, board_info, board_content, board_amount);

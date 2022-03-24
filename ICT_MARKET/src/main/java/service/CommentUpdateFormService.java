@@ -14,9 +14,11 @@ public class CommentUpdateFormService implements boardInterface_Service{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		int page_num = Integer.parseInt(request.getParameter("page_num"));
 		BoardCommentDAO dao = BoardCommentDAO.getInstance();
 		BoardCommentVO comment = dao.getComment(comment_num);
 		request.setAttribute("comment", comment);
+		request.setAttribute("page_num", page_num);
 	}
 
 }

@@ -391,11 +391,13 @@ font-size: 90%;
 <form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="hidden" name="page_num" value="1">			
 <input type="submit" type="button" class="btn" value="Edit" id="comment">
 </form>
 <form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete.com" method="post">
 <input type="hidden" value="${boarddetail.user_id}" name="user_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="hidden" name="page_num" value="1">
 <input type="submit" type="button" class="btn" value="Delete" id="comment">
 </form>
 </c:if>
@@ -403,6 +405,7 @@ font-size: 90%;
 <br/>
 
 <!-- comment -->
+
 <div class="comment">
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
@@ -419,6 +422,9 @@ font-size: 90%;
 				<c:if test="${sessionScope.session_id eq comment.comment_id}">
 					<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm.com" method="post">
 						<input type="hidden" name="comment_num" value="${comment.comment_num }">
+						<input type="hidden" name="comment_id" value="${comment.comment_id }">						
+						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
+						<input type="hidden" name="page_num" value="${dto.currentPage }">
 						<input class="btn btn-sm" type="submit" value="Edit">
 					</form>
 				</c:if>
@@ -429,6 +435,7 @@ font-size: 90%;
 						<input type="hidden" name="comment_num" value="${comment.comment_num }">
 						<input type="hidden" name="comment_id" value="${comment.comment_id }">
 						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
+						<input type="hidden" name="page_num" value="${dto.currentPage }">						
 						<input class="btn btn-sm" type="submit" value="Delete">
 					</form>
 				</c:if>
@@ -436,10 +443,12 @@ font-size: 90%;
 		</tr>
 		</c:forEach>
 	</table>
+	
 	<!-- insert comment -->
 		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
 			<div class="form-floating">
 			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
+			<input type="hidden" name="page_num" value="${dto.endPage }">
 			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
 			  <label for="floatingTextarea">Comments</label>
 			</div>		
@@ -447,7 +456,23 @@ font-size: 90%;
 			<input class="btn" type="submit" value="write" id="comment">
 			</div>
 		</form>
-		
+	<!-- pagenation -->	
+	<nav aria-label="Page navigation example">
+	  	<ul class="pagination justify-content-center">
+	  	
+	    <li class="page-item ${dto.startPage eq 1 ? 'disabled' : '' }">
+	      <a class="page-link" href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${boarddetail.board_num}&page_num=${dto.startPage - 1}">Previous</a>
+	    </li>
+	    
+	    <c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+	    <li class="page-item ${dto.currentPage eq pageIndex ? 'active' : ''}"><a class="page-link" href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${boarddetail.board_num}&page_num=${pageIndex}">${pageIndex}</a></li>
+	    </c:forEach>
+	    
+	    <li class="page-item ${dto.endPage eq dto.totalPages ? 'disabled' : '' }">
+	      <a class="page-link" href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${boarddetail.board_num}&page_num=${dto.endPage + 1}">Next</a>
+	    </li>
+	  	</ul>
+	</nav>
 </div>
 </div>
 

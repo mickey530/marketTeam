@@ -12,8 +12,10 @@ public class BoardUpdateFormService implements boardInterface_Service {
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("session_id");
 		String user_id = request.getParameter("user_id");
-		
 		String board_num = request.getParameter("board_num");
+		
+		String page_num = request.getParameter("page_num");
+		request.setAttribute("page_num", page_num);
 		
 		int boardnum = 0;
 		if(board_num != null) {
