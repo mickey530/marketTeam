@@ -1,8 +1,9 @@
 <%--@ page import="kr.co.ict.BoardVO"--%>
 <%--@ page import="kr.co.ict.BoardDAO"--%>
 <%@ page import="java.util.*"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -90,7 +91,7 @@ position: relative;
   	height:100px; 
   	line-height:100px;}
 	
-	.tab_menu a:hover{
+	.tab_menu .btn:hover{
 	color: #f1f1f1;
 	}
 	
@@ -99,116 +100,60 @@ position: relative;
 	}
 	#mainboard .row{
 	margin-top: 50px;
-	
+	margin-bottom: 10px;
 	}
-	#mainboard .row>.col-md-12{
+	#mainboard .row>.col-md-1{
 	margin-right:14px;
-	padding-bottom: 15px;
 	}
 	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
-	#mainboard .row #read{
-	text-align:right;
-	padding-right: 5px;
+	.pagination{
+	color:black;
+	list-style: none;
+	display: inline-block;
+	margin-top: 5px;
 	}
-	#mainboard .row #writer{
-	font-size: 2em;
-	text-align:right;
-	margin-top:3px;
+	.pagination li{
+	display: inline-block;
+	text-align: center;
 	}
-	#mainboard .row #no{
-	font-size: 1em;
-	margin: 0 auto;
-	margin-top:3px;
-	margin-left:-5px;
+	.pagination a{
+	color: black;
+	display: block;
+	font-size: 17px;
+	text-decoration: none;
+	padding-left:5px;
+	padding-right:5px;
 	}
-	
+	.pagination a:hover{
+	color: #f1f1f1;
 	}
-	#mainboard .row #read{
-	font-size: 2vmin;
-	margin: 0 auto;
-	
-	}
-	
-	#mainboard #productamount {
-	max-width: 37%;
-	min-width:37%;
-  	height: auto;
-  	display: block;
-	font-weight: 700;
-	margin-top: -5px;
-	margin-bottom: -30px;
-	}
-	#mainboard #contents {
-	align:left;
-	width:100%;
-	position: relative;
-	}
-	
-	#pick{
-	justify-content: flex-end;
-	font-weight:lighter;
-	vertical-align:right;
-	font-size: 2vmin;
-	margin-right:-50px;
-	}
-	
 	
 	#navgate{
 	display: flex;
-	position:absolute;
+	justify-content:space-between;
+	margin-top:-15px;
   	font-size: 2vmin;
-  	margin-top: -20px;
-  	margin-left: -20px;
 	}
 	#navgate .btn:hover{
 	color: #f1f1f1;
 	}
 	
-	#navgate .table tr,td{
-	border:none; 
-	}
-	
-	#addfeature{
-	width:30%;
-	float:right;
-	margin-right:0;
-	}
-	
-	#navgate #list{
-	float: left;
-	justify-content: flex-start;
-	}
 	#navgate #post{
-	float: right;
-	justify-content: flex-end;
+    white-space: nowrap;
+	float:right;
 	}
 	
-	#contents #picked{}
-	}
-	
-	#pickeddiv{
-	width:auto;
-	margin-top: 5px;
-	float: right;
-	align-content: center;
-	}
-	#pickeddiv:hover{
-	color: #f1f1f1;
-	}
-	
-	#comment:hover{
-	color: #f1f1f1;
-	}
+	td > a {text-decoration:none; color:black}
 	
 	footer{
 	font-size: 40%;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
-	display: flex;
+	
 	}	
 	
 	footer div{
@@ -254,7 +199,7 @@ position: relative;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -286,7 +231,7 @@ position: relative;
 					</a>
 				</li>
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/pickedList.com" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
@@ -310,12 +255,10 @@ position: relative;
 </header>
 </c:if>
 
-<script type="text/javascript">
-
+<script>
 	function openNav(){
-		document.getElementById("mySidenav").style.height="150px";
+		document.getElementById("mySidenav").style.height="160px";
 		document.getElementById("mainboard").style.filter="blur(3px)";
-		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
@@ -349,200 +292,71 @@ position: relative;
 	      document.querySelector(activeCont).style.display = 'block';
 	    });
 	  }
-	  <!--pick funtion..-->
-	  window.addEventListener('load',function(){
-	       document.getElementById('pickButton').addEventListener('click',function(){
-			document.getElementById("pickButton").style.color="red";
-			document.getElementById("pickButton").value="Wait for sec..";
-		      setTimeout(function(){document.getElementById("pickButton").value = "Pick it";},3000);
-			document.getElementById('pickit').submit();
-			}
-	       document.getElementById('unpickButton').addEventListener('click',function(){
-			document.getElementById("unpickButton").style.color="rgb(162,162,162)";
-			document.getElementById("unpickButton").value="Wait for sec..";
-		      setTimeout(function(){document.getElementById("pickButton").value = "Cancel";},3000);
-			document.getElementById('pickit').submit();
-		}
-		});
-
-		
-		 
+	  
+	  
+	
 </script>
+
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">${info}${boarddetail.board_title}</h3>
-<h6 class="col-md-12">Trade </h6>
-
-<p id="no" class="col-1">No.${boarddetail.board_num}</p>
-<p id="writer" class="col-9" style="font-size:80%; float:left;">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
-<p id="read" class="col-1">${boarddetail.board_hit} read</p>
-<p id="pick" class="col-1">${boarddetail.board_picked_num}
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="red" class="bi bi-suit-heart-fill" viewBox="0 0 20 20">
-<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-</svg></p>
-<hr/>
-</div>
-
-<div id="productamount" class="row">
-
-<!-- notate unit of bills (below)-->
-<!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
-
-<table class="table table-dark table-hover" style="margin-left:14px; margin-top:10px; font-size: 1em;">
-<c:if test="${boarddetail.board_info}">
-<tr>
-	<th>Status</th>
-	<c:if test="${boarddetail.board_sold}">
-    <td style="text-align:right;">Soldout</td></c:if>
-    <c:if test="${!boarddetail.board_sold}">
-    <td style="text-align:right;">On Sale</td></c:if>
-</tr>
-<tr>
-	<th>Price</th>
-    <td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>
-</tr>
-</c:if>
-<tr>
-	<th>Cartegory</th>
-    <td style="text-align:right;">${boarddetail.board_category}</td>
-</tr>
-</table>
-<!--<c:if test="${not empty sessionScope.session_id},${sessionScope.session_id eq boarddetail.user_id}">-->
-</div>
-<!--</c:if>-->
-</div>
-<div id="contents" class="row">
-<img src="" style="float:left;"/>
-<p class="text-left">${boarddetail.board_content}${boarddetail.board_info}</p>
-
-<div id="addfeature">
-<table class="table" style="">
-<tr>
-<c:if test="${not empty sessionScope.session_id}">
-<td class="col-1">
-<!-- PICK-->
-<c:if test="${empty getPicked}">
-<form id="pickit" action="/ICT_MARKET/pickAdd.com" method="post">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input id="dibcheck" type="hidden" value="dibit" name="dibcheck">
-<input id="pickButton" class="btn" type="button" value="Pick"/>
-</form>
-</c:if>
-<c:if test="${!empty getPicked}">
-<form id="pickit" action="/ICT_MARKET/pickAdd.com" method="post">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input id="dibcheck" type="hidden" value="cancel" name="dibcheck">
-<input id="unpickButton" class="btn" type="button" value="unPick" style="color:red;"/>
-</form>
-</c:if>
-</td>
-<td class="col-1">
-<!-- REPORT-->
-<form id="report" action="#" method="post">
-<input type="hidden" value="${boarddetail.board_picked_num}" name="report_board_num">
-<input id="reportButton" class="btn" type="button" value="Report" onclick=""/>
-</form>
-</td>
-</c:if>
-</tr>
+<h3 class="col-md-11">Favotire Items</h3>
+<h5 class="col-md-1"></h5>
+<table class="tab_menu">
+  <tr class="list">
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/pickAllDelete.com" method="get">
+      	<input type="submit" class="btn" name="board_info" value="Delete All Favorite Items">
+      </form>      
+    </td>
+  </tr>
 </table>
 </div>
-<hr/>
-</div>
-
-
-<div id="navgate" class="container">
-<table class="table" style="width:100%;border-collapse:collapse; font-size:80%; margin-right:0">
-<tr>
-<td class="col-md-10">
-<c:choose>
-<c:when test="${boarddetail.board_info}">
-<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTS">
-<input type="button" class="btn" value="List">
-</a>
-</c:when>
-<c:when test="${!boarddetail.board_info}">
-<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTB">
-<input type="button" class="btn" value="List">
-</a>
-</c:when>
-</c:choose>
-</td>
-<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
-
-<td>
-<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
-<input type="hidden" value="${boarddetail.user_id}" name="user_id">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Edit" id="comment">
-</form>
-</td>
-<td>
-<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete.com" method="post">
-<input type="hidden" value="${boarddetail.user_id}" name="user_id">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Delete" id="comment">
-</form>
-</td>
-</c:if>
-<td>
-<c:if test="${not empty sessionScope.session_id}">
-<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post" style="float:right;">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Post thread">
-</form>
-</c:if>
-</td>
-</tr>
-</table>
-</div>
-<br/>
-<br/>
-
-<!-- comment -->
-<div class="comment">
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
-			<th class="col-md-1">comments</th>
-			<th class="col-md-8"></th>
-			<th colspan=3></th>
+			<th class="col-md-1">No</th>
+			<th class="col-md-1">판매여부</th>
+			<th class="col-md-7">제목</th>
+			<th style="text-align:center;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회</th>
 	</tr>
-		<c:forEach items="${comment}" var="comment">
+		<c:forEach items="${pickedList}" var="board">
 		<tr>
-			<td class="align-middle">${comment.comment_id }</td>
-			<td class="align-middle">${comment.comment_content }</td>
-			<td class="align-middle">${comment.comment_updatetime }</td>
-			<td>
-				<c:if test="${sessionScope.session_id eq comment.comment_id}">
-					<form action="http://localhost:8181/ICT_MARKET/CommentUpdateForm" method="post">
-						<input type="hidden" name="comment_num" value="${comment.comment_num }">
-						<input class="btn btn-sm" type="submit" value="Edit">
-					</form>
-				</c:if>
+	    	<td class="col-md-1">${board.board_num}</td>
+	    	<c:if test="${board.board_sold == false}">
+			<td class="col-md-1" style="color:blue;">On Sale</td>
+			</c:if>
+			<c:if test="${board.board_sold == true}">
+			<td class="col-md-1" style="color:red;">Soldout</td>
+			</c:if>
+			<td class="col-md-7">
+			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+				${board.board_title}
+				</a>
 			</td>
-			<td>
-				<c:if test="${sessionScope.session_id eq comment.comment_id}">			
-					<form action="http://localhost:8181/ICT_MARKET/CommentDelete" method="post">
-						<input type="hidden" name="comment_num" value="${comment.comment_num }">
-						<input type="hidden" name="board_num" value="${boarddetail.board_num }">
-						<input class="btn btn-sm" type="submit" value="Delete">
-					</form>
-				</c:if>
-			</td>
+			<td style="text-align:right; padding-right:40px;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:center;">${board.user_id}</td>
+			<td style="text-align:center;">${board.board_writetime}</td>
+			<td style="text-align:center;">${board.board_hit}</td>
 		</tr>
 		</c:forEach>
 	</table>
-		<form action="http://localhost:8181/ICT_MARKET/CommentInsert" method="post">
-			<div class="form-floating">
-			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
-			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>
-			  <label for="floatingTextarea">Comments</label>
-			</div>		
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<input class="btn" type="submit" value="write" id="comment">
-			</div>
-		</form>
-		
+ 	
+	<div id="navgate" class="container">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/PickedList.com?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	<a href="http://localhost:8181/ICT_MARKET/boardList.com">
+	<input type="button" class="btn" value="See All Products">
+	</a>
 </div>
 </div>
 </body>

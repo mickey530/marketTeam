@@ -133,6 +133,15 @@ public class BoardVO {
 	public void setBoard_updatetime(Date board_updatetime) {
 		this.board_updatetime = board_updatetime;
 	}
+	
+	public int getBoard_picked_num() {
+		return board_picked_num;
+	}
+
+	public void setBoard_picked_num(int board_picked_num) {
+		this.board_picked_num = board_picked_num;
+	}
+
 
 	@Override
 	public String toString() {

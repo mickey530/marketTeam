@@ -100,9 +100,19 @@ position: relative;
 	
 	.recently{
 	overflow: auto;
-	margin-top: 10px;
 	width: 100%;
-	height: 300px;
+	height: 420px;
+	font-size: 2vmin;
+	
+	}
+	.colorbox{
+	position: fixed;
+	margin-top: 50px;
+	width: 100%;
+	height: 420px;
+	z-index:1px;
+	background: linear-gradient(transparent,white);
+	pointer-events: none; 
 	}
 	table>tr,td{
     border:none;
@@ -111,6 +121,7 @@ position: relative;
 	width: 49%;
 	text-align: justify;
 	margin-top: 5px;
+	padding:10px;
 	}
 	
 	.line2{
@@ -124,6 +135,7 @@ position: relative;
 	width: 49%;
 	text-align: justify;
 	margin-top: 5px;
+	padding:10px;
 	}
 	
 	footer{
@@ -177,7 +189,7 @@ position: relative;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -209,7 +221,7 @@ position: relative;
 					</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
@@ -276,17 +288,21 @@ position: relative;
 				</h6>
 				<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" type="button" class="btn btn-sm" style="float:right;">+</a>
 				<div class="line"></div>
+				
 					<div class="recently">
+					<div class="colorbox"></div>
 					
 						<div class="wts" style="float:left;">
-						<h5 style="text-align:center; margin:20px">Want to Sell</h5>
+						<h5 style="text-align:center; margin:20px">
+						<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTS"
+						style="text-decoration:none; color:black;">Want to Sell</a></h5>
 						<c:forEach items="${boardListsell}" var="board">
 						<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
-								<td style="text-align:center;">
+								<td style="text-align:left;">
 								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
-								style="text-decoration:none;">${board.board_title}</a></td>
-								<td style="text-align:center;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+								style="text-decoration:none; color:black;">${board.board_title}</a></td>
+								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>
 							</table>
 						</c:forEach>
@@ -295,14 +311,16 @@ position: relative;
 					<div class="line2" style="float:left;"></div>
 					
 						<div class="wtb" style="float:right;">
-						<h5 style="text-align:center; margin:20px">Want to Buy</h5>
+						<h5 style="text-align:center; margin:20px">
+						<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTB"
+						style="text-decoration:none; color:black;">Want to Buy</a></h5>
 						<c:forEach items="${boardListbuy}" var="board">
 							<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
-								<td style="text-align:center; text-decoration:none">
+								<td style="text-align:left; text-decoration:none">
 								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
-								style="text-decoration:none;">${board.board_title}</a></td>
-								<td style="text-align:center;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+								style="text-decoration:none; color:black;">${board.board_title}</a></td>
+								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>
 							</table>
 						</c:forEach>

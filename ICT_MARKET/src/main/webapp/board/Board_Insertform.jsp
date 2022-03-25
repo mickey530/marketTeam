@@ -344,7 +344,7 @@ position: relative;
 </div>
 
 <div class="row" style="margin-top:20px">
-	<form action="http://localhost:8181/ICT_MARKET/boardInsert.com" method="post">
+	<form action="ICT_MARKET/boardInsert.com" method="post">
 		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
 		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 	
@@ -376,7 +376,6 @@ position: relative;
       		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
       		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
       		<input type="hidden" name="board_info" id="board_info">
-      		<input type="hidden" name="board_sold" id="board_sold">
 
 			</th>
 			</tr>

@@ -307,7 +307,15 @@ position: relative;
 <h3 class="col-md-11">${info}</h3>
 <h5 class="col-md-1">Trade</h5>
 <table class="tab_menu">
+
   <tr class="list">
+  <td>
+  <c:if test="${info eq 'Want to Sell'}">
+  <form action="http://localhost:8181/ICT_MARKET/boardList.com" method="get">
+    <input type="submit" class="btn" name="board_info" value="SaleOnly" style="font-size: 10px; color:blue;">
+  </form>
+  </c:if>
+  </td>
   	<td>
       <form action="http://localhost:8181/ICT_MARKET/boardList.com" method="get">
       	<input type="submit" class="btn" name="board_info" value="WTS">
@@ -351,17 +359,17 @@ position: relative;
 	    	<c:choose>
 	    	<c:when test="${info eq 'Want to Sell'}">
 	    	<c:if test="${board.board_sold == false}">
-			<td class="col-md-1">On Sale</td>
+			<td class="col-md-1" style="color:blue;">On Sale</td>
 			</c:if>
 			<c:if test="${board.board_sold == true}">
-			<td class="col-md-1">Soldout</td>
+			<td class="col-md-1" style="color:red;">Soldout</td>
 			</c:if>
 			<td class="col-md-6">
 			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
 				${board.board_title}
 				</a>
 			</td>
-			<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:right; padding-right:40px;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 			</c:when>
 			<c:otherwise>
 			<td class="col-md-8">
@@ -387,7 +395,7 @@ position: relative;
   	<ul class="pagination">
     <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
     <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
-    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=${infourl}?pageNum=${pageIndex}"
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=${boardinfo}?pageNum=${pageIndex}"
     style="text-decoration: none;"> ${pageIndex} </a></li>
     </c:forEach>
     <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>

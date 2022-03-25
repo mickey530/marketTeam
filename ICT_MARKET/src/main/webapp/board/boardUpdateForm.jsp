@@ -342,9 +342,7 @@ position: relative;
 <div class="row" style="margin-top:20px">
 	</form>
 	<form action="http://localhost:8181/ICT_MARKET/boardUpdate.com" method="post">
-		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
-		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
-		<input type="hidden" name="user_id" valeu="${board.user_id }">
+		<input type="hidden" name="user_id" value="${board.user_id }">
 		<input type="hidden" name="board_num" value="${board.board_num }">
 	<table class="table">
 	<tr>

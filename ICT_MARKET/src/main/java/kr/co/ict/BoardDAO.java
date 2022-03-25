@@ -45,7 +45,7 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			
-			int limitNum = (PageNum -1) * boardCount;
+			int limitNum = ((PageNum -1) * boardCount);
 			
 			String sql = "SELECT * FROM board ORDER BY board_num DESC limit ?, ?";
 			
@@ -96,17 +96,20 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<BoardVO> boardList = new ArrayList<>();
+		final int boardCount = 10;
 		try {
 			con = ds.getConnection();
-			int limitNum = (PageNum -1) * 10;
-			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo + " ORDER BY board_num DESC limit ?, 10";
+			int limitNum = ((PageNum -1) * boardCount);
+			String sql = "SELECT * FROM board WHERE board_info = " + boardInfo + " ORDER BY board_num DESC limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, limitNum);
+			pstmt.setInt(2, boardCount);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
 				int board_num = rs.getInt("board_num");
 				String user_id = rs.getString("user_id");
+				Boolean board_info = rs.getBoolean("board_info");
 				String board_category = rs.getString("board_category");
 				String board_title = rs.getString("board_title");
 				String board_content = rs.getString("board_content");
@@ -118,7 +121,7 @@ public class BoardDAO {
 				Date board_updatetime = rs.getDate("board_updatetime");
 				int board_picked_num = rs.getInt("board_picked_num");
 				
-				BoardVO boardData = new BoardVO(board_num, user_id, boardInfo, board_category, board_title,  board_content,
+				BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
 						 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime, board_picked_num);
 				boardList.add(boardData);
 				
@@ -137,6 +140,57 @@ public class BoardDAO {
 		}	
 		return boardList;
 	}
+	
+		public List<BoardVO> getAllOnSaleList(int PageNum){
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<BoardVO> boardList = new ArrayList<>();
+			final int boardCount = 10;
+			try {
+				con = ds.getConnection();
+				int limitNum = ((PageNum -1) * boardCount);
+				String sql = "SELECT * FROM board WHERE board_sold = false AND board_info = true ORDER BY board_num DESC limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, limitNum);
+				pstmt.setInt(2, boardCount);
+				rs = pstmt.executeQuery();
+
+				while(rs.next()) {
+					int board_num = rs.getInt("board_num");
+					String user_id = rs.getString("user_id");
+					Boolean board_info = rs.getBoolean("board_info");
+					String board_category = rs.getString("board_category");
+					String board_title = rs.getString("board_title");
+					String board_content = rs.getString("board_content");
+					int board_amount = rs.getInt("board_amount");
+					boolean board_sold =  rs.getBoolean("board_sold");
+					int board_hit = rs.getInt("board_hit");
+					int board_reported = rs.getInt("board_reported");
+					Date board_writetime = rs.getDate("board_writetime");
+					Date board_updatetime = rs.getDate("board_updatetime");
+					int board_picked_num = rs.getInt("board_picked_num");
+					
+					BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
+							 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime, board_picked_num);
+					boardList.add(boardData);
+					
+					
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					con.close();
+					pstmt.close();
+					rs.close();
+				} catch(SQLException se) {
+					se.printStackTrace();
+				}
+			}	
+			return boardList;
+		}
+
 
 	public void insertBoard(String user_id, boolean board_info, String board_category, String board_title , String board_content, int board_amount) {
 		Connection con = null;
@@ -423,7 +477,7 @@ public ArrayList<BoardVO> getsearchBoardhead(String searchword) {
 		return count;
 	}
 	
-public void pickedCount(int pick) {
+public void pickedCountPlus(int board_num) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -434,7 +488,7 @@ public void pickedCount(int pick) {
 		
 		pstmt = con.prepareStatement(pickedcount);
 		
-		pstmt.setInt(1, pick);
+		pstmt.setInt(1, board_num);
 		
 		pstmt.executeUpdate();	
 		
@@ -449,6 +503,33 @@ public void pickedCount(int pick) {
 			}
 		}
 		}
+public void pickedCountMinus(int board_num) {
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	String pickedcount = "update board set board_picked_num = (board_picked_num -1) where board_num = ?";
+	
+	try {
+	con = ds.getConnection();
+	
+	pstmt = con.prepareStatement(pickedcount);
+	
+	pstmt.setInt(1, board_num);
+	
+	pstmt.executeUpdate();	
+	
+	}catch(Exception e) {
+		e.printStackTrace();
+	}finally {
+		try{
+			con.close();
+			pstmt.close();
+		}catch(final Exception e) {
+			e.printStackTrace();
+		}
+	}
+	}
+
 	
 	private void hitCount(int hit) {
 		
