@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.BoardDAO;
+import kr.co.ict.BoardDTO;
 import kr.co.ict.BoardVO;
 import kr.co.ict.ReportDAO;
 import kr.co.ict.ReportVO;
@@ -35,15 +36,24 @@ public class ReportListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String spNum = request.getParameter("page_num");
+		int pNum = 0;
+	
+		try {
+			pNum = Integer.parseInt(spNum);
+		}
+		catch(Exception e) {
+			pNum=1;
+		}
 		
 		ReportDAO dao = ReportDAO.getInstance();
-		List<ReportVO> reportList = dao.getAllReportList();
-		
-		BoardDAO bDao = BoardDAO.getInstance();
-		List<BoardVO> boardList = bDao.getAllBoardList(1);
-		
+		List<ReportVO> reportList = dao.getAllReportList(pNum);
+		int total_page = dao.getPageNum();
 		request.setAttribute("reportList", reportList);
-		request.setAttribute("boardList", boardList);
+		
+		BoardDTO dto = new BoardDTO(total_page, pNum);
+		request.setAttribute("dto", dto);
+		
 		
 		RequestDispatcher dp = request.getRequestDispatcher("/manager/ReportList.jsp");
 		dp.forward(request, response);
