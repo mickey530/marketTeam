@@ -206,6 +206,9 @@ font-size: 90%;
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${sessionScope.session_id ne 'Manager'}">
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET"); %>
+</c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <c:if test="${sessionScope.session_id eq null }">
@@ -346,8 +349,8 @@ font-size: 90%;
 <h6 class="col-md-12">Trade </h6>
 
 <p id="no" class="col-2">No.${boarddetail.board_num}</p>
-<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
-<p id="read" class="col-1">${boarddetail.board_hit},read</p>
+<p id="writer" class="col-9">작성자 ID : ${boarddetail.user_id}</p>
+<p class="text-end col-1" >신고 : ${boarddetail.board_reported}</p>
 <hr/>
 </div>
 
@@ -368,33 +371,43 @@ font-size: 90%;
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
 <p class="text-left">${boarddetail.board_content}</p>
-
 </div>
+
+<div class="row">
 <hr/>
-<div id="navgate" class="container">
+<p class="col-12 d-flex justify-content-start">신고내용</p>
+<hr/>
 
-<form id="list" class="col-md-11">
-    <a href="http://localhost:8181/ICT_MARKET/manager/ReportList.jsp">
-        <input type="button" class="btn" value="List">
-    </a>
-</form>
+<p class="text-left">${reportDetail.reported_reason}</p>
+<p class="d-flex justify-content-end">신고자 ID : ${reportDetail.reporting_id}</p>
+<hr/>
+<br/>
+</div>
 
-<!--<c:if test="${sId ne null}">-->
-<!--</c:if>-->
-<c:if test="${sessionScope.session_id eq boarddetail.user_id}">
-<form id="edit" action="http://localhost:8181/ICT_MARKET/boardUpdateForm.com" method="post">
-<input type="hidden" value="${boarddetail.user_id}" name="user_id">
-<input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Edit" id="comment">
+<div id="navgate" class="container d-flex justify-content-center">
+<form action="http://localhost:8181/ICT_MARKET/reportList" id="list" class="col-md-11">
+	<input type="submit" class="btn" value="List">
 </form>
-<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete.com" method="post">
-<input type="hidden" value="${boarddetail.user_id}" name="user_id">
+<form id="blind" action="#" method="post">
+<input type="hidden" value="${sessionScope.session_id}" name="session_id">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
-<input type="submit" type="button" class="btn" value="Delete" id="comment">
+<input type="submit" type="button" class="btn" value="Blind" id="comment">
 </form>
-</c:if>
+<form id="unblind" action="#" method="post">
+<input type="hidden" value="${sessionScope.session_id}" name="session_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="submit" type="button" class="btn" value="Unblind" id="comment">
+</form>
+<form id="del" action="http://localhost:8181/ICT_MARKET/boardDelete" method="post">
+<input type="hidden" value="${sessionScope.session_id}" name="session_id">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input type="submit" type="button" class="btn btn-outline-danger" style="border:none" value="Delete" id="comment">
+</form>
 </div>
 <br/>
+
+
+
 </div>
 
 

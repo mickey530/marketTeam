@@ -477,7 +477,6 @@ font-size: 90%;
 	</c:if>
 </div>
 </div>
-${dto}
 
 </body>
 </html>
