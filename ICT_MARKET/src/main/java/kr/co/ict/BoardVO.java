@@ -142,15 +142,6 @@ public class BoardVO {
 		this.board_picked_num = board_picked_num;
 	}
 
-
-	public int getBoard_picked_num() {
-		return board_picked_num;
-	}
-
-	public void setBoard_picked_num(int board_picked_num) {
-		this.board_picked_num = board_picked_num;
-	}
-
 	@Override
 	public String toString() {
 		return "BoardVO [board_num=" + board_num + ", user_id=" + user_id + ", board_info=" + board_info

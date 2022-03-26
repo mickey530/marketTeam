@@ -252,7 +252,7 @@ font-size: 90%;
 	</div>
 </div>
 </header>
-
+</c:if>
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
 					<a href="http://localhost:8181/ICT_MARKET/userInfo" class="text-center">Profile</a>
