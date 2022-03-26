@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.BoardCommentDAO;
 import kr.co.ict.BoardCommentVO;
+import kr.co.ict.BoardDAO;
+import kr.co.ict.BoardVO;
 
 public class CommentUpdateFormService implements boardInterface_Service{
 
@@ -19,6 +21,12 @@ public class CommentUpdateFormService implements boardInterface_Service{
 		BoardCommentVO comment = dao.getComment(comment_num);
 		request.setAttribute("comment", comment);
 		request.setAttribute("page_num", page_num);
+		
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		BoardDAO bDao = BoardDAO.getInstance();
+		BoardVO boarddetail = bDao.getBoardDetail(board_num);
+		request.setAttribute("boarddetail", boarddetail);
+		
 	}
 
 }
