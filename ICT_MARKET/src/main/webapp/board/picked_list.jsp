@@ -1,4 +1,9 @@
+<%--@ page import="kr.co.ict.BoardVO"--%>
+<%--@ page import="kr.co.ict.BoardDAO"--%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +15,8 @@
 family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<meta charset="UTF-8">
 <style>
-
-	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
-	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
@@ -21,8 +24,8 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		padding-bottom: 157px;
 	}
 	body{
-transition :0.5s;
-}
+	transition :0.5s;
+	}
 
 #head{
 font-family: 'Play', sans-serif;
@@ -60,137 +63,108 @@ position: relative;
 .sidenav a:hover{
 	color: #f1f1f1;
 }
+
+	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
 	
-	#main {
-	height: auto;
-	}
 	
-	.main_head{
-	padding: 70px;
-	}
-	.main_head h2{
-	font-family: 'Play', sans-serif;
-	font-weight: 700;
-	}
-	.main_head p {
-	font-family: 'Play', sans-serif;
-	}
-	
-	#main_div{
-	position: relative;
-	}
-	#main_div .main_contain{
-	position: absolute;
-	left: 20%;
+	.tab_menu{
+	position:relative;
 	margin-top: -50px;
-	text-align: center;
+	margin-left: -20px;
+	}
+  	
+  	.tab_menu .list{float:right;}
+  	
+  	.tab_menu .list li{float:left; margin-right:14px;}
+  	
+  	.tab_menu .list li.is_on .btn{font-weight:bold; color:blue;}
+  	
+  	.tab_menu .list .btn{font-size:13px;}
+  	
+  	.tab_menu .cont_area .cont{
+  	position:absolute; 
+  	top:25px; left:0; 
+  	background:#555; 
+  	color:#fff; 
+  	text-align:center; 
+  	width:250px; 
+  	height:100px; 
+  	line-height:100px;}
+	
+	.tab_menu .btn:hover{
+	color: #f1f1f1;
 	}
 	
-	.main_contain{
-	font-family: 'Hahmlet', serif;
-	width: 60%;
-	height: auto;
-	}
-	
-	.line{
-	width: 100%;
-	height: 1px;
-	background: #eee;
-	margin-top: 30px;
-	}
-	
-	.container {
+	#mainboard {
 	font-family: 'Play', sans-serif;
 	}
-	.container .row{
+	#mainboard .row{
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
-	.container .row>.col-md-1{
-	font-size:20px;
-	margin-top: 10px;
+	#mainboard .row>.col-md-1{
+	margin-right:14px;
 	}
-	.container .row .col-md-11{
+	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
-	
-	.titlearea {
-    width: 100%;
-    height: 2em;
-    border: none;
-    resize: none;
-  }
-  
-	.contentarea {
-    width: 100%;
-    height: 15em;
-    border: none;
-    resize: none;
-  }
-  
-  	.form-select{
-  	height: 40px;
-    color: rgb(162,162,162);
-  	}
-  	.pricearea {
-    width: 100%;
-    height: 40px;
-    resize: none;
-    text-align: right;
-    border:none;
-  	}
-  	.btn-group{
-  	vertical-align: center;
-  	height: 40px;
-  	}
-  	.btn-group :hover{
-	color: #f1f1f1;
+	.pagination{
+	color:black;
+	list-style: none;
+	display: inline-block;
+	margin-top: 5px;
 	}
-	.btn-group :hover{
+	.pagination li{
+	display: inline-block;
+	text-align: center;
+	}
+	.pagination a{
+	color: black;
+	display: block;
+	font-size: 17px;
+	text-decoration: none;
+	padding-left:5px;
+	padding-right:5px;
+	}
+	.pagination a:hover{
 	color: #f1f1f1;
 	}
 	
-	#post{
+	#navgate{
+	display: flex;
+	justify-content:space-between;
+	margin-top:-15px;
+  	font-size: 2vmin;
+	}
+	#navgate .btn:hover{
+	color: #f1f1f1;
+	}
+	
+	#navgate #post{
     white-space: nowrap;
 	float:right;
-	margin-top:-15px;
-	}
-	#post :hover{
-	color: #f1f1f1;
 	}
 	
-	.form-check{
-    margin: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-	}
+	td > a {text-decoration:none; color:black}
+	
 	footer{
 	font-size: 40%;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
 	
-	}
+	}	
+	
 	footer div{
 	font-family: 'Play', sans-serif;
 	margin-top: 5px;
 	margin-left: 90px;
 	}
-	
 </style>
-<title>ICT Market</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<c:if test="${sessionScope.session_id eq null}">
- <%response.sendRedirect("http://localhost:8181/ICT_MARKET/boardList.com");%>
-
-</c:if>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
 <c:if test="${sessionScope.session_id eq null }">
@@ -282,111 +256,108 @@ position: relative;
 </c:if>
 
 <script>
-
 	function openNav(){
-		document.getElementById("mySidenav").style.height="150px";
-		document.getElementById("main").style.filter="blur(3px)";
-		
+		document.getElementById("mySidenav").style.height="160px";
+		document.getElementById("mainboard").style.filter="blur(3px)";
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.getElementById("main").style.filter="blur(0)";
+		document.getElementById("mainboard").style.filter="blur(0)";
 	}
-	
-	function inputNumberFormat(obj) {
-	     obj.value = comma(uncomma(obj.value));
-	 }
-	function comma(str) {
-	     str = String(str);
-	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	 }
-	 function uncomma(str) {
-	     str = String(str);
-	     return str.replace(/[^\d]+/g, '');
-	 }
-	 
-	 <!-- sell or buy button -->
-	 var buttonClickedsell = true;
-	 var buttonClickbuy = false;
-	 window.addEventListener('load',function(){
-	       document.getElementById('sellButton').addEventListener('click',function(){
-	         document.getElementById("sellButton").style.color="Blue";
-	         document.getElementById("buyButton").style.color="rgb(162,162,162)";
-	         <!--price input on/off-->
-	         document.getElementById("priceinsert").disabled = false;
-	         document.getElementById("board_info").value = true;
 
-	       });
-	       document.getElementById('buyButton').addEventListener('click',function(){
-	         document.getElementById("buyButton").style.color="Blue";
-	         document.getElementById("sellButton").style.color="rgb(162,162,162)";
-	         <!--price input on/off-->
-	         document.getElementById("priceinsert").value = 0;
-	         document.getElementById("priceinsert").disabled = true;
-	         document.getElementById("board_info").value = false;a
-	         
-	       });
-	     });
-
-
-	
 	<!--search script-->
 	function press(f){ 
 		if(f.keyCode == 13){ 
 		searchHeader.submit(); 
 		} 
 	} 
-</script>
+	 const tabList = document.querySelectorAll('.tab_menu .list li');
+	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
+	  let activeCont = '';
 
+	  for(var i = 0; i < tabList.length; i++){
+	    tabList[i].querySelector('.btn').addEventListener('click', function(e){
+	      e.preventDefault();
+	      for(var j = 0; j < tabList.length; j++){
+	       
+	        tabList[j].classList.remove('is_on');
+
+	       
+	        contents[j].style.display = 'none';
+	      }
+
+	      this.parentNode.classList.add('is_on');
+
+	      activeCont = this.getAttribute('href');
+	      document.querySelector(activeCont).style.display = 'block';
+	    });
+	  }
+	  
+	  
+	
+</script>
 
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">Post thread</h3>
-<h6 class="col-md-12">Trade</h6>
+<h3 class="col-md-11">Favotire Items</h3>
+<h5 class="col-md-1"></h5>
+<table class="tab_menu">
+  <tr class="list">
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/pickAllDelete.com" method="get">
+      	<input type="submit" class="btn" name="board_info" value="Delete All Favorite Items">
+      </form>      
+    </td>
+  </tr>
+</table>
 </div>
-
-<div class="row" style="margin-top:20px">
-	<form action="/ICT_MARKET/boardInsert.com" method="post">
-		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
-		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
-	
-	<table class="table">
-	<tr>
-		<!-- <th><textarea class="titlearea" name="title" placeholder="${boardlist.title }"/> -->
-		<th colspan="3" style=""><textarea class="titlearea" name="board_title" placeholder="title" required/></textarea></th>
+	<table class="table table-hover" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-1">판매여부</th>
+			<th class="col-md-7">제목</th>
+			<th style="text-align:center;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회</th>
 	</tr>
-	<tr>
-		<th colspan="3" style="font-size:80%"><textarea class="contentarea" name="board_content" placeholder="Description here" required/></textarea><br/></tr>
-    	 <tr>
-    	 <th>
-    	  <select name="board_category" class="form-select" style="border:none; float:right;" required>			  	
-				<option value="" class="dropdown-item">Select Category</option>
-				<option value="전자기기/모바일" class="dropdown-item">전자기기/모바일</option>
-				<option value="컴퓨터" class="dropdown-item">컴퓨터</option>
-				<option value="도서/음반" class="dropdown-item">도서/음반</option>
-				<option value="취미/완구" class="dropdown-item">취미/완구</option>
-				<option value="의류" class="dropdown-item">의류</option>
-				<option value="가구류" class="dropdown-item">가구류</option>
-			</select>
-			</th>
-    	 	<th style="text-align:center; width:50%">
-      		<input id="priceinsert" type="text" onkeyup="inputNumberFormat(this)" class="pricearea" name="board_amount" placeholder="Price"
-      		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/ required>
-      		</th>
-      		<th><div class="btn-group" style="justify-content: center; float:right;">
-
-      		<button type="button" class="btn" id="sellButton" value="buttonClickedsell">Sell</button>
-      		<button type="button" class="btn" id="buyButton" value="buttonClickbuy">Buy</button></div>
-      		<input type="hidden" name="board_info" id="board_info">
-
-			</th>
-			</tr>
-   		 </table>
-   		 <div id="post"><input type="submit" value="Post" class="btn"></div>
-		</form>
-	</div>
-	</div>
-	</form>
+		<c:forEach items="${pickedList}" var="board">
+		<tr>
+	    	<td class="col-md-1">${board.board_num}</td>
+	    	<c:if test="${board.board_sold == false}">
+			<td class="col-md-1" style="color:blue;">On Sale</td>
+			</c:if>
+			<c:if test="${board.board_sold == true}">
+			<td class="col-md-1" style="color:red;">Soldout</td>
+			</c:if>
+			<td class="col-md-7">
+			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+				${board.board_title}
+				</a>
+			</td>
+			<td style="text-align:right; padding-right:40px;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:center;">${board.user_id}</td>
+			<td style="text-align:center;">${board.board_writetime}</td>
+			<td style="text-align:center;">${board.board_hit}</td>
+		</tr>
+		</c:forEach>
+	</table>
+ 	
+	<div id="navgate" class="container">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/PickedList.com?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	<a href="/ICT_MARKET/boardList.com">
+	<input type="button" class="btn" value="See All Products">
+	</a>
+</div>
 </div>
 </body>
 </html>

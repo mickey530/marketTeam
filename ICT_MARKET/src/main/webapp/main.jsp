@@ -28,21 +28,20 @@ transition :0.5s;
 font-family: 'Play', sans-serif;
 font-size: 90%;
 }
+#profile{
+position: relative;
+}
 
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -101,9 +100,19 @@ font-size: 90%;
 	
 	.recently{
 	overflow: auto;
-	margin-top: 10px;
 	width: 100%;
-	height: 300px;
+	height: 420px;
+	font-size: 2vmin;
+	
+	}
+	.colorbox{
+	position: fixed;
+	margin-top: 50px;
+	width: 100%;
+	height: 420px;
+	z-index:1px;
+	background: linear-gradient(transparent,white);
+	pointer-events: none; 
 	}
 	table>tr,td{
     border:none;
@@ -112,6 +121,7 @@ font-size: 90%;
 	width: 49%;
 	text-align: justify;
 	margin-top: 5px;
+	padding:10px;
 	}
 	
 	.line2{
@@ -125,6 +135,7 @@ font-size: 90%;
 	width: 49%;
 	text-align: justify;
 	margin-top: 5px;
+	padding:10px;
 	}
 	
 	footer{
@@ -150,7 +161,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
@@ -178,7 +189,7 @@ font-size: 90%;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -210,42 +221,39 @@ font-size: 90%;
 					</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userList.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
 				<li id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
-<!-- Header Menu(onclick main body->close-->
-				<div id="mySidenav" class="sidenav">
-					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
-					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
-            	</div>
 </c:if>
 
 <script>
 
 	function openNav(){
-		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
+		document.getElementById("mySidenav").style.height="150px";
 		document.getElementById("main").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
 		document.getElementById("main").style.filter="blur(0)";
 	}
 
@@ -264,7 +272,7 @@ font-size: 90%;
 	<div class="main_head">
 		<c:choose>
 			<c:when test="${not empty sessionScope.session_id}">
-			<h2 class="text-center">Welcome back! ${myname.user_name }.</h2>
+			<h2 class="text-center">Welcome back, ${myname.user_name}!</h2>
 			</c:when>
 			<c:otherwise>
 				<h2 class="text-center">Welcome to ICT Market!</h2>
@@ -278,19 +286,23 @@ font-size: 90%;
 				<h6 class="text-center" style="float:left; margin-top:6px; margin-left:10px;">
 				Recently thread
 				</h6>
-				<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" type="button" class="btn btn-sm" style="float:right;">+</a>
+				<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" type="button" class="btn btn-sm" style="float:right;">+</a>
 				<div class="line"></div>
+				
 					<div class="recently">
+					<div class="colorbox"></div>
 					
-						<div class="wtb" style="float:left;">
-						<h5 style="text-align:center; margin:20px">Want to Buy</h5>
+						<div class="wts" style="float:left;">
+						<h5 style="text-align:center; margin:20px">
+						<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTS"
+						style="text-decoration:none; color:black;">Want to Sell</a></h5>
 						<c:forEach items="${boardListsell}" var="board">
 						<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
-								<td style="text-align:center;">
-								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
-								style="text-decoration:none;">${board.board_title}</a></td>
-								<td style="text-align:center;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+								<td style="text-align:left;">
+								<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" 
+								style="text-decoration:none; color:black;">${board.board_title}</a></td>
+								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>
 							</table>
 						</c:forEach>
@@ -298,15 +310,17 @@ font-size: 90%;
 					
 					<div class="line2" style="float:left;"></div>
 					
-						<div class="wts" style="float:right;">
-						<h5 style="text-align:center; margin:20px">Want to Sell</h5>
+						<div class="wtb" style="float:right;">
+						<h5 style="text-align:center; margin:20px">
+						<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTB"
+						style="text-decoration:none; color:black;">Want to Buy</a></h5>
 						<c:forEach items="${boardListbuy}" var="board">
 							<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
-								<td style="text-align:center; text-decoration:none">
+								<td style="text-align:left; text-decoration:none">
 								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
-								style="text-decoration:none;">${board.board_title}</a></td>
-								<td style="text-align:center;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+								style="text-decoration:none; color:black;">${board.board_title}</a></td>
+								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>
 							</table>
 						</c:forEach>

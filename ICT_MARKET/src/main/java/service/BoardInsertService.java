@@ -10,11 +10,15 @@ public class BoardInsertService implements boardInterface_Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		BoardDAO dao = BoardDAO.getInstance();
+		
 		HttpSession session = request.getSession();
 		String sId = (String)session.getAttribute("session_id");
+		
 		String boardInfo = request.getParameter("board_info");
-		Boolean board_info = Boolean.valueOf(boardInfo).booleanValue() ;
+		Boolean board_info = Boolean.valueOf(boardInfo).booleanValue();
+		System.out.println("sell or buy?"+board_info);
 		
 		String board_category = request.getParameter("board_category");
 		String board_title = request.getParameter("board_title");
@@ -23,7 +27,17 @@ public class BoardInsertService implements boardInterface_Service{
 		String price = boardAmount.replaceAll(",", "");
 		int board_amount = Integer.parseInt(price); // casting
 		
+		String boardUrl = null;
+		
 		dao.insertBoard(sId, board_info, board_category, board_title, board_content, board_amount);
+		
+		if(board_info==true) {
+			boardUrl = "WTS";
+			
+		} else if(board_info==false) {
+			boardUrl = "WTB";
+		}
+		request.setAttribute("boardUrl", boardUrl);
 	}
 
 }
