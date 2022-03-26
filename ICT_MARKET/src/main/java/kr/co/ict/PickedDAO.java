@@ -74,8 +74,15 @@ public class PickedDAO {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
-		return pickedlist;
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return pickedlist;
 	}
 
 	public ArrayList<PickedVO> getPicked(String picked_id, int bnum) {
@@ -98,8 +105,15 @@ public class PickedDAO {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
-		return getpicked;
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return getpicked;
 	}
 	
 	public int pick(int board_num, String picked_id) {
@@ -117,8 +131,14 @@ public class PickedDAO {
 		
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
-		return -1; //db 오류
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return -1; //db 오류
 	}
 	
 	public int pickDelete(int board_num, String picked_id) {
@@ -133,8 +153,14 @@ public class PickedDAO {
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		return -1; //db 오류
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return -1; //db 오류
 	}
 	
 	public void pickAllSoldDelete(String picked_id) {
@@ -148,7 +174,14 @@ public class PickedDAO {
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}
 	}
 
 	public int getAllPageNum() {
