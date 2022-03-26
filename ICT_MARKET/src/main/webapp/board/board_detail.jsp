@@ -531,7 +531,7 @@ position: relative;
 		</tr>
 		</c:forEach>
 	</table>
-		<form action="http://localhost:8181/ICT_MARKET/CommentInsert" method="post">
+		<form action="http://localhost:8181/ICT_MARKET/CommentInsert.com" method="post">
 			<div class="form-floating">
 			<input type="hidden" name="board_num" value="${boarddetail.board_num }">
 			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea"></textarea>

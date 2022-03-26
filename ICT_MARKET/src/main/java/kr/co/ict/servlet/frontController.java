@@ -76,8 +76,6 @@ public class frontController extends HttpServlet {
 			is.execute(request, response);
 			ui = "/users/join_form.jsp";
 		}else if (uri.equals("/ICT_MARKET/userLogin.com")) {
-			is = new LoginService();
-			is.execute(request, response);
 			ui = "/users/login_form.jsp";
 		}else if (uri.equals("/ICT_MARKET/userJoinCheck.com")) {
 			is = new JoinService();
@@ -86,7 +84,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/userLoginCheck.com")) {
 			is = new LoginService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/main.com";
+			ui = "/main.com";
 		}else if (uri.equals("/ICT_MARKET/userLogout.com")) {
 			is = new LogoutService();
 			is.execute(request, response);

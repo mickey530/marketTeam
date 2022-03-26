@@ -18,7 +18,8 @@ public class BoardUpdateService implements boardInterface_Service {
 		String board_category = request.getParameter("board_category");
 		String board_title= request.getParameter("board_title");
 		String board_content= request.getParameter("board_content");
-		String price = request.getParameter("board_amount");
+		String boardAmount = request.getParameter("board_amount");
+		String price = boardAmount.replaceAll(",", "");
 		int board_amount = Integer.parseInt(price); // casting
 		String boardsold = request.getParameter("board_sold");
 		System.out.println("불린값:"+boardsold);
