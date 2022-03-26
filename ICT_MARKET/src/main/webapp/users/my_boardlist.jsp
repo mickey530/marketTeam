@@ -1,3 +1,4 @@
+
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -9,62 +10,18 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&
 family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <style>
-	
-	   .form-user-info{
-     
-      width:900px;
-   
-     margin-left:1000px;
-     margin-bottom: 400px;
-     margin-top: 200px;
-    
-      }
-      .deleteinfo{    
-      
-       width:1500px;
-       padding: 20px;
-      
-      }
-      
-      .updateinfo{
-      
-       width:1500px;
-        padding: 20px;
-      
-      
-      }
-      .form-floating{
-      
-      margin: 30px;
-      
-      }
-      
-      
-
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-	
-	
-	
-	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 157px;
 	}
-
 	body{
 	transition :0.5s;
 	}
@@ -190,17 +147,41 @@ font-size: 90%;
 <title>Insert title here</title>
 </head>
 <body>
-
-
 <div id="wrapper">
+<!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
+<c:if test="${sessionScope.session_id eq null }">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
+			</a>
+			
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
+	
+			<div>
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	           
+					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
+	
+					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
-
 <c:if test="${sessionScope.session_id ne null }">
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -209,7 +190,6 @@ font-size: 90%;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-
 				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
@@ -225,7 +205,6 @@ font-size: 90%;
 				</li>
                
 				<li>
-
 					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -240,8 +219,8 @@ font-size: 90%;
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -252,6 +231,7 @@ font-size: 90%;
 	</div>
 </div>
 </header>
+</c:if>
 
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
@@ -305,7 +285,7 @@ font-size: 90%;
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">${info}</h3>
-<h5 class="col-md-1">회원 정보</h5>
+<h5 class="col-md-1">내 게시글</h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>
@@ -325,62 +305,61 @@ font-size: 90%;
     </td>
   </tr>
 </table>
-<form class="info">
-	<div class="row mb-3">
-    <label class="col-sm-2 col-form-label">아이디</label> 
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_id }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">이름</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_name }" readonly/>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">휴대전화</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_pnum }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">주소</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_address }" readonly/>
-    </div>
-  </div>
-
-  
-
-  </form>
-    <c:if test="${sessionScope.session_id eq user.user_id }">
-  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-    <input type="hidden" value="${user.user_num }" name="user_num"/>
-      <input type="submit" class="form-control" value="탈퇴" readonly/>
-    </div>
-  </div>
-  </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-    
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-      <input type="submit" class="form-control" value="수정" readonly/>
-    </div>
-  </div>
-  </form>
-  
- </c:if>
 </div>
-
+	<table class="table table-hover" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-8">제목</th>
+			<th style="text-align:center;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회수</th>
+			
+		
+	</tr>
+		<c:forEach items="${boardList}" var="board">
+		<tr>
+	    	<td class="col-md-1">${board.board_num}</td>
+			<td class="col-md-8">			
+				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+					${board.board_title}
+				</a>
+			</td>
+			<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:right;">${board.user_id}</td>
+			<td style="text-align:right;">${board.board_writetime}</td>
+			<td style="text-align:right;">${board.board_hit}</td>
+			
+			
+		</tr>
+		</c:forEach>
+	</table>
+	
+	<!--Pagination
+	.pNation>p>a:hover{
+	color: #f1f1f1;
+	}
+	-->
+	<script>
+	
+	</script>
+	<div>
+	<label class="pNation">
+    <c:if test="${dto.startPage eq 1}">
+    <p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
+    </c:if>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+  	<p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
+    </c:forEach>
+    <c:if test="${dto.endPage ne dto.totalPages}">
+    <p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
+    </c:if>
+    </label>
+    </div>
+ 	
+	
+	
+</div>
 </div>
 </body>
 </html>

@@ -25,6 +25,7 @@ import service.JoinService;
 import service.LoginService;
 import service.LogoutService;
 import service.MainService;
+import service.UserBoardListService;
 import service.UserInfoDeleteService;
 import service.UserInfoManagerDeleteService;
 import service.UserInfoManagerService;
@@ -32,6 +33,7 @@ import service.UserInfoService;
 import service.UserInfoUpdateFormService;
 import service.UserInfoUpdateService;
 import service.UserListManagerService;
+
 import service.boardInterface_Service;
 
 /**
@@ -124,11 +126,19 @@ public class frontController extends HttpServlet {
 			is = new UserListManagerService();
 			is.execute(request, response);
 			ui = "/users/userlist.jsp";
-		}else if (uri.equals("/ICT_MARKET/boardList.com")) {
+		}
+		else if (uri.equals("/ICT_MARKET/userboardList.com")) {
+				is = new UserBoardListService();
+				is.execute(request, response);
+				ui = "/users/my_boardlist.jsp";
+		}
+		
+		else if (uri.equals("/ICT_MARKET/boardList.com")) {
 			is = new BoardListService();
 			is.execute(request, response);
 			ui = "/board/Board_list.jsp?board_info=" + request.getParameter("board_info");
-		}else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
+		}
+		else if (uri.equals("/ICT_MARKET/boardDetail.com")) {
 			is = new BoardDetailService();
 			is.execute(request, response);
 			ui = "/board/board_detail.jsp";

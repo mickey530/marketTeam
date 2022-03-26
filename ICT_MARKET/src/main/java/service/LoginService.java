@@ -34,6 +34,8 @@ public class LoginService implements boardInterface_Service{
 						session.setAttribute("session_id", uId);
 					}
 
-				}	 
+				}
+				
+				
 		}
 	}

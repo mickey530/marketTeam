@@ -137,6 +137,59 @@ public class BoardDAO {
 		}	
 		return boardList;
 	}
+	public List<BoardVO> getAllBoardList(String sId, int pageNum){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		final int boardCount = 10;
+		
+		List<BoardVO> boardList = new ArrayList<>();
+		
+		try {
+			con = ds.getConnection();
+			int limitNum = (pageNum -1) * boardCount;	
+			String sql = "SELECT * FROM board WHERE user_id = ? ORDER BY board_num DESC limit ?, ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sId);
+			pstmt.setInt(2, limitNum);
+			pstmt.setInt(3, boardCount);
+			
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				int board_num = rs.getInt("board_num");
+				String user_id = rs.getString("user_id");
+				Boolean board_info = rs.getBoolean("board_info");
+				String board_category = rs.getString("board_category");
+				String board_title = rs.getString("board_title");
+				String board_content = rs.getString("board_content");
+				int board_amount = rs.getInt("board_amount");
+				boolean board_sold =  rs.getBoolean("board_sold");
+				int board_hit = rs.getInt("board_hit");
+				int board_reported = rs.getInt("board_reported");
+				Date board_writetime = rs.getDate("board_writetime");
+				Date board_updatetime = rs.getDate("board_updatetime");
+				int board_picked_num = rs.getInt("board_picked_num");
+				
+				BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
+						 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime, board_picked_num);
+				boardList.add(boardData);
+				
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+		return boardList;
+	}
 
 	public void insertBoard(String user_id, boolean board_info, String board_category, String board_title , String board_content, int board_amount) {
 		Connection con = null;
@@ -499,6 +552,40 @@ public void pickedCount(int pick) {
 		}catch(Exception e) {
 			e.printStackTrace();
 		
+		}finally {
+			
+			try{
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(final SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return pageNum;
+	}
+	public int getUserBoardPageNum(String sId) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String allpagenum = "SELECT COUNT(user_id) FROM board WHERE user_id =?";
+		int pageNum = 0;
+		
+		try {
+			
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(allpagenum);
+			pstmt.setString(1, sId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				pageNum = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
 		}finally {
 			
 			try{
