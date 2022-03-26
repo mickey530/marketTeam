@@ -53,10 +53,12 @@ public class BoardDetailService implements boardInterface_Service {
 		request.setAttribute("getPicked", getPicked);
 		System.out.println(getPicked);
 		
+		// comment list
 		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
 		List<BoardCommentVO> comment = cDao.getBoardCommentList(board_num, pNum);
 		request.setAttribute("comment", comment);
 		
+		// comment page
 		int number_of_comment = cDao.getNumberOfComment(board_num);
 		BoardDTO dto = new BoardDTO(number_of_comment, pNum);
 		request.setAttribute("dto", dto);
