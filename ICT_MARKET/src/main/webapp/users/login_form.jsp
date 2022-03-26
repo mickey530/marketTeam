@@ -23,32 +23,12 @@
 
 
 <style>
-	
-	   .form-signin{
-     
-      width:300px;
-   
-     margin-left:700px;
-     margin-bottom: 120px;
-     margin-top: 100px;
-      }
-      
 
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-	
-	
-	
-	
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 150px;
 	}
 	
 	@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hahmlet:wght@200&family=Play:wght@400;700&display=swap');
@@ -119,15 +99,47 @@
 	margin-top: 5px;
 	}
 	
+	.form-signin {
+	    width: 100%;
+	    height : 100%;
+	    max-width: 330px;
+	    padding: 10% 15px;
+	    margin: auto;
+	    magin-top: 20%;
+	}
+	
+	.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+	}
+	.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+	}
+	.form-floating{height: 57px;}
+	
+	.form-check{text-align:left; margin:16px;}
+	.btn{font-size:1.25rem; margin-bottom: 10px;}
+	
 	footer{
-		height: 120px;
-		position: relative;
+	font-size: 40%;
+	height: 150px;
+	position: relative;
+  	bottom: 0px;
+	transform: translateY(-100%);
+	
+	}
+	footer div{
+	font-family: 'Play', sans-serif;
+	margin-top: 5px;
+	margin-left: 90px;
 	}	
 </style>
 <title>ICT Market</title>
 </head>
 <body>
-<<<<<<< HEAD
 
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
@@ -210,13 +222,11 @@
 </header>
 
 
-<!-- main 컨텐츠 내용 -->
- <body class="text-center">
-    
-<main class="form-signin">
-  <form action="http://localhost:8181/ICT_MARKET/userLoginCheck.com"method="post">
+<!-- main 컨텐츠 내용 -->    
+<main class="form-signin text-center">
+  <form action="http://localhost:8181/ICT_MARKET/userLoginCheck.com" method="post">
    
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal align-middle">Login</h1>
 
     <div class="form-floating">
       <input type=text" class="form-control" name="id" placeholder="id">
@@ -236,17 +246,16 @@
     
   </form>
 </main>
-
+</div>
 
     
   </body>
-<!-- 여기서 부터는 푸터 -->
-
+<!--footer-->
 <footer class="p-3 py-3 border-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="col">
-				<h5>SC CENTER</h5>
+			<div>
+				<h6>Customer Service</h6>
 					<ul class="nav flex-column">
 						<li class="nav-item mb-2 text-muted">1111-6666</li>
 						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
@@ -255,24 +264,25 @@
 					</ul>
 			</div>
             
-			<div class="col">
-				<h5>ICT MARKET</h5>
+			<div>
+				<h6>ICT MARKET</h6>
 				<ul class="nav flex-column">
 					<li class="nav-item mb-2">대표 : 6666 |</li>
-					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
-					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
+					<li class="nav-item mb-2"> 사업자등록번호 : 666666666</li>
+					<li class="nav-item mb-2">통신판매업 : 2022-01234</li>
 					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
 				</ul>
 			</div>
             
-			<div class="col">
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
+			<div>
+				<ul class="nav flex-column" style="font-size:10px">
+					<li class="nav-item mb-2">Copyright © ICT MARKET 2022. All Rights Reserved.</li>
 				</ul>
 			</div>
 		</div>
 	</div>        
 
 </footer>
+
 </body>
 </html>
