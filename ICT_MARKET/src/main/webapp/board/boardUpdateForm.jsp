@@ -341,7 +341,7 @@ position: relative;
 
 <div class="row" style="margin-top:20px">
 	</form>
-	<form action="http://localhost:8181/ICT_MARKET/boardUpdate.com" method="post">
+	<form action="/ICT_MARKET/boardUpdate.com" method="post">
 		<input type="hidden" name="user_id" value="${board.user_id }">
 		<input type="hidden" name="board_num" value="${board.board_num }">
 	<table class="table">
@@ -369,8 +369,14 @@ position: relative;
       		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/ value="${board.board_amount}" required>
       		</th>
       		<th><div class="btn" style="justify-content:flex-end; float:right;">
+      		<c:if test=${board.board_sold == false}">
       		<button type="button" class="btn" id="soldButton" value="sold" color="rgb(162,162,162)" 
       		onclick="SoldOrNot()">Soldout</button>
+      		</c:if>
+      		<c:if test=${board.board_sold == false}">
+      		<button type="button" class="btn" id="soldButton" value="soldout" color="rgb(162,162,162)" 
+      		onclick="SoldOrNot()">On Sale</button>
+      		</c:if>
       		<input type="hidden" name="board_sold" id="board_sold"></div>
 			</th>
       		</c:if>

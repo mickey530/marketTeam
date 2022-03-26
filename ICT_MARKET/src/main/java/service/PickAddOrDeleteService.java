@@ -35,6 +35,7 @@ public class PickAddOrDeleteService implements boardInterface_Service {
 		BoardDAO daoboard = BoardDAO.getInstance();
 		ArrayList<PickedVO> getPicked = dao.getPicked(picked_id, pNum);
 		request.setAttribute("getPicked", getPicked);
+		System.out.println(getPicked);
 		
 		if(pickcheck.equals("dibit")) {
 			dao.pick(pNum, picked_id);

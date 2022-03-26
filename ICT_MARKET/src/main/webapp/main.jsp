@@ -272,7 +272,7 @@ position: relative;
 	<div class="main_head">
 		<c:choose>
 			<c:when test="${not empty sessionScope.session_id}">
-			<h2 class="text-center">Welcome back! ${myname.user_name}.</h2>
+			<h2 class="text-center">Welcome back, ${myname.user_name}!</h2>
 			</c:when>
 			<c:otherwise>
 				<h2 class="text-center">Welcome to ICT Market!</h2>
@@ -300,7 +300,7 @@ position: relative;
 						<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
 								<td style="text-align:left;">
-								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
+								<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" 
 								style="text-decoration:none; color:black;">${board.board_title}</a></td>
 								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>

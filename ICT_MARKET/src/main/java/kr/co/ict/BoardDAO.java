@@ -198,8 +198,7 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			// 'board_sold' has false as default value
-			String sql = "INSERT INTO board(user_id, board_info, board_category, board_title, board_content,  board_amount, board_sold)"
-					+ "VALUES(?, ?, ?, ?, ?, ?, false)";
+			String sql = "INSERT INTO board(user_id, board_info, board_category, board_title, board_content, board_amount, board_sold) VALUES(?, ?, ?, ?, ?, ?, false)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			pstmt.setBoolean(2, board_info);
@@ -209,6 +208,7 @@ public class BoardDAO {
 			pstmt.setInt(6, board_amount);
 		
 			pstmt.executeUpdate();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

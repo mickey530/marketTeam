@@ -321,8 +321,10 @@ position: relative;
 	         document.getElementById("buyButton").style.color="Blue";
 	         document.getElementById("sellButton").style.color="rgb(162,162,162)";
 	         <!--price input on/off-->
+	         document.getElementById("priceinsert").value = 0;
 	         document.getElementById("priceinsert").disabled = true;
-	         document.getElementById("board_info").value = false;
+	         document.getElementById("board_info").value = false;a
+	         
 	       });
 	     });
 
@@ -344,7 +346,7 @@ position: relative;
 </div>
 
 <div class="row" style="margin-top:20px">
-	<form action="ICT_MARKET/boardInsert.com" method="post">
+	<form action="/ICT_MARKET/boardInsert.com" method="post">
 		<!-- input ID : 파라미터 전달용 > 세션 연결 후 삭제 예정 -->
 		<!-- <input type="text" name="user_id" placeholder="ID" required> -->
 	

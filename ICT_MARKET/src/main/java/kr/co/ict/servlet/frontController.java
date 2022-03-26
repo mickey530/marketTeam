@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
+
 import service.BoardDeleteService;
 import service.BoardDetailService;
 import service.BoardInsertFormService;
 import service.BoardInsertService;
 import service.BoardListService;
-import service.BoardListWTSService;
 import service.BoardSearchService;
 import service.BoardUpdateFormService;
 import service.BoardUpdateService;
@@ -125,7 +126,7 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardInsert.com")) {
 			is = new BoardInsertService();
 			is.execute(request, response);
-			ui = "/boardList.com";
+			ui = "/boardList.com?board_info=ALL";
 		}else if (uri.equals("/ICT_MARKET/boardUpdateForm.com")) {
 			is = new BoardUpdateFormService();
 			is.execute(request, response);
@@ -133,24 +134,24 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
 			is = new BoardUpdateService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
 			is = new BoardDeleteService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardList.com";
+			ui = "/boardList.com?board_info=ALL";
 		
 		}else if (uri.equals("/ICT_MARKET/pickAdd.com")) {
 			is = new PickAddOrDeleteService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/boardDetail.com";	
+			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
 		}else if (uri.equals("/ICT_MARKET/pickList.com")) {
 			is = new PickedListService();
 			is.execute(request, response);
-			ui = "http://localhost:8181/ICT_MARKET/board/picked_list.jsp";	
+			ui = "/board/picked_list.jsp";	
 		}else if (uri.equals("/ICT_MARKET/pickAllDelete.com")) {
 			is = new PickedAllSoldDeleteService();
 			is.execute(request, response);
-			ui = "/ICT_MARKET/pickList.com";	
+			ui = "/pickList.com";	
 			
 		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com")){
 			is = new BoardSearchService();

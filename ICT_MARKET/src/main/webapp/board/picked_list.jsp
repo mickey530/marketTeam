@@ -354,7 +354,7 @@ position: relative;
     <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
  	</ul>
 	</nav>
-	<a href="http://localhost:8181/ICT_MARKET/boardList.com">
+	<a href="/ICT_MARKET/boardList.com">
 	<input type="button" class="btn" value="See All Products">
 	</a>
 </div>

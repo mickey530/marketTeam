@@ -356,18 +356,17 @@ position: relative;
 			document.getElementById("pickButton").value="Wait for sec..";
 		      setTimeout(function(){document.getElementById("pickButton").value = "Pick it";},3000);
 			document.getElementById('pickit').submit();
-			}
+			})
 	       document.getElementById('unpickButton').addEventListener('click',function(){
 			document.getElementById("unpickButton").style.color="rgb(162,162,162)";
 			document.getElementById("unpickButton").value="Wait for sec..";
 		      setTimeout(function(){document.getElementById("pickButton").value = "Cancel";},3000);
-			document.getElementById('pickit').submit();
-		}
+			document.getElementById('unpickit').submit();
+		})
 		});
-
-		
 		 
 </script>
+
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">${info}${boarddetail.board_title}</h3>
@@ -413,7 +412,7 @@ position: relative;
 </div>
 <div id="contents" class="row">
 <img src="" style="float:left;"/>
-<p class="text-left">${boarddetail.board_content}${boarddetail.board_info}</p>
+<p class="text-left">${boarddetail.board_content}</p>
 
 <div id="addfeature">
 <table class="table" style="">
@@ -429,7 +428,7 @@ position: relative;
 </form>
 </c:if>
 <c:if test="${!empty getPicked}">
-<form id="pickit" action="/ICT_MARKET/pickAdd.com" method="post">
+<form id="unpickit" action="/ICT_MARKET/pickAdd.com" method="post">
 <input type="hidden" value="${boarddetail.board_num}" name="board_num">
 <input id="dibcheck" type="hidden" value="cancel" name="dibcheck">
 <input id="unpickButton" class="btn" type="button" value="unPick" style="color:red;"/>

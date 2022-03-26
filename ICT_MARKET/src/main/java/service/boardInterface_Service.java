@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface boardInterface_Service {
 	
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException ;
 
 }

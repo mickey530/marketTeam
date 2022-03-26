@@ -38,6 +38,7 @@ public class BoardDetailService implements boardInterface_Service {
 		PickedDAO pickedDao = PickedDAO.getInstance();
 		ArrayList<PickedVO> getPicked = pickedDao.getPicked(picked_id, board_num);
 		request.setAttribute("getPicked", getPicked);
+		System.out.println(getPicked);
 		
 		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
 		List<BoardCommentVO> comment = cDao.getBoardCommentList(board_num);

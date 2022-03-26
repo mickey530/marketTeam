@@ -78,7 +78,7 @@ public class PickedDAO {
 		return pickedlist;
 	}
 
-	public ArrayList<PickedVO> getPicked(String picked_id, int board_num) {
+	public ArrayList<PickedVO> getPicked(String picked_id, int bnum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -88,12 +88,12 @@ public class PickedDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(pick);
 			pstmt.setString(1, picked_id);
-			pstmt.setInt(2,  board_num);
+			pstmt.setInt(2,  bnum);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				PickedVO picked = new PickedVO();
-				picked.setPicked_user_id(rs.getString(1));
-				picked.setBoard_num(rs.getInt(2));
+				String picked_user_id = rs.getString("picked_user_id");
+				int board_num = rs.getInt("board_num");
+				PickedVO picked = new PickedVO(picked_user_id, board_num);
 				getpicked.add(picked);
 			}
 		}catch(Exception e) {
