@@ -23,9 +23,13 @@ public class BoardInsertService implements boardInterface_Service{
 		String board_category = request.getParameter("board_category");
 		String board_title = request.getParameter("board_title");
 		String board_content = request.getParameter("board_content");
+		
+		int board_amount = 0;
 		String boardAmount = request.getParameter("board_amount");
-		String price = boardAmount.replaceAll(",", "");
-		int board_amount = Integer.parseInt(price); // casting
+		if(boardAmount != null) {
+			String price = boardAmount.replaceAll(",", "");
+			board_amount = Integer.parseInt(price); // casting
+		}
 		
 		String boardUrl = null;
 		

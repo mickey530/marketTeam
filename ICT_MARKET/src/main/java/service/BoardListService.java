@@ -17,9 +17,11 @@ public class BoardListService implements boardInterface_Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		String board_info = request.getParameter("board_info");
-		System.out.println("sell or buy?"+board_info);
+		// protect null point error
+		String board_info = "ALL";
+		if(request.getParameter("board_info") != null) {
+			board_info = request.getParameter("board_info");
+		}
 		
 		BoardDAO dao = BoardDAO.getInstance();
 		List<BoardVO> boardList;
