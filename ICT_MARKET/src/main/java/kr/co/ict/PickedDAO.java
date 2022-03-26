@@ -163,6 +163,28 @@ public class PickedDAO {
 			}return -1; //db 오류
 	}
 	
+	// all board pick delete
+	public int pickDelete(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String pick = "DELETE FROM picked WHERE board_num = ?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(pick);
+			pstmt.setInt(1, board_num);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return -1; //db 오류
+	}
+	
 	public void pickAllSoldDelete(String picked_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
