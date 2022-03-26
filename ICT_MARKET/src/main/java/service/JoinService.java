@@ -20,18 +20,8 @@ public class JoinService implements boardInterface_Service {
 		    String phone = request.getParameter("phone");
 		    String addr = request.getParameter("addr");
 		    
-		
 		    UserDAO dao = UserDAO.getInstance();
-		
 		    dao.insertUser(id, pw, name, phone, addr);
-		    
-		    
-		    
-		    request.setAttribute("name",name);
-		    request.setAttribute("id",id);
-		    request.setAttribute("pw",pw);
-		    request.setAttribute("phone",phone);
-		    request.setAttribute("addr",addr);
 		
 	}
 

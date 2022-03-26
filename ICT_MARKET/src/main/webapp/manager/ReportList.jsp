@@ -145,6 +145,9 @@ font-size: 90%;
 	margin-left: 90px;
 	}
 </style>
+<c:if test="${sessionScope.session_id ne 'Manager'}">
+<% response.sendRedirect("http://localhost:8181/ICT_MARKET"); %>
+</c:if>
 <title>Insert title here</title>
 </head>
 <body>
@@ -315,7 +318,7 @@ font-size: 90%;
 		<c:forEach var="report" items="${reportList}">
 		<tr>
 	    	<td class="col-md-1">${report.reported_num}</td>
-			<td class="col-md-8">			
+			<td class="col-md-8">	
 				<a href="http://localhost:8181/ICT_MARKET/reportDetail?reported_num=${report.reported_num}&reported_board_num=${report.reported_board_num}" style="text-decoration:none;">
 					${report.reported_reason}
 				</a>
@@ -324,12 +327,29 @@ font-size: 90%;
 			<%-- <td style="text-align:center;">${report.reported_board_num}</td> --%>
 			<td style="text-align:center;">${report.reported_id}</td>
 			<td style="text-align:center;">${report.reporting_id}</td>
-			
-			
-			
 		</tr>
 		</c:forEach>
 	</table>
+	
+	<!-- pagenation -->	
+	<c:if test="${dto.totalPages ne 0}">			
+	<nav aria-label="Page navigation example">
+	  	<ul class="pagination justify-content-center">
+	  	
+	    <li class="page-item ${dto.startPage eq 1 ? 'disabled' : '' }">
+	      <a class="page-link" href="http://localhost:8181/ICT_MARKET/reportList?page_num=${dto.startPage - 1}">Previous</a>
+	    </li>
+	    
+	    <c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
+	    <li class="page-item ${dto.currentPage eq pageIndex ? 'active' : ''}"><a class="page-link" href="http://localhost:8181/ICT_MARKET/reportList?page_num=${pageIndex}">${pageIndex}</a></li>
+	    </c:forEach>
+	    
+	    <li class="page-item ${dto.endPage eq dto.totalPages ? 'disabled' : '' }">
+	      <a class="page-link" href="http://localhost:8181/ICT_MARKET/reportList?page_num=${dto.endPage + 1}">Next</a>
+	    </li>
+	  	</ul>
+	</nav>
+	</c:if>
 </div>
 </body>
 </html>

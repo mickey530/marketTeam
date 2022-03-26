@@ -36,9 +36,7 @@ public class ReportDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String reportednum = request.getParameter("reported_num");
-		int reported_num = Integer.parseInt(reportednum);
-		
+		int reported_num = Integer.parseInt(request.getParameter("reported_num"));
 		int reported_board_num = Integer.parseInt(request.getParameter("reported_board_num"));
 		
 		ReportDAO dao = ReportDAO.getInstance();
@@ -48,9 +46,10 @@ public class ReportDetailServlet extends HttpServlet {
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardVO boarddetail = bDao.getBoardDetail(reported_board_num);
 		request.setAttribute("boarddetail", boarddetail);
-		
+
 		RequestDispatcher dp = request.getRequestDispatcher("/manager/Report_detail.jsp");
 		dp.forward(request, response);
+
 	
 	}
 }

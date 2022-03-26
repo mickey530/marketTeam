@@ -18,7 +18,7 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 193px;
+		padding-bottom: 150px;
 	}
 	body{
 transition :0.5s;
@@ -143,7 +143,7 @@ position: relative;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
-	
+/* 	transform: translateY(-100%); */
 	}
 	footer div{
 	font-family: 'Play', sans-serif;
