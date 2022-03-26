@@ -156,11 +156,11 @@ public class frontController extends HttpServlet {
 		}else if (uri.equals("/ICT_MARKET/boardUpdate.com")) {
 			is = new BoardUpdateService();
 			is.execute(request, response);
-			ui = "/boardDetail.com?board_num=" + request.getParameter("board_num");
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/boardDelete.com")) {
 			is = new BoardDeleteService();
 			is.execute(request, response);
-			ui = "/boardList.com?board_info=ALL";
+			ui = "/boardList.com";
 		}else if (uri.equals("/ICT_MARKET/CommentInsert.com")) {
 			is = new CommentInsertService();
 			is.execute(request, response);
