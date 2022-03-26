@@ -31,7 +31,7 @@ public class PickedListService implements boardInterface_Service{
 		}
 		
 		PickedDAO dao = PickedDAO.getInstance();
-		ArrayList<BoardVO> pickedList = dao.getPickedList(picked_id, pNum);
+		ArrayList<BoardVO> pickedList = dao.getPickedList(picked_id);
 		
 		int allPageNum = dao.getAllPageNum();
 		

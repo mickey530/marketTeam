@@ -34,22 +34,22 @@ public class PickedDAO {
 		return dao;
 	}
 
-	public ArrayList<BoardVO> getPickedList(String picked_id, int PageNum){
+	public ArrayList<BoardVO> getPickedList(String picked_id){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String picked = "SELECT * FROM board WHERE board_num = "
-				+ "(select board_num from picked where picked_user_id = ?) ORDER BY board_num DESC LIMIT ?, ?"; 
+		String picked = "SELECT * FROM board WHERE board_num IN "
+				+ "(select board_num from picked where picked_user_id = ?) ORDER BY board_num DESC"; 
 		ArrayList<BoardVO> pickedlist = new ArrayList<BoardVO>();
-		final int boardCount = 10;
+		//final int boardCount = 10;
 		try {
 			con = ds.getConnection();
-			int limitNum = ((PageNum -1) * boardCount);
+			//int limitNum = ((PageNum -1) * boardCount);
 			pstmt = con.prepareStatement(picked);
 			
 			pstmt.setString(1, picked_id);
-			pstmt.setInt(1, limitNum);
-			pstmt.setInt(2, boardCount);
+			//pstmt.setInt(1, limitNum);
+			//pstmt.setInt(2, boardCount);
 
 			rs = pstmt.executeQuery();
 			
