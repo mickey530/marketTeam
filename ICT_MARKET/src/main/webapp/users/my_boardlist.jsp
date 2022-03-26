@@ -219,8 +219,8 @@ font-size: 90%;
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
-				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li><a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -285,7 +285,7 @@ font-size: 90%;
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">${info}</h3>
-<h5 class="col-md-1">회원 정보</h5>
+<h5 class="col-md-1">내 게시글</h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>
@@ -305,62 +305,61 @@ font-size: 90%;
     </td>
   </tr>
 </table>
-<form class="info">
-	<div class="row mb-3">
-    <label class="col-sm-2 col-form-label">아이디</label> 
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_id }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">이름</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_name }" readonly/>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">휴대전화</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_pnum }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">주소</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_address }" readonly/>
-    </div>
-  </div>
-
-  
-
-  </form>
-    <c:if test="${sessionScope.session_id eq user.user_id }">
-  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-    <input type="hidden" value="${user.user_num }" name="user_num"/>
-      <input type="submit" class="form-control" value="탈퇴" readonly/>
-    </div>
-  </div>
-  </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-    
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-      <input type="submit" class="form-control" value="수정" readonly/>
-    </div>
-  </div>
-  </form>
-  
- </c:if>
 </div>
-
+	<table class="table table-hover" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-8">제목</th>
+			<th style="text-align:center;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회수</th>
+			
+		
+	</tr>
+		<c:forEach items="${boardList}" var="board">
+		<tr>
+	    	<td class="col-md-1">${board.board_num}</td>
+			<td class="col-md-8">			
+				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+					${board.board_title}
+				</a>
+			</td>
+			<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:right;">${board.user_id}</td>
+			<td style="text-align:right;">${board.board_writetime}</td>
+			<td style="text-align:right;">${board.board_hit}</td>
+			
+			
+		</tr>
+		</c:forEach>
+	</table>
+	
+	<!--Pagination
+	.pNation>p>a:hover{
+	color: #f1f1f1;
+	}
+	-->
+	<script>
+	
+	</script>
+	<div>
+	<label class="pNation">
+    <c:if test="${dto.startPage eq 1}">
+    <p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
+    </c:if>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+  	<p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
+    </c:forEach>
+    <c:if test="${dto.endPage ne dto.totalPages}">
+    <p><a href="http://localhost:8181/ICT_MARKET/userboardList.com?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
+    </c:if>
+    </label>
+    </div>
+ 	
+	
+	
+</div>
 </div>
 </body>
 </html>

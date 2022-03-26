@@ -285,7 +285,7 @@ font-size: 90%;
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">${info}</h3>
-<h5 class="col-md-1">회원 정보</h5>
+<h5 class="col-md-1">내 찜목록</h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>
@@ -305,62 +305,50 @@ font-size: 90%;
     </td>
   </tr>
 </table>
-<form class="info">
-	<div class="row mb-3">
-    <label class="col-sm-2 col-form-label">아이디</label> 
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_id }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">이름</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_name }" readonly/>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">휴대전화</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_pnum }" readonly/>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">주소</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_address }" readonly/>
-    </div>
-  </div>
-
-  
-
-  </form>
-    <c:if test="${sessionScope.session_id eq user.user_id }">
-  <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-    <input type="hidden" value="${user.user_num }" name="user_num"/>
-      <input type="submit" class="form-control" value="탈퇴" readonly/>
-    </div>
-  </div>
-  </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-    
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-      <input type="submit" class="form-control" value="수정" readonly/>
-    </div>
-  </div>
-  </form>
-  
- </c:if>
 </div>
-
+	<table class="table table-hover" style="font-size:80%">
+		<tr>
+			<th class="col-md-1">No</th>
+			<th class="col-md-8">게시글 번호</th>
+			</tr>
+		<c:forEach var="pick" items="${PickedList}">
+		<tr>
+	    	<td class="col-md-1">${pick.picked_num}</td>
+			<td class="col-md-8">			
+				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${pick.picked_board_num}" style="text-decoration:none;">
+					${pick.picked_board_num}
+				</a>
+			</td>
+			
+			
+		</tr>
+		</c:forEach>
+	</table>
+	
+	<!--Pagination
+	.pNation>p>a:hover{
+	color: #f1f1f1;
+	}
+	-->
+	<script>
+	
+	</script>
+	<div>
+	<label class="pNation">
+    <c:if test="${dto.startPage eq 1}">
+    <p><a href="?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
+    </c:if>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+  	<p><a href="?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
+    </c:forEach>
+    <c:if test="${dto.endPage ne dto.totalPages}">
+    <p><a href="?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
+    </c:if>
+    </label>
+    </div>
+ 	
+	
+</div>
 </div>
 </body>
 </html>
