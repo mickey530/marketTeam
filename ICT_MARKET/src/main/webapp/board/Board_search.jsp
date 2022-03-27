@@ -2,6 +2,7 @@
 <%--@ page import="kr.co.ict.BoardDAO"--%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,20 +26,24 @@ transition :0.5s;
 }
 
 
+#head{
+font-family: 'Play', sans-serif;
+font-size: 90%;
+}
+#profile{
+position: relative;
+}
+
 .sidenav{
 	width:100px;
 	border-radius: 5px;
-	position: fixed;
-	right:0;
-	z-index:1; 
+	position: absolute;
+	z-index:0; 
 	background: #dcdcdc;
-	margin-top: -1px; 
-	margin-right: 120px;
 	overflow-y: hidden;
-	
-	
+	margin-top: 22px;
+	margin-left: -20px;
 	height: 0;
-	
 	transition :0.5s;
 }
 .sidenav a{
@@ -112,7 +117,29 @@ transition :0.5s;
 	#navgate .btn:hover{
 	color: #f1f1f1;
 	}
+	.pagination{
+	color:black;
+	list-style: none;
+	display: inline-block;
+	margin-top: 5px;
+	}
+	.pagination li{
+	display: inline-block;
+	text-align: center;
+	}
+	.pagination a{
+	color: black;
+	display: block;
+	font-size: 17px;
+	text-decoration: none;
+	padding-left:5px;
+	padding-right:5px;
+	}
+	.pagination a:hover{
+	color: #f1f1f1;
+	}
 	
+	td > a {text-decoration:none; color:black}
 	
 	footer{
 	font-size: 40%;
@@ -133,11 +160,12 @@ transition :0.5s;
 <body>
 <div id="wrapper">
 <!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<!-- <header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id eq null }">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0">ICT MARKET</h2>
+			<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 			</a>
 			
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
@@ -145,23 +173,27 @@ transition :0.5s;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-						<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-					</form>
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="post" 
+				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
+					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
+				</form>
 	
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="#" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userLogin.com" class="nav-link px-2 link-dark fw-bold">Login</a></li>
+					<li><a href="http://localhost:8181/ICT_MARKET/userJoin.com" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-</header> -->
+</header>
+</c:if>
 
 <!-- 세션에 아이디가 존재할 때 헤더 -->
-<header class="p-3 border-bottom bg-white sticky-top">
+<c:if test="${sessionScope.session_id ne null }">
+<header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -170,13 +202,14 @@ transition :0.5s;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/search" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardList?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
 							<path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
 							<path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
@@ -185,7 +218,7 @@ transition :0.5s;
 				</li>
                
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm" class="nav-link px-2 link-dark fw-bold">
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="nav-link px-2 link-dark fw-bold">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
 							<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
 							<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -193,39 +226,39 @@ transition :0.5s;
 					</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
 					</a>
 				</li>
-				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<div id="defaultNav" class="dNav">
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li id="defaultNav" class="dNav">
 					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
 					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
-				</div>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
 </header>
-<!-- Header Menu(onclick main body->close-->
-				<div id="mySidenav" class="sidenav">
-					<a href="/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/userInfoUpdateForm.com" class="text-center">Sell</a>
-					<a href="/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
-            	</div>
+</c:if>
+
 <script>
+
 	function openNav(){
-		document.getElementById("mySidenav").style.height="160px";
-		document.body.style.backgroundColor="rgba(0,0,0,0.4)";
+		document.getElementById("mySidenav").style.height="150px";
 		document.getElementById("mainboard").style.filter="blur(3px)";
 		
 	}
 	function closeNav(){
 		document.getElementById("mySidenav").style.height="0px";
-		document.body.style.backgroundColor="white";
 		document.getElementById("mainboard").style.filter="blur(0)";
 	}
 
@@ -234,51 +267,29 @@ transition :0.5s;
 		if(f.keyCode == 13){ 
 		searchHeader.submit(); 
 		} 
-	} 
-	 const tabList = document.querySelectorAll('.tab_menu .list li');
-	  const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
-	  let activeCont = '';
-
-	  for(var i = 0; i < tabList.length; i++){
-	    tabList[i].querySelector('.btn').addEventListener('click', function(e){
-	      e.preventDefault();
-	      for(var j = 0; j < tabList.length; j++){
-	       
-	        tabList[j].classList.remove('is_on');
-
-	       
-	        contents[j].style.display = 'none';
-	      }
-
-	      this.parentNode.classList.add('is_on');
-
-	      activeCont = this.getAttribute('href');
-	      document.querySelector(activeCont).style.display = 'block';
-	    });
-	  }
 	
 </script>
 
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
 <h3 class="col-md-11">Search Results</h3>
-<h5 class="col-md-9"><small>By </small><ins><em>${param.search_keyword}</em></ins></h5>
+<h5 class="col-md-9" style="font-size: 90%"><small>By </small><ins><em>${param.search_keyword}</em></ins> (${searchResultNum} thread matched)</h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      <form action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get">
       	<input type="hidden" name="board_info" value="true">
       	<input type="submit" class="btn" name="WTS" value="WTS">
       </form>
     </td>
     <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      <form action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get">
       	<input type="hidden" name="board_info" value="false">
       	<input type="submit" class="btn" name="WTB" value="WTB">
       </form>
     </td>
     <td>
-      <form action="http://localhost:8181/ICT_MARKET/boardList" method="get">
+      <form action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get">
       	<input type="hidden" name="board_info" value="">
       	<input type="submit" class="btn" name="ALL" value="ALL">
       </form>      
@@ -289,33 +300,44 @@ transition :0.5s;
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
 			<th class="col-md-1">No</th>
-			<th class="col-md-8">제목</th>
-			<th>가격</th>
-			<th>글쓴이</th>
-			<th>날짜</th>
-			<th>조회</th>
+			<th class="col-md-7">제목</th>
+			<th style="text-align:center; padding-left:40px;">가격</th>
+			<th style="text-align:center;">글쓴이</th>
+			<th style="text-align:center;">날짜</th>
+			<th style="text-align:center;">조회</th>
 	</tr>
-		<c:forEach items="${searchresult}" var="board">
+		<c:forEach items="${searchResult}" var="board">
 		<tr>
-	    	<td class="col-md-1">${searchresult.board_num}</td>
-			<td class="col-md-8">			
-				<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${searchresult.board_num}">
-					${searchresult.board_title}
+	    	<td class="col-md-1">${board.board_num}</td>
+			<td class="col-md-7">
+			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
+				${board.board_title}
 				</a>
 			</td>
-			<td>${searchresult.board_amount}</td>
-			<td>${searchresult.user_id}</td>
-			<td>${searchresult.board_writetime}</td>
-			<td>${searchresult.board_hit}</td>
+			<td style="text-align:right; padding-right:20px;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
+			<td style="text-align:center;">${board.user_id}</td>
+			<td style="text-align:center;">${board.board_writetime}</td>
+			<td style="text-align:center;">${board.board_hit}</td>
 		</tr>
 		</c:forEach>
 	</table>
-	<form action="http://localhost:8181/ICT_MARKET/search"  method="post">
+	<div style="display: flex;
+	justify-content:center;">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=${boardinfo}?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	</div>
+	<form action="http://localhost:8181/ICT_MARKET/searchResult.com"  method="post">
 	<table id="navgate" class="container">
 	<tr>
     <th>
-    <input type="hidden" name="only" value="">
-    <input type="hidden" name="and" value="and">
     <select name="board_info" class="form-select" style="border:none; float:laft;">
         <option value="true">WTS</option>
         <option value="false">WTB</option>
@@ -334,6 +356,7 @@ transition :0.5s;
      	<input type="search" class="form-control" name="search_keyword" placeholder="Search..." aria-label="Search">
      	 </th>
     <th>
+    	<input type="hidden" name="search_where" value="board">
     	<input type="submit" value="Search" class="form-control">
     </th>
    </tr>

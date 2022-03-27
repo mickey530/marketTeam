@@ -195,11 +195,14 @@ public class frontController extends HttpServlet {
 			is.execute(request, response);
 			ui = "/pickList.com";	
 			
-		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com")){
+		}else if (uri.equals("/ICT_MARKET/searchResult.com")){
 			is = new BoardSearchService();
 			is.execute(request, response);
 			ui = "/board/Board_search.jsp";
-		}} catch (Exception e) {
+		}else {
+			ui = "/main.com";
+		}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

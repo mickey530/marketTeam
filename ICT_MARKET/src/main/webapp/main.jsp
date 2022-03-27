@@ -170,8 +170,9 @@ position: relative;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
@@ -198,8 +199,9 @@ position: relative;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
@@ -318,7 +320,7 @@ position: relative;
 							<table id="rt" class="table table-hover" style="font-size:90%">
 							<tr>
 								<td style="text-align:left; text-decoration:none">
-								<a href="http://localhost:8181/ICT_MARKET/boardDetail?board_num=${board.board_num}" 
+								<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" 
 								style="text-decoration:none; color:black;">${board.board_title}</a></td>
 								<td style="text-align:right;"><fmt:formatNumber value="${board.board_amount}" pattern="#,###"/>원</td>
 							</tr>
