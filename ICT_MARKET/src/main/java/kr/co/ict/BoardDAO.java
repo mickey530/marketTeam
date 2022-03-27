@@ -678,6 +678,78 @@ public class BoardDAO {
 		}
 		return pageNum;
 	}
+	
+	public int getBoardPageNum(Boolean board_info) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String allpagenum = "SELECT COUNT(*) FROM board WHERE board_info = ?";
+		int pageNum = 0;
+		
+		try {
+			
+		con = ds.getConnection();
+
+		pstmt = con.prepareStatement(allpagenum);
+		pstmt.setBoolean(1, board_info);
+		
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			pageNum = rs.getInt(1);
+		}
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		
+		}finally {
+			
+			try{
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(final SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return pageNum;
+	}
+	
+	public int getOnlySalePageNum() {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String allpagenum = "SELECT COUNT(*) FROM board WHERE board_info = true and board_sold = false";
+		int pageNum = 0;
+		
+		try {
+			
+		con = ds.getConnection();
+
+		pstmt = con.prepareStatement(allpagenum);
+		
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			pageNum = rs.getInt(1);
+		}
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		
+		}finally {
+			
+			try{
+				con.close();
+				pstmt.close();
+				rs.close();
+			}catch(final SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return pageNum;
+	}
+	
 	public int getUserBoardPageNum(String sId) {
 		
 		Connection con = null;

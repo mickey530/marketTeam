@@ -33,32 +33,50 @@ public class BoardListService implements boardInterface_Service {
 		}catch(Exception e) {
 			pNum = 1;
 		}
+		BoardDTO dto;
+		Boolean boardInfo;
+		int PageNum;
 		
 		if(board_info.equals("WTS")) {
 			info = "Want to Sell";
 			infourl = "WTS";
 			boardList = dao.getAllBoardList(true,pNum);
+			
+			boardInfo = true;
+			PageNum = dao.getBoardPageNum(boardInfo);
+			dto = new BoardDTO(PageNum, pNum);
+			
 		} else if(board_info.equals("WTB")) {
 			info = "Want to Buy";
 			infourl = "WTB";
 			boardList = dao.getAllBoardList(false,pNum);
+			
+			boardInfo = false;
+			PageNum = dao.getBoardPageNum(boardInfo);
+			dto = new BoardDTO(PageNum, pNum);
+			
 		}else if(board_info.equals("ALL")){
 			info = "All Products";
 			infourl = "ALL";
 			boardList = dao.getAllBoardList(pNum);
+			
+			PageNum = dao.getAllPageNum();
+			dto = new BoardDTO(PageNum, pNum);
+			
 		}else{
 			info = "Want to Sell";
 			infourl = "SaleOnly";
 			boardList = dao.getAllOnSaleList(pNum);
+			
+			PageNum = dao.getOnlySalePageNum();
+			dto = new BoardDTO(PageNum, pNum);
 		}
 		
 				
 		request.setAttribute("boardList", boardList);
 		
-		int allPageNum = dao.getAllPageNum();
-		BoardDTO dto = new BoardDTO(allPageNum, pNum);
+		
 		request.setAttribute("dto", dto);
-		System.out.println(dto);
 		
 		request.setAttribute("info", info);
 		request.setAttribute("infourl", infourl);

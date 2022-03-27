@@ -394,16 +394,60 @@ position: relative;
 	</table>
  	
 	<div id="navgate" class="container">
+	
+	<c:if test="${info eq 'Want to Sell'}">
+	<c:choose>
+	<c:when test="${infourl eq 'SaleOnly'}">
 	<nav aria-label="Page navigation" style="float:left">
   	<ul class="pagination">
     <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
     <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
-    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=${boardinfo}?pageNum=${pageIndex}"
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTS?pageNum=${pageIndex}"
     style="text-decoration: none;"> ${pageIndex} </a></li>
     </c:forEach>
     <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
  	</ul>
 	</nav>
+	</c:when>
+	<c:otherwise>
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTS?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	</c:otherwise>
+	</c:choose>
+	</c:if>
+	<c:if test="${info eq 'Want to Buy'}">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=WTB?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	</c:if>
+	<c:if test="${info eq 'All Products'}">
+	<nav aria-label="Page navigation" style="float:left">
+  	<ul class="pagination">
+    <li><p><a href="?pageNum=${dto.startPage -1}" style="text-decoration: none;">prev</a></p></li>
+    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
+    <li><a href="http://localhost:8181/ICT_MARKET/boardList.com?board_info=ALL?pageNum=${pageIndex}"
+    style="text-decoration: none;"> ${pageIndex} </a></li>
+    </c:forEach>
+    <li><a href="?pageNum=${dto.endPage +1}" style="text-decoration: none;">next</a></li>
+ 	</ul>
+	</nav>
+	</c:if>
+	
 	<c:if test="${not empty sessionScope.session_id}">
 	<form id="post" action="http://localhost:8181/ICT_MARKET/boardInsertForm.com" method="post">
 	<input type="hidden" value="${boarddetail.board_num}" name="board_num">
