@@ -28,6 +28,7 @@
 	
 	html, body{height:100%}
 	#wrapper{
+	font-family: 'Play', sans-serif;
 		height: auto;
 		min-height: 100%;
 		padding-bottom: 100px;
@@ -71,8 +72,10 @@ position: relative;
 .sidenav a:hover{
 	color: #f1f1f1;
 }
+
 	#main {
 	height: auto;
+	margin-top: -50px;
 	}
 	
 	.main_head{

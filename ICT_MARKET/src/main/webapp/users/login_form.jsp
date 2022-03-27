@@ -29,6 +29,7 @@
 	
 	html, body{height:100%}
 	#wrapper{
+		font-family: 'Play', sans-serif;
 		height: auto;
 		min-height: 100%;
 		padding-bottom: 100px;

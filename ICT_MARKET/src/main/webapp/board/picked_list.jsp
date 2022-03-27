@@ -310,15 +310,32 @@ position: relative;
 <h5 class="col-md-1"></h5>
 <table class="tab_menu">
   <tr class="list">
-    <td>
+      <td>
+      <c:if test="${!empty pickedList}">
       <form action="http://localhost:8181/ICT_MARKET/pickAllDelete.com" method="get">
-      	<input type="submit" class="btn" value="Delete All Favorite Items">
-      </form>     
+      	<input type="submit" class="btn" value="Delete All Favorite Items" style="font-size: 10px; color:#922017;">
+      </form>   
+      </c:if>  
     </td>
+  <td>
+          <form action="http://localhost:8181/ICT_MARKET/userInfo.com" method="get">
+      	<input type="submit" class="btn" name="userinfo" value="Userinfo">
+      </form>
+    </td>
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/userboardList.com" method="get">
+      	<input type="submit" class="btn" name="my_boardList" value="MyBoardList">
+      </form>
+    </td>
+    <td>
+      <form action="http://localhost:8181/ICT_MARKET/pickList.com" method="get">
+      	<input type="submit" class="btn" name="my_pickedList" value="MyPickedList">
+      </form>   
+      </td>
   </tr>
 </table>
 </div>
-	<table class="table table-hover" style="font-size:80%">
+	<table id="list" class="table table-hover" style="font-size:80%">
 		<tr>
 			<th class="col-md-1">No</th>
 			<th class="col-md-1">판매여부</th>

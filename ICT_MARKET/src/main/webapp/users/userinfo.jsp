@@ -17,6 +17,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <meta charset="UTF-8">
 <style>
 	
+	
 	   .form-user-info{
      
       width:900px;
@@ -59,10 +60,13 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	
 	
 	html, body{
+	font-family: 'Play', sans-serif;
 	height:100%
 	}
 	#wrapper{
 		height: auto;
+		min-height: 100%;
+		padding-bottom: 50px;
 	}
 
 	body{
@@ -304,9 +308,9 @@ position: relative;
 
 <!-- user info -->
 <div id= "mainboard" class="container" onclick="closeNav()">
-<h3 class="col">${info}</h3>
+<h3 class="col" style="font-weight: 700; font-size:30px;">My Info</h3>
 <div class="row">
-<h5 class="col">회원 정보</h5>
+<h5 class="col"></h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>
@@ -326,7 +330,7 @@ position: relative;
     </td>
   </tr>
 </table>
-<form class="info">
+<form class="info" style="margin-top:50px;">
 	<div class="row mb-3">
     <label class="col-sm-2 col-form-label">아이디</label> 
     <div class="col-sm-3">
@@ -380,7 +384,7 @@ position: relative;
   
  </c:if>
   </form>
-</div>
+  </div>
 </div>
 </div>
 <!--footer-->
