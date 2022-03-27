@@ -20,8 +20,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	html, body{height:100%}
 	#wrapper{
 		height: auto;
-		min-height: 100%;
-		padding-bottom: 157px;
+		min-height: 80%;
 	}
 	body{
 	transition :0.5s;
@@ -199,7 +198,7 @@ position: relative;
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/main" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -231,7 +230,7 @@ position: relative;
 					</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
@@ -244,7 +243,7 @@ position: relative;
 					</a>
 					<div id="mySidenav" class="sidenav">
 					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="text-center">Sell</a>
 					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 				</li>
@@ -293,6 +292,12 @@ position: relative;
 	    });
 	  }
 	  
+	  <!--unPick-->
+	  window.addEventListener('load',function(){
+		 	document.getElementById('unpickButton').addEventListener('click',function(){
+				document.getElementById('unpickit').submit();
+			})
+		  });
 	  
 	
 </script>
@@ -304,9 +309,9 @@ position: relative;
 <table class="tab_menu">
   <tr class="list">
     <td>
-      <form action="http://localhost:8181/ICT_MARKET/pickAllDelete.com" method="get">
-      	<input type="submit" class="btn" name="board_info" value="Delete All Favorite Items">
-      </form>      
+      <a href="/ICT_MARKET/pickAllDelete.com" style="text-decoration:none; font-size:80%">
+      	Delete All Favorite Items
+      </a>      
     </td>
   </tr>
 </table>
@@ -315,11 +320,12 @@ position: relative;
 		<tr>
 			<th class="col-md-1">No</th>
 			<th class="col-md-1">판매여부</th>
-			<th class="col-md-7">제목</th>
+			<th class="col-md-5">제목</th>
 			<th style="text-align:center;">가격</th>
 			<th style="text-align:center;">글쓴이</th>
 			<th style="text-align:center;">날짜</th>
 			<th style="text-align:center;">조회</th>
+			<th style="text-align:center;">찜해제</th>
 	</tr>
 		<c:forEach items="${pickedList}" var="board">
 		<tr>
@@ -330,7 +336,7 @@ position: relative;
 			<c:if test="${board.board_sold == true}">
 			<td class="col-md-1" style="color:red;">Soldout</td>
 			</c:if>
-			<td class="col-md-7">
+			<td class="col-md-5">
 			<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${board.board_num}" style="text-decoration:none;">
 				${board.board_title}
 				</a>
@@ -339,6 +345,13 @@ position: relative;
 			<td style="text-align:center;">${board.user_id}</td>
 			<td style="text-align:center;">${board.board_writetime}</td>
 			<td style="text-align:center;">${board.board_hit}</td>
+			<td style="text-align:center;">
+			<form id="unpickit" action="/ICT_MARKET/pickCancel.com" method="post">
+				<input type="hidden" value="${board.board_num}" name="board_num">
+				<input id="dibcheck" type="hidden" value="cancel" name="dibcheck">
+				<input id="unpickButton" class="btn" type="button" value="unPick" style="color:red; font-size:80%"/>
+				</form>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -359,5 +372,39 @@ position: relative;
 	</a>
 </div>
 </div>
+</div>
+<!--footer-->
+<footer class="p-3 py-3 border-top">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<div>
+				<h6>Customer Service</h6>
+					<ul class="nav flex-column">
+						<li class="nav-item mb-2 text-muted">1111-6666</li>
+						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
+						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
+						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
+					</ul>
+			</div>
+            
+			<div>
+				<h6>ICT MARKET</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item mb-2">대표 : 6666 |</li>
+					<li class="nav-item mb-2"> 사업자등록번호 : 666666666</li>
+					<li class="nav-item mb-2">통신판매업 : 2022-01234</li>
+					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
+				</ul>
+			</div>
+            
+			<div>
+				<ul class="nav flex-column" style="font-size:10px">
+					<li class="nav-item mb-2">Copyright © ICT MARKET 2022. All Rights Reserved.</li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+
+</footer>
 </body>
 </html>

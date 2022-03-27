@@ -18,7 +18,7 @@
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 150px;
+		padding-bottom: 100px;
 	}
 	body{
 transition :0.5s;
@@ -234,7 +234,7 @@ position: relative;
 					</a>
 					<div id="mySidenav" class="sidenav">
 					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
-					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/boardInsertForm.com" class="text-center">Sell</a>
 					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
             	</div>
 				</li>

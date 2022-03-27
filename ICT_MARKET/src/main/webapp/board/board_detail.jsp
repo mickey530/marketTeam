@@ -17,11 +17,13 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <meta charset="UTF-8">
 <style>
 	html, body{height:100%}
+	
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 157px;
+		padding-bottom: 100px;
 	}
+	
 	body{
 	transition :0.5s;
 	}
@@ -194,7 +196,9 @@ position: relative;
 	#pickeddiv:hover{
 	color: #f1f1f1;
 	}
-	
+	#comment{
+	padding-bottom: 70px;
+	}
 	#comment:hover{
 	color: #f1f1f1;
 	}
@@ -204,7 +208,7 @@ position: relative;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
-	display: flex;
+	
 	}	
 	
 	footer div{
@@ -282,7 +286,7 @@ position: relative;
 					</a>
 				</li>
 				<li>
-					<a href="http://localhost:8181/ICT_MARKET/pickedList.com" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
@@ -347,19 +351,21 @@ position: relative;
 	  }
 	  <!--pick funtion..-->
 	  window.addEventListener('load',function(){
-	       document.getElementById('pickButton').addEventListener('click',function(){
+	    document.getElementById('pickButton').addEventListener('click',function(){
 			document.getElementById("pickButton").style.color="red";
 			document.getElementById("pickButton").value="Wait for sec..";
 		      setTimeout(function(){document.getElementById("pickButton").value = "Pick it";},3000);
 			document.getElementById('pickit').submit();
 			})
-	       document.getElementById('unpickButton').addEventListener('click',function(){
+		});
+	  window.addEventListener('load',function(){
+	 	document.getElementById('unpickButton').addEventListener('click',function(){
 			document.getElementById("unpickButton").style.color="rgb(162,162,162)";
 			document.getElementById("unpickButton").value="Wait for sec..";
 		      setTimeout(function(){document.getElementById("pickButton").value = "Cancel";},3000);
 			document.getElementById('unpickit').submit();
 		})
-		});
+	  });
 		 
 </script>
 
@@ -498,7 +504,6 @@ position: relative;
 <br/>
 
 <!-- comment -->
-
 <div class="comment">
 	<table class="table table-hover" style="font-size:80%">
 		<tr>
@@ -570,5 +575,38 @@ position: relative;
 	</c:if>
 </div>
 </div>
+<!--footer-->
+<footer class="p-3 py-3 border-top">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<div>
+				<h6>Customer Service</h6>
+					<ul class="nav flex-column">
+						<li class="nav-item mb-2 text-muted">1111-6666</li>
+						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
+						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
+						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
+					</ul>
+			</div>
+            
+			<div>
+				<h6>ICT MARKET</h6>
+				<ul class="nav flex-column">
+					<li class="nav-item mb-2">대표 : 6666 |</li>
+					<li class="nav-item mb-2"> 사업자등록번호 : 666666666</li>
+					<li class="nav-item mb-2">통신판매업 : 2022-01234</li>
+					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
+				</ul>
+			</div>
+            
+			<div>
+				<ul class="nav flex-column" style="font-size:10px">
+					<li class="nav-item mb-2">Copyright © ICT MARKET 2022. All Rights Reserved.</li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+
+</footer>
 </body>
 </html>

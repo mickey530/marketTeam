@@ -28,6 +28,7 @@ import service.LogoutService;
 import service.MainService;
 import service.UserBoardListService;
 import service.PickAddOrDeleteService;
+import service.PickCancelService;
 import service.PickedAllSoldDeleteService;
 import service.PickedListService;
 import service.UserInfoDeleteService;
@@ -185,6 +186,10 @@ public class frontController extends HttpServlet {
 			is = new PickedListService();
 			is.execute(request, response);
 			ui = "/board/picked_list.jsp";	
+		}else if (uri.equals("/ICT_MARKET/pickCancel.com")) {
+			is = new PickCancelService();
+			is.execute(request, response);
+			ui = "/pickList.com";	
 		}else if (uri.equals("/ICT_MARKET/pickAllDelete.com")) {
 			is = new PickedAllSoldDeleteService();
 			is.execute(request, response);

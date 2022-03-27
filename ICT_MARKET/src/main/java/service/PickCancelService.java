@@ -15,19 +15,17 @@ public class PickCancelService implements boardInterface_Service{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*int pick = -1;
-		
 		HttpSession session = request.getSession();
 		String picked_id = (String)session.getAttribute("session_id");
 		
 		String boardnum = request.getParameter("board_num");
-		int picked_board_num = Integer.parseInt(boardnum);
+		int board_num = Integer.parseInt(boardnum);
 		
 		PickedDAO dao = PickedDAO.getInstance();
 		BoardDAO daoboard = BoardDAO.getInstance();
 		
-		dao.pickDelete(picked_id, picked_board_num);
-		daoboard.pickedCount(pick,picked_board_num );*/
+		dao.pickDelete(board_num, picked_id);
+		daoboard.pickedCountMinus(board_num);
 	}
 
 }
