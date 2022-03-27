@@ -131,7 +131,7 @@
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label">이름</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" value="${user.user_name }" readonly/>
+      <input type="text" class="form-control" value="${user.user_name }"  readonly/>
     </div>
   </div>
 
@@ -163,7 +163,7 @@
     </div>
   </div>
   </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
+  <form class="updateinfo" action="http://localhost:8181//ICT_MARKET/userInfoUpdateMForm.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">

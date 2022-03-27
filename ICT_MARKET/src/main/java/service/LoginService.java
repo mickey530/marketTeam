@@ -32,6 +32,7 @@ public class LoginService implements boardInterface_Service{
 					if(id.equals(uId) && pw.equals(uPw)){
 						HttpSession session = request.getSession();
 						session.setAttribute("session_id", uId);
+						
 					}
 
 				}

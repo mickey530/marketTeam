@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${sId ne user_id}">
+<%
+response.sendRedirect("/ICT_MARKET/userlist.com");
+%>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
-
-<!--add [no access for unauthorize manager option]-->
-<c:if test="${session_id eq null}">
-<% response.sendRedirect("http://localhost:8181/ICT_MARKET/userLogin.com"); %>
-</c:if>
-<c:if test="${session_id ne 'Manager' }">
-<% response.sendRedirect("http://localhost:8181/ICT_MARKET/userInfo.com"); %>
-</c:if>
-
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
@@ -22,9 +18,10 @@
 		min-height: 100%;
 		padding-bottom: 157px;
 	}
-	.main{
+	.main{text-align:center;
 
 		}
+		.info{text-align:right;}
 	footer{
 		height: 157px;
 		position: relative;
@@ -103,7 +100,7 @@
 					</a>
 				</li>
 				<li><a href="#" class="nav-link px-2 link-dark fw-bold">calmdownman</a></li>
-				<li><a href="http://localhost:8181//ICT_MARKET/userLogout.com" class="nav-link px-2 link-dark fw-bold">logout</a></li>
+				<li><a href="#" class="nav-link px-2 link-dark fw-bold">logout</a></li>
 				<li>
 					<a href="#" id="profile" style="padding: 15px;"> 
 						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -118,81 +115,56 @@
 
 <!-- main 컨텐츠 내용 -->
 <div class="main">
-<table class="table table-sm">
-<thead>
-  <tr>
-  <th>회원번호</th>
-  <th>회원이름</th>
-  <th>회원아이디</th>
-  <th>전화번호</th>
-  <th>주소</th>
-  </tr>
-  </thead>
-  <tbody>
- <c:forEach var="user" items="${userList}">
- <tr>
-  <td>${ user.user_num}</td>
-  <td><a href="http://localhost:8181/ICT_MARKET/userInfoManager.com?user_num=${user.user_num}">${ user.user_name}</a></td>
-  <td>${ user.user_id}</td>
-  <td>${ user.user_pnum }</td>
-  <td>${ user.user_address }</td>
-  </tr>
-</c:forEach>
-</tbody>
-</table>
+<h1 class="userinfo">회원정보</h1>
 
+
+
+<form class="info" action="http://localhost:8181//ICT_MARKET/userInfoMangerUpdate.com" method="post">
+	<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">아이디</label> 
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_id }" name="id" readonly/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">비밀번호</label>
+    <div class="col-sm-3">
+      <input type="password" class="form-control" value="${user.user_pw }" name="pw"/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">이름</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_name }" readonly/>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">휴대전화</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_pnum }" name="pNum"/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">주소</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" value="${user.user_address }" name="address"/>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-3">
+     <input type="hidden" value="${user.user_id }" name="user_id"/>
+     <input type="hidden" value="${user.user_num }" name="user_num"/>
+     <input type="submit" class="form-control" value="확인" readonly/>
+    </div>
+  </div>
+
+  </form>
 </div>
-<nav aria-label="Page navigation example">
-  	<ul class="pagination justify-content-center">
-  	
-    <li class="page-item ${dto.startPage eq 1 ? 'disabled' : '' }">
-      <a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${dto.startPage - 1}">Previous</a>
-    </li>
-    
-    <c:forEach var="pageIndex" begin="${dto.startPage }" end="${dto.endPage }">
-    <li class="page-item ${dto.currentPage eq pageIndex ? 'active' : ''}"><a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${pageIndex}">${pageIndex}</a></li>
-    </c:forEach>
-    <li class="page-item ${dto.endPage eq dto.totalPages ? 'disabled' : '' }">
-      <a class="page-link" href="http://localhost:8181/ICT_MARKET/userList.com?pageNum=${dto.endPage + 1}">Next</a>
-    </li>
-  	</ul>
-	</nav>
-</div>
+ 
 
-<!-- 여기서 부터는 푸터 -->
 
-<footer class="p-3 py-3 border-top">
-	<div class="container">
-		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<div class="col">
-				<h5>SC CENTER</h5>
-					<ul class="nav flex-column">
-						<li class="nav-item mb-2 text-muted">1111-6666</li>
-						<li class="nav-item mb-2 text-muted">MON-FRI : 10:00 ~ 17:00</li>
-						<li class="nav-item mb-2 text-muted">LUNCH: 13:00 ~ 14:00</li>
-						<li class="nav-item mb-2 text-muted">SAT, SUN, HOLIDAY OFF</li>
-					</ul>
-			</div>
-            
-			<div class="col">
-				<h5>ICT MARKET</h5>
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">대표 : 6666 |</li>
-					<li class="nav-item mb-2"> 사업자등록번호 : 666666666|</li>
-					<li class="nav-item mb-2">통신판매업 : 2022-01234 |</li>
-					<li class="nav-item mb-2">주소 : 서울특별시 마포구 서교동 353-4 첨담빌딩 7층</li>
-				</ul>
-			</div>
-            
-			<div class="col">
-				<ul class="nav flex-column">
-					<li class="nav-item mb-2">Copyright © ICT MARKET. All Rights Reserved.</li>
-				</ul>
-			</div>
-		</div>
-	</div>        
-
-</footer>
 
 </body>
 </html>

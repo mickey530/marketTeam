@@ -34,6 +34,7 @@ import service.PickedListService;
 import service.UserInfoDeleteService;
 import service.UserInfoManagerDeleteService;
 import service.UserInfoManagerService;
+import service.UserInfoManagerUpdateService;
 import service.UserInfoService;
 import service.UserInfoUpdateFormService;
 import service.UserInfoUpdateService;
@@ -119,11 +120,22 @@ public class frontController extends HttpServlet {
 			is = new UserInfoUpdateFormService();
 			is.execute(request, response);
 			ui = "/users/userUpdateForm.jsp";
-		}else if (uri.equals("/ICT_MARKET/userInfoUpdate.com")) {
+		}
+		else if (uri.equals("/ICT_MARKET/userInfoUpdateMForm.com")) {
+			is = new UserInfoUpdateFormService();
+			is.execute(request, response);
+			ui = "/users/userUpdateMForm.jsp";
+		}
+		else if (uri.equals("/ICT_MARKET/userInfoUpdate.com")) {
 			is = new UserInfoUpdateService();
 			is.execute(request, response);
 			ui = "/userInfo.com";
-		}else if (uri.equals("/ICT_MARKET/userList.com")) {
+		}else if (uri.equals("/ICT_MARKET/userInfoMangerUpdate.com")) {
+			is = new UserInfoManagerUpdateService();
+			is.execute(request, response);
+			ui = "/userInfo.com";
+		}
+		else if (uri.equals("/ICT_MARKET/userList.com")) {
 			is = new UserListManagerService();
 			is.execute(request, response);
 			ui = "/users/userlist.jsp";

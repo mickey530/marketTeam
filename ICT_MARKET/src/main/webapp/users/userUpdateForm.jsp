@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${sId ne user_id}">
+<c:if test="${session_id ne user_id}">
 <%
 response.sendRedirect("/ICT_MARKET/userlist.com");
 %>
@@ -155,6 +155,7 @@ response.sendRedirect("/ICT_MARKET/userlist.com");
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-3">
      <input type="hidden" value="${user.user_id }" name="user_id"/>
+     <input type="hidden" value="${user.user_num }" name="user_num"/>
       <input type="submit" class="form-control" value="확인" readonly/>
     </div>
   </div>
