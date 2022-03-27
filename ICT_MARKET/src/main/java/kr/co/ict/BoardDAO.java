@@ -140,7 +140,7 @@ public class BoardDAO {
 		}	
 		return boardList;
 	}
-//	user board list
+    //user board list
 	public List<BoardVO> getAllBoardList(String sId, int pageNum){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -195,7 +195,7 @@ public class BoardDAO {
 		return boardList;
 	}
 	
-		public List<BoardVO> getAllOnSaleList(int PageNum){
+	public List<BoardVO> getAllOnSaleList(int PageNum){
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -244,7 +244,6 @@ public class BoardDAO {
 			}	
 			return boardList;
 		}
-
 
 	public void insertBoard(String user_id, boolean board_info, String board_category, String board_title , String board_content, int board_amount) {
 		Connection con = null;
@@ -392,22 +391,69 @@ public class BoardDAO {
 	}
 	}
 	
-	public ArrayList<BoardVO> getsearchBoard(String where, Boolean sorB, String searchword) {
+	//search
+	public ArrayList<BoardVO> getSearchBoard(boolean boardInfo, String searchkeyword, int PageNum){
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		//final int boardCount = 10;
+		String searchsql = "SELECT * FROM board WHERE board_info = ? AND "
+				+ "(board_title like ? OR board_content like ? OR board_category < ? OR user_id like ?) ORDER BY board_num DESC limit 10"; 
+		ArrayList<BoardVO> searchList = new ArrayList<BoardVO>();
+		try {
+			con = ds.getConnection();
+			//int limitNum = ((PageNum -1) * boardCount);
+			pstmt = con.prepareStatement(searchsql);
+			pstmt.setBoolean(1, boardInfo);
+			pstmt.setString(2, "%"+searchkeyword+"%");
+			pstmt.setString(3, "%"+searchkeyword+"%");
+			pstmt.setString(4, "%"+searchkeyword+"%");
+			pstmt.setString(5, "%"+searchkeyword+"%");
+			//pstmt.setInt(6, limitNum);
+			//pstmt.setInt(7, boardCount);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int board_num = rs.getInt("board_num");
+				String user_id = rs.getString("user_id");
+				Boolean board_info = rs.getBoolean("board_info");
+				String board_category = rs.getString("board_category");
+				String board_title = rs.getString("board_title");
+				String board_content = rs.getString("board_content");
+				int board_amount = rs.getInt("board_amount");
+				boolean board_sold =  rs.getBoolean("board_sold");
+				int board_hit = rs.getInt("board_hit");
+				int board_reported = rs.getInt("board_reported");
+				Date board_writetime = rs.getDate("board_writetime");
+				Date board_updatetime = rs.getDate("board_updatetime");
+				int board_picked_num = rs.getInt("board_picked_num");
+				
+				BoardVO boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
+						 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime, board_picked_num);
+				searchList.add(boardData);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return searchList;
+	}
+	
+	public ArrayList<BoardVO> getsearchBoardhead(String searchkeyword, int PageNum) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//final int boardCount = 10;
+		String sql = "SELECT * FROM board WHERE board_title like ? ORDER BY board_num DESC limit 10";
 		BoardVO boardData = null;
 		ArrayList<BoardVO> searchresult = new ArrayList<BoardVO>();
 		
 		try {
 			con = ds.getConnection();
-	
-			String sql = "SELECT * FROM board WHERE "+where+" AND board_info= ? LIKE '%?%'";
-			
+			//int limitNum = ((PageNum -1) * boardCount);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setBoolean(1, sorB);
-			pstmt.setString(2, searchword);
+			pstmt.setString(1, "%"+searchkeyword+"%");
+			//pstmt.setInt(2, limitNum);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -444,60 +490,8 @@ public class BoardDAO {
 		}	
 		return searchresult;
 	}
-	
-public ArrayList<BoardVO> getsearchBoardhead(String searchword) {
-		
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		BoardVO boardData = null;
-		ArrayList<BoardVO> searchresult = new ArrayList<BoardVO>();
-		
-		try {
-			con = ds.getConnection();
-	
-			String sql = "SELECT * FROM board LIKE '%?%'";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, searchword);
-			rs = pstmt.executeQuery();
 
-			while(rs.next()) {
-				int board_num = rs.getInt("board_num");
-				String user_id = rs.getString("user_id");
-				boolean board_info = rs.getBoolean("board_info");
-				String board_category = rs.getString("board_category");
-				String board_title = rs.getString("board_title");
-				String board_content = rs.getString("board_content");
-				int board_amount = rs.getInt("board_amount");
-				boolean board_sold =  rs.getBoolean("board_sold");
-				int board_hit = rs.getInt("board_hit");
-				int board_reported = rs.getInt("board_reported");
-				Date board_writetime = rs.getDate("board_writetime");
-				Date board_updatetime = rs.getDate("board_updatetime");
-				int board_picked_num = rs.getInt("board_picked_num");
-				
-				boardData = new BoardVO(board_num, user_id, board_info, board_category, board_title,  board_content,
-						 board_amount, board_sold, board_hit, board_reported, board_writetime, board_updatetime, board_picked_num);
-				searchresult.add(boardData);
-				
-				
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				con.close();
-				pstmt.close();
-				rs.close();
-			} catch(SQLException se) {
-				se.printStackTrace();
-			}
-		}	
-		return searchresult;
-	}
-
-	public int getsearchCount(String keyword, Boolean sorB, String searchword) {
+	public int getsearchheadCount(String searchkeyword) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -507,11 +501,10 @@ public ArrayList<BoardVO> getsearchBoardhead(String searchword) {
 		try {
 			con = ds.getConnection();
 			
-			String sql = "SELECT COUNT(IDX) AS COUNT FORM board WHERE \"+where+\" AND board_info= ? LIKE '%?%'";
+			String sql = "SELECT COUNT(*) FROM board WHERE board_title like ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setBoolean(1, sorB);
-			pstmt.setString(2, searchword);
+			pstmt.setString(1, "%"+searchkeyword+"%");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -531,7 +524,46 @@ public ArrayList<BoardVO> getsearchBoardhead(String searchword) {
 		return count;
 	}
 	
-public void pickedCountPlus(int board_num) {
+	public int getsearchCount(boolean boardInfo, String searchkeyword) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			con = ds.getConnection();
+			
+			String sql = "SELECT COUNT(*) FROM Board WHERE board_info = ? AND "
+					+ "(board_title like ? OR board_content like ? OR board_category < ? OR user_id like ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setBoolean(1, boardInfo);
+			pstmt.setString(2, "%"+searchkeyword+"%");
+			pstmt.setString(3, "%"+searchkeyword+"%");
+			pstmt.setString(4, "%"+searchkeyword+"%");
+			pstmt.setString(5, "%"+searchkeyword+"%");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+		}	
+		return count;
+	}
+	
+	//pickCount
+	public void pickedCountPlus(int board_num) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -557,7 +589,8 @@ public void pickedCountPlus(int board_num) {
 			}
 		}
 		}
-public void pickedCountMinus(int board_num) {
+	
+	public void pickedCountMinus(int board_num) {
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -584,7 +617,6 @@ public void pickedCountMinus(int board_num) {
 	}
 	}
 
-	
 	private void hitCount(int hit) {
 		
 		Connection con = null;
@@ -680,7 +712,10 @@ public void pickedCountMinus(int board_num) {
 		}
 		return pageNum;
 	}
-
+	
 }
+	
+
+
 
 	

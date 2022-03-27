@@ -181,6 +181,7 @@ position: relative;
 	           
 					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
@@ -209,6 +210,7 @@ position: relative;
            
 				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                

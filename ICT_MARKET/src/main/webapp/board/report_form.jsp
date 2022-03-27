@@ -1,8 +1,6 @@
-
 <%@ page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,11 +18,11 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	#wrapper{
 		height: auto;
 		min-height: 100%;
-		padding-bottom: 157px;
+		padding-bottom: 193px;
 	}
 	body{
-	transition :0.5s;
-	}
+transition :0.5s;
+}
 
 #head{
 font-family: 'Play', sans-serif;
@@ -90,7 +88,7 @@ font-size: 90%;
   	height:100px; 
   	line-height:100px;}
 	
-	.tab_menu .btn:hover{
+	.tab_menu a:hover{
 	color: #f1f1f1;
 	}
 	
@@ -99,28 +97,72 @@ font-size: 90%;
 	}
 	#mainboard .row{
 	margin-top: 50px;
-	margin-bottom: 10px;
+	
 	}
-	#mainboard .row>.col-md-1{
+	#mainboard .row>.col-md-12{
 	margin-right:14px;
+	padding-bottom: 15px;
 	}
 	#mainboard .row .col-md-11{
 	font-weight: 700;
 	font-size:30px;
 	}
+	#mainboard .row #read{
+	text-align:right;
+	padding-right: 5px;
+	}
+	#mainboard .row #writer{
+	font-size: 2vmin;
+	text-align:right;
+	}
+	#mainboard .row #no{
+	font-size: 2vmin;
+	margin: 0 auto;
+	}
+	#mainboard .row #read{
+	font-size: 2vmin;
+	margin: 0 auto;
 	
-	.pNation:hover{
+	}
+	
+	#mainboard #productamount {
+	max-width: 35%;
+	min-width:35%;
+  	height: auto;
+  	display: block;
+	font-weight: 700;
+	margin-top: -5px;
+	margin-bottom: -30px;
+	}
+	#mainboard #contents {
+	align:left;
+	width:100%;
+	}
+	
+	
+	#fav{
+	max-width: 25%;
+	float:right;
+	margin-top:-75px;
+	}
+	#fav a:hover{
 	color: #f1f1f1;
 	}
 	
 	#navgate{
 	display: flex;
-	justify-content:flex-end;
+	justify-content: center;
 	margin-top:-15px;
+	max-width: 90%;
   	font-size: 2vmin;
 	}
 	#navgate .btn:hover{
 	color: #f1f1f1;
+	}
+	#navgate #list{
+    white-space: nowrap;
+	text-align:left;
+	margin-left:30px;
 	}
 	
 	#navgate #post{
@@ -128,14 +170,29 @@ font-size: 90%;
 	float:right;
 	}
 	
-	td > a {text-decoration:none; color:black}
+	#navgate #edit{
+    white-space: nowrap;
+	float:right;
+	}
+	
+	#navgate #del{
+    white-space: nowrap;
+	float:right;
+	margin-right:30px;
+	}
+	
+	#comment:hover{
+	color: #f1f1f1;
+	}
+	
+	
 	
 	footer{
 	font-size: 40%;
 	height: 150px;
 	position: relative;
   	bottom: 0px;
-	
+	display: flex;
 	}	
 	
 	footer div{
@@ -148,40 +205,12 @@ font-size: 90%;
 </head>
 <body>
 <div id="wrapper">
-<!-- 세션에 아이디가 존재하지 않을 때 헤더 -->
-<c:if test="${sessionScope.session_id eq null }">
-<header id="head" class="p-3 border-bottom bg-white sticky-top">
-	<div class="container">
-		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-				<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
-			</a>
-			
-			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"></ul>
-	
-			<div>
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-	           
-					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
-				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
-				</form>
-	
-					<li><a href="http://localhost:8181/ICT_MARKET/ICTLF" class="nav-link px-2 link-dark fw-bold">Login</a></li>
-					<li><a href="http://localhost:8181/ICT_MARKET/users/join_form.jsp" class="nav-link px-2 link-dark fw-bold">Sign-up</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</header>
-</c:if>
-
 <!-- 세션에 아이디가 존재할 때 헤더 -->
 <c:if test="${sessionScope.session_id ne null }">
 <header id="head" class="p-3 border-bottom bg-white sticky-top">
 <div class="container">
 	<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-		<a href="http://localhost:8181/ICT_MARKET/" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
+		<a href="http://localhost:8181/ICT_MARKET/main.com" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
 			<h2 style="margin:0; font-family: 'Play', sans-serif; font-weight: 700;">ICT MARKET</h2>
 		</a>
 		
@@ -213,18 +242,22 @@ font-size: 90%;
 					</a>
 				</li>
 				<li>
-					<a href="#" class="nav-link px-2 link-dark fw-bold heart">
+					<a href="http://localhost:8181/ICT_MARKET/pickList.com" class="nav-link px-2 link-dark fw-bold heart">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
 							<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 						</svg>
 					</a>
 				</li>
-				<li><a href="http://localhost:8181/ICT_MARKET/userInfo" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
-				<li><a href="http://localhost:8181/ICT_MARKET/logOut" class="nav-link px-2 link-dark fw-bold">logout</a></li>
-				<li>
-					<a href="#" id="profile" style="padding: 15px;"> 
-						<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle">
+				<li><a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="nav-link px-2 link-dark fw-bold">${sessionScope.session_id}</a></li>
+				<li id="defaultNav" class="dNav">
+					<a href="#" id="profile" style="padding: 15px" onclick="openNav()"> 
+					<img src="https://yt3.ggpht.com/ytc/AKedOLTi6w4E6985-QdVBbovBSsnCeTETyj0WomjM5IY8Q=s88-c-k-c0x00ffffff-no-rj" alt="mdo" width="32" height="32" class="rounded-circle"/>
 					</a>
+					<div id="mySidenav" class="sidenav">
+					<a href="http://localhost:8181/ICT_MARKET/userInfo.com" class="text-center">Profile</a>
+					<a href="/ICT_MARKET/boardInsertForm" class="text-center">Sell</a>
+					<a href="http://localhost:8181/ICT_MARKET/userLogout.com" class="text-center">Logout</a>
+            	</div>
 				</li>
 			</ul>
 		</div>
@@ -232,7 +265,6 @@ font-size: 90%;
 </div>
 </header>
 </c:if>
-
 <!-- Header Menu(onclick main body->close-->
 				<div id="mySidenav" class="sidenav">
 					<a href="http://localhost:8181/ICT_MARKET/userInfo" class="text-center">Profile</a>
@@ -282,73 +314,81 @@ font-size: 90%;
 	
 </script>
 
+
 <div id= "mainboard" class="container" onclick="closeNav()">
 <div class="row">
-<h3 class="col-md-11">${info}</h3>
-<h5 class="col-md-1">내 찜목록</h5>
-<table class="tab_menu">
-  <tr class="list">
-  	<td>
-      <form action="http://localhost:8181/ICT_MARKET/userInfo.com" method="get">
-      	<input type="submit" class="btn" name="userinfo" value="Userinfo">
-      </form>
-    </td>
-    <td>
-      <form action="http://localhost:8181/ICT_MARKET/userboardList.com" method="get">
-      	<input type="submit" class="btn" name="my_boardList" value="MyBoardList">
-      </form>
-    </td>
-    <td>
-      <form action="#" method="get">
-      	<input type="submit" class="btn" name="my_pickedList" value="MyPickedList">
-      </form>      
-    </td>
-  </tr>
+<h3 class="col-md-11">${boarddetail.board_title}</h3>
+<h6 class="col-md-12">Trade </h6>
+
+<p id="no" class="col-2">No.${boarddetail.board_num}</p>
+<p id="writer" class="col-9">${boarddetail.user_id}님이 ${boarddetail.board_writetime}에 작성하신 게시글입니다.</p>
+<p id="read" class="col-1">${boarddetail.board_hit},read</p>
+<hr/>
+</div>
+
+<div id="productamount" class="row">
+<!-- notate unit of bills (below)-->
+<!--<h4 class="col-10">Price: ₩<fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></h4> -->
+<table class="table table-dark table-hover" style="margin-left:14px; margin-top:10px; font-size: 1em;">
+<c:if test="${boarddetail.board_info}">
+<tr>
+	<th>Status</th>
+	<c:if test="${boarddetail.board_sold}">
+    <td style="text-align:right;">Soldout</td></c:if>
+    <c:if test="${!boarddetail.board_sold}">
+    <td style="text-align:right;">On Sale</td></c:if>
+</tr>
+<tr>
+	<th>Price</th>
+    <td style="text-align:right;">₩ <fmt:formatNumber value="${boarddetail.board_amount}" pattern="#,###"/></td>
+</tr>
+</c:if>
+<tr>
+	<th>Cartegory</th>
+    <td style="text-align:right;">${boarddetail.board_category}</td>
+</tr>
 </table>
 </div>
-	<table class="table table-hover" style="font-size:80%">
+<div id="contents" class="row">
+<img src="" style="float:left;"/>
+<p class="text-left">${boarddetail.board_content}</p>
+
+</div>
+<hr/>
+<div id="navgate" class="container">
+
+
+
+
+</div>
+<br/>
+<br/>
+<br/>
+
+<!-- comment -->
+<table class="table" style="font-size:80%">
 		<tr>
-			<th class="col-md-1">No</th>
-			<th class="col-md-8">게시글 번호</th>
-			</tr>
-		<c:forEach var="pick" items="${PickedList}">
-		<tr>
-	    	<td class="col-md-1">${pick.picked_num}</td>
-			<td class="col-md-8">			
-				<a href="http://localhost:8181/ICT_MARKET/boardDetail.com?board_num=${pick.picked_board_num}" style="text-decoration:none;">
-					${pick.picked_board_num}
-				</a>
-			</td>
-			
-			
+			<th class="col">Report</th>
 		</tr>
-		</c:forEach>
-	</table>
+		<tr>
+		<td>
 	
-	<!--Pagination
-	.pNation>p>a:hover{
-	color: #f1f1f1;
-	}
-	-->
-	<script>
-	
-	</script>
-	<div>
-	<label class="pNation">
-    <c:if test="${dto.startPage eq 1}">
-    <p><a href="?pageNum=${dto.startPage -1}" style="text-decoration:none; color:black">Prev</a></p>
-    </c:if>
-    <c:forEach var="pageIndex" begin="${dto.startPage}" end="${dto.endPage}">
-  	<p><a href="?pageNum=${pageIndex}" style="text-decoration:none; color:black">${pageIndex}</a></p>
-    </c:forEach>
-    <c:if test="${dto.endPage ne dto.totalPages}">
-    <p><a href="?pageNum=${dto.startPage +10}" style="text-decoration:none; color:black">Next</a></p>
-    </c:if>
-    </label>
-    </div>
- 	
-	
+	<!-- report -->
+		<form action="http://localhost:8181/ICT_MARKET/report.com" method="post">
+			<div class="form-floating">
+			<input type="hidden" name="board_num" value="${boarddetail.board_num}">
+			  <textarea class="form-control" placeholder="reason" name="report_reason" id="floatingTextarea"></textarea>
+			  <label for="floatingTextarea">Report Reason</label>
+			</div>		
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<input class="btn" type="submit" value="send" id="comment">
+			</div>
+		</form>
+		</td>
+		</tr>
+</table>
 </div>
 </div>
+
 </body>
 </html>

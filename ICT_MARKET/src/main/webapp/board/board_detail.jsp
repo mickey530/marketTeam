@@ -235,8 +235,9 @@ position: relative;
 			<div>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 	           
-					<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
 	
@@ -263,8 +264,9 @@ position: relative;
 		<div>
 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
            
-				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/board/Board_search.jsp" method="get" 
+				<form name="searchHeader" action="http://localhost:8181/ICT_MARKET/searchResult.com" method="get" 
 				class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+					<input type="hidden" name="search_where" value="header">
 					<input type="search" class="form-control" name="search_keyword" placeholder="Search" aria-label="Search">
 				</form>
                
@@ -440,9 +442,9 @@ position: relative;
 </td>
 <td class="col-1">
 <!-- REPORT-->
-<form id="report" action="#" method="post">
-<input type="hidden" value="${boarddetail.board_picked_num}" name="report_board_num">
-<input id="reportButton" class="btn" type="button" value="Report" onclick=""/>
+<form id="report" action="/ICT_MARKET/reportForm.com" method="post">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input id="reportButton" class="btn" type="submit" value="Report"/>
 </form>
 </td>
 </c:if>
