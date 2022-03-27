@@ -185,6 +185,28 @@ public class PickedDAO {
 			}return -1; //db 오류
 	}
 	
+	// before user delete
+	public int userPickDelete(String user_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String pick = "DELETE FROM picked WHERE picked_user_id = ?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(pick);
+			pstmt.setString(1, user_id);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException se) {
+				se.printStackTrace();
+			}
+			}return -1; //db 오류
+	}
+	
 	public void pickAllSoldDelete(String picked_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

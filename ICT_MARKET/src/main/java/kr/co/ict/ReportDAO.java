@@ -174,6 +174,79 @@ public class ReportDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	// before board delete
+	public void reportedDelete(int board_num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String delete = "DELETE FROM reportlist WHERE reported_board_num = ?";
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(delete);
+			pstmt.setInt(1, board_num);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}	
+	
+	// before user delete
+	public void reportedUserDelete(String user_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String delete = "DELETE FROM reportlist WHERE reported_id = ?";
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(delete);
+			pstmt.setString(1, user_id);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void reportingUserDelete(String user_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String delete = "DELETE FROM reportlist WHERE reporting_id = ?";
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(delete);
+			pstmt.setString(1, user_id);
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 		
 }

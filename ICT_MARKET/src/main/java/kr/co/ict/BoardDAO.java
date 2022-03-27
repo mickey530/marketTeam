@@ -391,6 +391,33 @@ public class BoardDAO {
 	}
 	}
 	
+	public void userDeleteBoard(String user_id) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String delete = "DELETE FROM board WHERE user_id = ?";
+		
+		try {
+			
+		con = ds.getConnection();
+		pstmt = con.prepareStatement(delete);
+		pstmt.setString(1, user_id);
+		pstmt.executeUpdate();
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+		
+	}finally {
+		
+		try{
+			con.close();
+			pstmt.close();
+		}catch(final SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	}
+	
 	//search
 	public ArrayList<BoardVO> getSearchBoard(boolean boardInfo, String searchkeyword, int PageNum){
 		
