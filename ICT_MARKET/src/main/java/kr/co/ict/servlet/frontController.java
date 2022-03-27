@@ -32,7 +32,10 @@ import service.PickCancelService;
 import service.PickedAllSoldDeleteService;
 import service.PickedListService;
 import service.ReportFormService;
+import service.ReportListService;
 import service.ReportService;
+import service.ReportedBoardDeleteService;
+import service.ReportedDetailService;
 import service.UserInfoDeleteService;
 import service.UserInfoManagerDeleteService;
 import service.UserInfoManagerService;
@@ -101,23 +104,19 @@ public class frontController extends HttpServlet {
 			is = new UserInfoService();
 			is.execute(request, response);
 			ui = "/users/userinfo.jsp";
-		}
-		else if (uri.equals("/ICT_MARKET/userInfoManager.com")) {
+		}else if (uri.equals("/ICT_MARKET/userInfoManager.com")) {
 			is = new UserInfoManagerService();
 			is.execute(request, response);
 			ui = "/users/manager_userinfo.jsp";
-		}
-		else if (uri.equals("/ICT_MARKET/userInfoDelete.com")) {
+		}else if (uri.equals("/ICT_MARKET/userInfoDelete.com")) {
 			is = new UserInfoDeleteService();
 			is.execute(request, response);
 			ui = "/main.com";
-		}
-		else if (uri.equals("/ICT_MARKET/userInfoManagerDelete.com")) {
+		}else if (uri.equals("/ICT_MARKET/userInfoManagerDelete.com")) {
 			is = new UserInfoManagerDeleteService();
 			is.execute(request, response);
-			ui = "/main.com";
-		}
-		else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
+			ui = "/userList.com";
+		}else if (uri.equals("/ICT_MARKET/userInfoUpdateForm.com")) {
 			is = new UserInfoUpdateFormService();
 			is.execute(request, response);
 			ui = "/users/userUpdateForm.jsp";
@@ -193,14 +192,26 @@ public class frontController extends HttpServlet {
 			is = new PickedAllSoldDeleteService();
 			is.execute(request, response);
 			ui = "/pickList.com";	
-		}else if (uri.equals("/ICT_MARKET/reportForm.com")) {
-			is = new ReportFormService();
-			is.execute(request, response);
-			ui = "/board/report_form.jsp";	
 		}else if (uri.equals("/ICT_MARKET/report.com")) {
 			is = new ReportService();
 			is.execute(request, response);
 			ui = "/boardDetail.com";	
+		}else if (uri.equals("/ICT_MARKET/reportForm.com")) {
+			is = new ReportFormService();
+			is.execute(request, response);
+			ui = "/board/report_form.jsp";	
+		}else if (uri.equals("/ICT_MARKET/reportList.com")) {
+			is = new ReportListService();
+			is.execute(request, response);
+			ui = "/manager/ReportList.jsp";
+		}else if (uri.equals("/ICT_MARKET/reportDetail.com")) {
+			is = new ReportedDetailService();
+			is.execute(request, response);
+			ui = "/manager/Report_detail.jsp";
+		}else if (uri.equals("/ICT_MARKET/reportBoardDelete.com")) {
+			is = new ReportedBoardDeleteService();
+			is.execute(request, response);
+			ui = "/reportList.com";
 		}else if (uri.equals("/ICT_MARKET/searchResult.com")){
 			is = new BoardSearchService();
 			is.execute(request, response);
