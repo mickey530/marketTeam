@@ -368,22 +368,20 @@ font-size: 90%;
 <!-- comment -->
 <table class="table" style="font-size:80%">
 		<tr>
-			<th class="col">comment edit</th>
+			<th class="col">Report</th>
 		</tr>
 		<tr>
 		<td>
 	
-	<!-- insert comment -->
-		<form action="http://localhost:8181/ICT_MARKET/CommentUpdate.com" method="post">
+	<!-- report -->
+		<form action="http://localhost:8181/ICT_MARKET/report.com" method="post">
 			<div class="form-floating">
-			<input type="hidden" name="page_num" value="${page_num }">						
-			<input type="hidden" name="comment_num" value="${comment.comment_num }">
-			<input type="hidden" name="board_num" value="${comment.comment_board_num }">
-			  <textarea class="form-control" placeholder="Leave a comment here" name="comment_content" id="floatingTextarea">${comment.comment_content}</textarea>
-			  <label for="floatingTextarea">Comments</label>
+			<input type="hidden" name="board_num" value="${boarddetail.board_num}">
+			  <textarea class="form-control" placeholder="reason" name="report_reason" id="floatingTextarea"></textarea>
+			  <label for="floatingTextarea">Report Reason</label>
 			</div>		
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<input class="btn" type="submit" value="update" id="comment">
+			<input class="btn" type="submit" value="send" id="comment">
 			</div>
 		</form>
 		</td>

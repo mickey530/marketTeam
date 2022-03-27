@@ -440,9 +440,9 @@ position: relative;
 </td>
 <td class="col-1">
 <!-- REPORT-->
-<form id="report" action="#" method="post">
-<input type="hidden" value="${boarddetail.board_picked_num}" name="report_board_num">
-<input id="reportButton" class="btn" type="button" value="Report" onclick=""/>
+<form id="report" action="/ICT_MARKET/reportForm.com" method="post">
+<input type="hidden" value="${boarddetail.board_num}" name="board_num">
+<input id="reportButton" class="btn" type="submit" value="Report"/>
 </form>
 </td>
 </c:if>

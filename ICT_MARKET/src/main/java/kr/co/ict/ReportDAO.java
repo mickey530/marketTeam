@@ -149,5 +149,31 @@ public class ReportDAO {
 		}
 		return pageNum;	
 	}
+	
+	public void report(String reporting_id, String reported_id, int reported_board_num, String reported_reason) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "INSERT INTO reportlist(reporting_id, reported_id, reported_board_num, reported_reason) VALUES(?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reporting_id);
+			pstmt.setString(2, reported_id);
+			pstmt.setInt(3, reported_board_num);
+			pstmt.setString(4, reported_reason);
+			pstmt.executeUpdate();
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 		
 }
