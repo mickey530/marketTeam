@@ -140,7 +140,7 @@ font-size: 90%;
 	#mainboard {
 	font-family: 'Play', sans-serif;
 	}
-	#mainboard .row{
+	#mainboard{
 	margin-top: 50px;
 	margin-bottom: 10px;
 	}
@@ -365,7 +365,6 @@ font-size: 90%;
 
   
 
-  </form>
     <c:if test="${sessionScope.session_id eq user.user_id }">
   <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
   <div class="row mb-3">
@@ -390,6 +389,7 @@ font-size: 90%;
   </form>
   
  </c:if>
+  </form>
 </div>
 
 </div>
