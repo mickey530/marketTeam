@@ -198,15 +198,17 @@ public class frontController extends HttpServlet {
 			is.execute(request, response);
 			ui = "/board/report_form.jsp";	
 		}else if (uri.equals("/ICT_MARKET/report.com")) {
-			System.out.println("컨트롤러 진입은 함");
 			is = new ReportService();
 			is.execute(request, response);
-			ui = "/boardDetail.com";
-		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com")){
+			ui = "/boardDetail.com";	
+		}else if (uri.equals("/ICT_MARKET/searchResult.com")){
 			is = new BoardSearchService();
 			is.execute(request, response);
 			ui = "/board/Board_search.jsp";
-		}} catch (Exception e) {
+		}else {
+			ui = "/main.com";
+		}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
