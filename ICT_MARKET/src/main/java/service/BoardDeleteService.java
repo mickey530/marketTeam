@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.ict.BoardCommentDAO;
 import kr.co.ict.BoardDAO;
 import kr.co.ict.PickedDAO;
+import kr.co.ict.ReportDAO;
 
 public class BoardDeleteService implements boardInterface_Service{
 	
@@ -37,10 +38,11 @@ public class BoardDeleteService implements boardInterface_Service{
 		BoardCommentDAO cDao = BoardCommentDAO.getInstance();
 		cDao.deleteBoardComment(board_num);
 		
+		ReportDAO rDao = ReportDAO.getInstance();
+		rDao.reportedDelete(board_num);
+		
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.deleteBoard(board_num);
-		
-		
 		
 		}
 	}
