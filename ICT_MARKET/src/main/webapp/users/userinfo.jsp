@@ -27,20 +27,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
      margin-top: 200px;
     
       }
-      .deleteinfo{    
       
-       width:1500px;
-       padding: 20px;
-      
-      }
-      
-      .updateinfo{
-      
-       width:1500px;
-        padding: 20px;
-      
-      
-      }
       .form-floating{
       
       margin: 30px;
@@ -329,7 +316,10 @@ position: relative;
       </form>      
     </td>
   </tr>
+  
+  
 </table>
+
 <form class="info" style="margin-top:50px;">
 	<div class="row mb-3">
     <label class="col-sm-2 col-form-label">아이디</label> 
@@ -357,9 +347,20 @@ position: relative;
     </div>
   </div>
 
+  </form>
   
 
-    <c:if test="${sessionScope.session_id eq user.user_id }">
+<c:if test="${sessionScope.session_id eq user.user_id }">
+  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-3">
+    <input type="hidden" value="${user.user_num }" name="user_num"/>
+    <input type="hidden" value="${user.user_id }" name="user_id"/>
+      <input type="submit" class="btn btn-outline-success w-100" value="수정">
+    </div>
+  </div>
+  </form>
   <form class="deleteinfo" action="http://localhost:8181/ICT_MARKET/userInfoDelete.com" method="post">
   <div class="row mb-3">
     <label class="col-sm-2 col-form-label"></label>
@@ -367,26 +368,18 @@ position: relative;
 
     <input type="hidden" value="${user.user_id }" name="user_id"/>
     <input type="hidden" value="${user.user_num }" name="user_num"/>
-      <input type="submit" class="form-control" value="탈퇴" readonly/>
+      <input type="submit" class="btn btn-outline-danger w-100" value="탈퇴">
     </div>
   </div>
   </form>
-  <form class="updateinfo" action="http://localhost:8181/ICT_MARKET/userInfoUpdateForm.com" method="post">
-  <div class="row mb-3">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-3">
-    
-    <input type="hidden" value="${user.user_id }" name="user_id"/>
-      <input type="submit" class="form-control" value="수정" readonly/>
-    </div>
-  </div>
-  </form>
-  
- </c:if>
-  </form>
+</c:if>
+</div>
   </div>
 </div>
-</div>
+
+
+
+
 <!--footer-->
 <footer class="p-3 py-3 border-top">
 	<div class="container">

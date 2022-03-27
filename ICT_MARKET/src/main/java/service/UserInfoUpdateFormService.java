@@ -18,7 +18,7 @@ public class UserInfoUpdateFormService implements boardInterface_Service{
 		String suNum = request.getParameter("user_num");
 		int uNum = Integer.parseInt(suNum);
 		
-		
+		System.out.println(uNum);
 		UserDAO dao = UserDAO.getInstance();
 		UserVO user = dao.getUserDataManager(uNum);
 		request.setAttribute("user", user);
