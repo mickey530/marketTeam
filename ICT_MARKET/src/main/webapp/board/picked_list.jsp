@@ -311,9 +311,9 @@ position: relative;
 <table class="tab_menu">
   <tr class="list">
     <td>
-      <a href="/ICT_MARKET/pickAllDelete.com" style="text-decoration:none; font-size:80%">
-      	Delete All Favorite Items
-      </a>      
+      <form action="http://localhost:8181/ICT_MARKET/pickAllDelete.com" method="get">
+      	<input type="submit" class="btn" value="Delete All Favorite Items">
+      </form>     
     </td>
   </tr>
 </table>

@@ -267,9 +267,9 @@ position: relative;
 </script>
 
 <div id= "mainboard" class="container" onclick="closeNav()">
-<h3 class="col">${info}</h3>
 <div class="row">
-<h5 class="col">내 게시글</h5>
+<h3 class="col-md-11">My Thread</h3>
+<h5 class="col-md-1"> </h5>
 <table class="tab_menu">
   <tr class="list">
   	<td>

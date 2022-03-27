@@ -341,11 +341,11 @@ position: relative;
       		</th>
       		<th><div class="btn" style="justify-content:flex-end; float:right;">
       		<c:if test="${board.board_sold == false}">
-      		<button type="button" class="btn" id="soldButton" value="sold" color="rgb(162,162,162)" 
+      		<button type="button" class="btn" id="soldButton" value="sold" style="color:rgb(162,162,162)" 
       		onclick="SoldOrNot()">Soldout</button>
       		</c:if>
-      		<c:if test="${board.board_sold == false}">
-      		<button type="button" class="btn" id="soldButton" value="soldout" color="rgb(162,162,162)" 
+      		<c:if test="${board.board_sold == true}">
+      		<button type="button" class="btn" id="soldButton" value="soldout" style="color:rgb(162,162,162)" 
       		onclick="SoldOrNot()">On Sale</button>
       		</c:if>
       		<input type="hidden" name="board_sold" id="board_sold"></div>

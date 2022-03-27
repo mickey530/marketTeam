@@ -399,7 +399,7 @@ public class BoardDAO {
 		ResultSet rs = null;
 		//final int boardCount = 10;
 		String searchsql = "SELECT * FROM board WHERE board_info = ? AND "
-				+ "(board_title like ? OR board_content like ? OR board_category < ? OR user_id like ?) ORDER BY board_num DESC limit 10"; 
+				+ "(board_title like ? OR board_content like ? OR board_category like ? OR user_id like ?) ORDER BY board_num DESC limit 10"; 
 		ArrayList<BoardVO> searchList = new ArrayList<BoardVO>();
 		try {
 			con = ds.getConnection();
@@ -535,7 +535,7 @@ public class BoardDAO {
 			con = ds.getConnection();
 			
 			String sql = "SELECT COUNT(*) FROM Board WHERE board_info = ? AND "
-					+ "(board_title like ? OR board_content like ? OR board_category < ? OR user_id like ?)";
+					+ "(board_title like ? OR board_content like ? OR board_category like ? OR user_id like ?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setBoolean(1, boardInfo);

@@ -188,7 +188,7 @@ public class PickedDAO {
 	public void pickAllSoldDelete(String picked_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String pick = "DELETE FROM picked WHERE picked_id = ?";
+		String pick = "DELETE FROM picked WHERE picked_user_id = ?";
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(pick);
