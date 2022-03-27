@@ -31,6 +31,8 @@ import service.PickAddOrDeleteService;
 import service.PickCancelService;
 import service.PickedAllSoldDeleteService;
 import service.PickedListService;
+import service.ReportFormService;
+import service.ReportService;
 import service.UserInfoDeleteService;
 import service.UserInfoManagerDeleteService;
 import service.UserInfoManagerService;
@@ -127,14 +129,11 @@ public class frontController extends HttpServlet {
 			is = new UserListManagerService();
 			is.execute(request, response);
 			ui = "/users/userlist.jsp";
-		}
-		else if (uri.equals("/ICT_MARKET/userboardList.com")) {
-				is = new UserBoardListService();
-				is.execute(request, response);
-				ui = "/users/my_boardlist.jsp";
-		}
-		
-		else if (uri.equals("/ICT_MARKET/boardList.com")) {
+		}else if (uri.equals("/ICT_MARKET/userboardList.com")) {
+			is = new UserBoardListService();
+			is.execute(request, response);
+			ui = "/users/my_boardlist.jsp";
+		}else if (uri.equals("/ICT_MARKET/boardList.com")) {
 			is = new BoardListService();
 			is.execute(request, response);
 			ui = "/board/Board_list.jsp";
@@ -194,7 +193,15 @@ public class frontController extends HttpServlet {
 			is = new PickedAllSoldDeleteService();
 			is.execute(request, response);
 			ui = "/pickList.com";	
-			
+		}else if (uri.equals("/ICT_MARKET/reportForm.com")) {
+			is = new ReportFormService();
+			is.execute(request, response);
+			ui = "/board/report_form.jsp";	
+		}else if (uri.equals("/ICT_MARKET/report.com")) {
+			System.out.println("컨트롤러 진입은 함");
+			is = new ReportService();
+			is.execute(request, response);
+			ui = "/boardDetail.com";
 		}else if (uri.equals("/ICT_MARKET/boardSearchResult.com")){
 			is = new BoardSearchService();
 			is.execute(request, response);
